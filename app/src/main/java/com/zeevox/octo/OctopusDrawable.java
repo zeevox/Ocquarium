@@ -13,7 +13,7 @@
  * permissions and limitations under the License.
  */
 
-package com.android.octo;
+package com.zeevox.octo;
 
 import android.animation.TimeAnimator;
 import android.content.Context;
@@ -104,7 +104,7 @@ public class OctopusDrawable extends Drawable {
     mSizePx = size;
     M.setScale(mSizePx / BASE_SCALE, mSizePx / BASE_SCALE);
     // TaperedPathStroke.setMinStep(20f*BASE_SCALE/mSizePx); // nice little floaty circles
-    com.android.octo.TaperedPathStroke.setMinStep(8f * BASE_SCALE / mSizePx); // classic tentacles
+    com.zeevox.octo.TaperedPathStroke.setMinStep(8f * BASE_SCALE / mSizePx); // classic tentacles
     M.invert(M_inv);
   }
 
@@ -403,7 +403,7 @@ public class OctopusDrawable extends Drawable {
 
     public void draw(@NonNull Canvas canvas, Paint pt) {
       final Path p = getPath();
-      com.android.octo.TaperedPathStroke.drawPath(canvas, p, max, min, pt);
+      com.zeevox.octo.TaperedPathStroke.drawPath(canvas, p, max, min, pt);
     }
 
     public void drawDebug(Canvas canvas) {

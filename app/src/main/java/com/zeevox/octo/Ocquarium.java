@@ -13,7 +13,7 @@
  * permissions and limitations under the License.
  */
 
-package com.android.octo;
+package com.zeevox.octo;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -44,9 +44,9 @@ public class Ocquarium extends Activity {
     bg.addView(mImageView, new FrameLayout.LayoutParams(
         ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
-    final com.android.octo.OctopusDrawable octo = new com.android.octo.OctopusDrawable(
+    final com.zeevox.octo.OctopusDrawable octo = new com.zeevox.octo.OctopusDrawable(
         getApplicationContext());
-    octo.setSizePx((int) (com.android.octo.OctopusDrawable.randfrange(40f, 180f) * dp));
+    octo.setSizePx((int) (com.zeevox.octo.OctopusDrawable.randfrange(40f, 180f) * dp));
     mImageView.setImageDrawable(octo);
     octo.startDrift();
 
