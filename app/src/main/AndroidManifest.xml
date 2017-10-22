@@ -35,6 +35,9 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
         <category android:name="android.intent.category.DEFAULT" />
         <category android:name="com.android.internal.category.PLATLOGO" />
       </intent-filter>
+      <meta-data
+        android:name="android.app.shortcuts"
+        android:resource="@xml/app_shortcuts" />
     </activity>
 
     <!-- Screensaver service -->
@@ -54,10 +57,11 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
     <!-- Screensaver preferences activity -->
     <activity
       android:exported="true"
-      android:name=".screensaver.ScreensaverSettingsActivity">
+      android:name=".screensaver.ScreensaverSettingsActivity"
+      android:theme="@android:style/Theme.DeviceDefault.Light.DarkActionBar">
       <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
-        <category android:name="android.intent.category.DEFAULT" />
+        <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
+        <category android:name="android.intent.category.PREFERENCE" />
       </intent-filter>
     </activity>
   </application>
