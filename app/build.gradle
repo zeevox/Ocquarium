@@ -1,3 +1,5 @@
+import java.text.SimpleDateFormat
+
 /*
  * Copyright (C) 2017 The Android Open Source Project
  * Copyright (C) 2017 Timothy "ZeevoX" Langer
@@ -14,20 +16,25 @@
  */
 apply plugin: 'com.android.application'
 
+static def buildDate() {
+    def df = new SimpleDateFormat("yyyyMMdd")
+    return df.format(new Date())
+}
+
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.2"
+    compileSdkVersion 27
+    buildToolsVersion "27.0.0"
 
     defaultConfig {
         applicationId "com.zeevox.octo"
         minSdkVersion 21
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 3
         versionName "2.1"
 
         android.applicationVariants.all { variant ->
             variant.outputs.all {
-                outputFileName = "Ocquarium-${versionName}.apk"
+                outputFileName = "Ocquarium-${versionName}-${buildDate()}-release.apk"
             }
         }
     }
@@ -42,6 +49,6 @@ android {
 }
 
 dependencies {
-    implementation 'com.android.support:support-annotations:26.1.0'
-    implementation 'com.android.support:support-dynamic-animation:26.1.0'
+    implementation 'com.android.support:support-annotations:27.0.0'
+    implementation 'com.android.support:support-dynamic-animation:27.0.0'
 }
