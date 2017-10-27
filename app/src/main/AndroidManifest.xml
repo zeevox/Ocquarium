@@ -57,7 +57,7 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
     <!-- Screensaver preferences activity -->
     <activity
       android:exported="true"
-      android:name=".screensaver.ScreensaverSettingsActivity"
+      android:name=".settings.SettingsActivity"
       android:theme="@android:style/Theme.DeviceDefault.Light.DarkActionBar">
       <intent-filter>
         <action android:name="android.intent.action.APPLICATION_PREFERENCES" />

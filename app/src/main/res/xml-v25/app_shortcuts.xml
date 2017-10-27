@@ -23,7 +23,7 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
     android:shortcutShortLabel="@string/shortcut_settings_short">
     <intent
       android:action="android.intent.action.VIEW"
-      android:targetClass="com.zeevox.octo.screensaver.ScreensaverSettingsActivity"
+      android:targetClass="com.zeevox.octo.settings.SettingsActivity"
       android:targetPackage="com.zeevox.octo" />
     <categories android:name="android.shortcut.preferences" />
   </shortcut>

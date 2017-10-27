@@ -12,17 +12,33 @@
  * permissions and limitations under the License.
  */
 
-package com.zeevox.octo.screensaver;
+package com.zeevox.octo.settings;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.preference.PreferenceFragment;
 import com.zeevox.octo.R;
 
-public class ScreensaverSettingsFragment extends PreferenceFragment {
+public class SettingsActivity extends Activity {
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    addPreferencesFromResource(R.xml.preferences_ocquarium);
+    // Inflate layout
+    setContentView(R.layout.activity_screensaver_settings);
+
+    // Enable back button in Toolbar
+    try {
+      //noinspection ConstantConditions
+      getActionBar().setDisplayHomeAsUpEnabled(true);
+    } catch (NullPointerException npe) {
+      npe.printStackTrace();
+    }
+  }
+
+  // Handle clicking on the back button
+  @Override
+  public boolean onNavigateUp() {
+    finish();
+    return true;
   }
 }
