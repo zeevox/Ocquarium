@@ -15,13 +15,17 @@
 
 package com.zeevox.octo.screensaver;
 
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.GradientDrawable.Orientation;
+import android.preference.PreferenceManager;
 import android.service.dreams.DreamService;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import com.zeevox.octo.R;
 
 public class OcquariumScreensaver extends DreamService {
 
@@ -48,9 +52,24 @@ public class OcquariumScreensaver extends DreamService {
     setInteractive(true);
     setFullscreen(true);
 
+    // Initialize preferences
+    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
     final float dp = getResources().getDisplayMetrics().density;
 
-    getWindow().setBackgroundDrawableResource(R.drawable.octo_bg);
+    // Recreate octo_bg.xml programmatically
+    GradientDrawable backgroundGradient = new GradientDrawable();
+    // Set the background colors / fetch them from the preferences menu
+    backgroundGradient.setColors(new int[]{
+        Color.parseColor(preferences.getString("gradient_start_color", "#FF205090")),
+        Color.parseColor(preferences.getString("gradient_end_color", "#FF001040"))
+    });
+    // Linear gradient
+    backgroundGradient.setGradientType(GradientDrawable.LINEAR_GRADIENT);
+    // Set the gradient angle to -90 (same as 270)
+    backgroundGradient.setOrientation(Orientation.TOP_BOTTOM);
+    // Set the background to the new drawable we've created
+    getWindow().setBackgroundDrawable(backgroundGradient);
 
     FrameLayout bg = new FrameLayout(this);
     setContentView(bg);

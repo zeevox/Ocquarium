@@ -14,7 +14,21 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
     limitations under the License.
 -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-  <Preference
-    android:summary="An update will be coming out soon with preferences to change in this menu."
-    android:title="Nothing here yet..." />
+  <EditTextPreference
+    android:defaultValue="#FF205090"
+    android:inputType="textNoSuggestions"
+    android:key="gradient_start_color"
+    android:summary="Set the background gradient start color."
+    android:title="Gradient start color" />
+  <EditTextPreference
+    android:defaultValue="#FF001040"
+    android:inputType="textNoSuggestions"
+    android:key="gradient_end_color"
+    android:summary="Set the background gradient end color."
+    android:title="Gradient end color" />
+  <ListPreference
+    android:enabled="false"
+    android:key="gradient_angle"
+    android:summary="Set the background gradient angle."
+    android:title="Gradient angle" />
 </PreferenceScreen>

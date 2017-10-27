@@ -14,4 +14,4 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
     limitations under the License.
 -->
 <dream xmlns:android="http://schemas.android.com/apk/res/android"
-  android:settingsActivity="com.zeevox.octo.screensaver.ScreensaverSettingsActivity" />
+  android:settingsActivity="com.zeevox.octo.settings.SettingsActivity" />

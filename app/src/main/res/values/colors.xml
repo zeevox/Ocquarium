@@ -16,4 +16,6 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
 -->
 <resources>
   <color name="ic_launcher_background">#283593</color>
+  <color name="octo_bg_default_start_color">#FF205090</color>
+  <color name="octo_bg_default_end_color">#FF001040</color>
 </resources>
