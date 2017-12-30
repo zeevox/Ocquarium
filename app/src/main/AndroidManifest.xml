@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-Copyright (C) 2016 The Android Open Source Project
-Copyright (C) 2017 Timothy "ZeevoX" Langer
+
+   Copyright (C) 2016 The Android Open Source Project
+   Copyright (C) 2017 Timothy "ZeevoX" Langer
 
    Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -15,54 +16,57 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
     limitations under the License.
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.zeevox.octo">
+    package="com.zeevox.octo">
 
-  <application
-    android:allowBackup="true"
-    android:fullBackupContent="@xml/backup_descriptor"
-    android:icon="@mipmap/ic_launcher"
-    android:label="@string/app_name"
-    android:roundIcon="@mipmap/ic_launcher_round">
-    <activity
-      android:label="@string/app_name"
-      android:name=".Ocquarium"
-      android:theme="@android:style/Theme.DeviceDefault.NoActionBar.Fullscreen">
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
-        <action android:name="android.intent.action.VIEW" />
+    <application
+        android:allowBackup="true"
+        android:fullBackupContent="@xml/backup_descriptor"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:isGame="true"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:roundIcon="@mipmap/ic_launcher_round">
+        <activity
+            android:name=".Ocquarium"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.DeviceDefault.NoActionBar.Fullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
 
-        <category android:name="android.intent.category.LAUNCHER" />
-        <category android:name="android.intent.category.DEFAULT" />
-        <category android:name="com.android.internal.category.PLATLOGO" />
-      </intent-filter>
-      <meta-data
-        android:name="android.app.shortcuts"
-        android:resource="@xml/app_shortcuts" />
-    </activity>
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="com.android.internal.category.PLATLOGO" />
+            </intent-filter>
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/app_shortcuts" />
+        </activity>
 
-    <!-- Screensaver service -->
-    <service
-      android:exported="true"
-      android:name=".screensaver.OcquariumScreensaver"
-      android:permission="android.permission.BIND_DREAM_SERVICE">
-      <meta-data
-        android:name="android.service.dream"
-        android:resource="@xml/dream_screensaver" />
-      <intent-filter>
-        <action android:name="android.service.dreams.DreamService" />
-        <category android:name="android.intent.category.DEFAULT" />
-      </intent-filter>
-    </service>
+        <!-- Screensaver service -->
+        <service
+            android:name=".screensaver.OcquariumScreensaver"
+            android:exported="true"
+            android:permission="android.permission.BIND_DREAM_SERVICE">
+            <meta-data
+                android:name="android.service.dream"
+                android:resource="@xml/dream_screensaver" />
+            <intent-filter>
+                <action android:name="android.service.dreams.DreamService" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
 
-    <!-- Screensaver preferences activity -->
-    <activity
-      android:exported="true"
-      android:name=".settings.SettingsActivity"
-      android:theme="@android:style/Theme.DeviceDefault.Light.DarkActionBar">
-      <intent-filter>
-        <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
-        <category android:name="android.intent.category.PREFERENCE" />
-      </intent-filter>
-    </activity>
-  </application>
+        <!-- Screensaver preferences activity -->
+        <activity
+            android:name=".settings.SettingsActivity"
+            android:exported="true"
+            android:theme="@android:style/Theme.DeviceDefault.Light.DarkActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
+                <category android:name="android.intent.category.PREFERENCE" />
+            </intent-filter>
+        </activity>
+    </application>
 </manifest>

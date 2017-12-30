@@ -16,25 +16,32 @@
 package com.zeevox.octo;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.GradientDrawable.Orientation;
-import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+
+import com.zeevox.octo.settings.SettingsActivity;
+import com.zeevox.octo.util.ColorUtils;
 
 public class Ocquarium extends Activity {
 
   ImageView mImageView;
+  ImageButton mImageButton;
 
+  /* We place the code in onResume() so that the activity is redrawn after visiting settings. */
   @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
+  protected void onResume() {
+    super.onResume();
 
     // Initialize preferences
     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -56,6 +63,8 @@ public class Ocquarium extends Activity {
     getWindow().setBackgroundDrawable(backgroundGradient);
 
     FrameLayout bg = new FrameLayout(this);
+    //FrameLayout settings_button = (FrameLayout) LayoutInflater.from(getApplicationContext()).inflate(R.layout.ocquarium_settings_button, bg);
+    //bg.addView(LayoutInflater.from(getApplicationContext()).inflate(R.layout.ocquarium_settings_button, null));
     setContentView(bg);
     bg.setAlpha(0f);
     bg.animate().setStartDelay(500).setDuration(5000).alpha(1f).start();
@@ -64,9 +73,26 @@ public class Ocquarium extends Activity {
     bg.addView(mImageView, new FrameLayout.LayoutParams(
         ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
-    final com.zeevox.octo.OctopusDrawable octo = new com.zeevox.octo.OctopusDrawable(
+    /* START Settings button */
+    mImageButton = new ImageButton(this);
+    mImageButton = (ImageButton) LayoutInflater.from(getApplicationContext()).inflate(R.layout.ocquarium_settings_button, bg, false);
+    // If it's a light background make sure the icon is contrasting
+    if (ColorUtils.isColorLight(Color.parseColor(preferences.getString("gradient_start_color", "#FF205090")))) {
+      mImageButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_settings_dark));
+    }
+    mImageButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        startActivity(new Intent(Ocquarium.this, SettingsActivity.class));
+      }
+    });
+    bg.addView(mImageButton, new FrameLayout.LayoutParams(
+            ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+    /* END Settings button */
+
+    final OctopusDrawable octo = new OctopusDrawable(
         getApplicationContext());
-    octo.setSizePx((int) (com.zeevox.octo.OctopusDrawable.randfrange(40f, 180f) * dp));
+    octo.setSizePx((int) (OctopusDrawable.randfrange(40f, 180f) * dp));
     mImageView.setImageDrawable(octo);
     octo.startDrift();
 
