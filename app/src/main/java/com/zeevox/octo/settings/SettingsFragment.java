@@ -16,6 +16,7 @@ package com.zeevox.octo.settings;
 
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
+
 import com.zeevox.octo.R;
 
 public class SettingsFragment extends PreferenceFragment {

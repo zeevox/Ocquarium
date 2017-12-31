@@ -18,7 +18,6 @@ package com.zeevox.octo;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.GradientDrawable.Orientation;
 import android.preference.PreferenceManager;
@@ -52,8 +51,8 @@ public class Ocquarium extends Activity {
     GradientDrawable backgroundGradient = new GradientDrawable();
     // Set the background colors / fetch them from the preferences menu
     backgroundGradient.setColors(new int[]{
-        Color.parseColor(preferences.getString("gradient_start_color", "#FF205090")),
-        Color.parseColor(preferences.getString("gradient_end_color", "#FF001040"))
+            preferences.getInt("gradient_start_color", getResources().getColor(R.color.octo_bg_default_start_color)),
+            preferences.getInt("gradient_end_color", getResources().getColor(R.color.octo_bg_default_end_color))
     });
     // Linear gradient
     backgroundGradient.setGradientType(GradientDrawable.LINEAR_GRADIENT);
@@ -66,8 +65,10 @@ public class Ocquarium extends Activity {
     //FrameLayout settings_button = (FrameLayout) LayoutInflater.from(getApplicationContext()).inflate(R.layout.ocquarium_settings_button, bg);
     //bg.addView(LayoutInflater.from(getApplicationContext()).inflate(R.layout.ocquarium_settings_button, null));
     setContentView(bg);
+
     bg.setAlpha(0f);
-    bg.animate().setStartDelay(500).setDuration(5000).alpha(1f).start();
+    bg.animate().setStartDelay(500).setDuration(Integer.valueOf(preferences.getString(
+            "octo_fade_in_duration", getResources().getString(R.string.anim_even_longer)))).alpha(1f).start();
 
     mImageView = new ImageView(this);
     bg.addView(mImageView, new FrameLayout.LayoutParams(
@@ -77,7 +78,7 @@ public class Ocquarium extends Activity {
     mImageButton = new ImageButton(this);
     mImageButton = (ImageButton) LayoutInflater.from(getApplicationContext()).inflate(R.layout.ocquarium_settings_button, bg, false);
     // If it's a light background make sure the icon is contrasting
-    if (ColorUtils.isColorLight(Color.parseColor(preferences.getString("gradient_start_color", "#FF205090")))) {
+    if (ColorUtils.isColorLight(preferences.getInt("gradient_start_color", getResources().getColor(R.color.octo_bg_default_start_color)))) {
       mImageButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_settings_dark));
     }
     mImageButton.setOnClickListener(new View.OnClickListener() {
@@ -90,9 +91,11 @@ public class Ocquarium extends Activity {
             ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
     /* END Settings button */
 
+    float octoMinSize = Float.parseFloat(preferences.getString("octopus_min_size", "40"));
+    float octoMaxSize = Float.parseFloat(preferences.getString("octopus_max_size", "180"));
     final OctopusDrawable octo = new OctopusDrawable(
         getApplicationContext());
-    octo.setSizePx((int) (OctopusDrawable.randfrange(40f, 180f) * dp));
+    octo.setSizePx((int) (OctopusDrawable.randfrange(octoMinSize, octoMaxSize) * dp));
     mImageView.setImageDrawable(octo);
     octo.startDrift();
 

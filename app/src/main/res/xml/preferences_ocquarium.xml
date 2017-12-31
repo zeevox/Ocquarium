@@ -13,22 +13,60 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-  <EditTextPreference
-    android:defaultValue="#FF205090"
-    android:inputType="textNoSuggestions"
-    android:key="gradient_start_color"
-    android:summary="Set the background gradient start color."
-    android:title="Gradient start color" />
-  <EditTextPreference
-    android:defaultValue="#FF001040"
-    android:inputType="textNoSuggestions"
-    android:key="gradient_end_color"
-    android:summary="Set the background gradient end color."
-    android:title="Gradient end color" />
-  <ListPreference
-    android:enabled="false"
-    android:key="gradient_angle"
-    android:summary="Set the background gradient angle."
-    android:title="Gradient angle" />
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+  <PreferenceCategory android:title="@string/prefs_category_octopus">
+    <EditTextPreference
+      android:defaultValue="40"
+      android:summary="@string/prefs_octopus_min_size_summary"
+      android:title="@string/prefs_octopus_min_size_title"
+      android:inputType="number"
+      android:key="octopus_min_size" />
+    <EditTextPreference
+      android:defaultValue="180"
+      android:summary="@string/prefs_octopus_max_size_summary"
+      android:title="@string/prefs_octopus_max_size_title"
+      android:inputType="number"
+      android:key="octopus_max_size" />
+    <SwitchPreference
+      android:title="@string/prefs_octopus_weird_eyes_title"
+      android:summary="@string/prefs_octopus_weird_eyes_summary"
+      android:key="octopus_weird_eyes"
+      android:defaultValue="false" />
+    <SwitchPreference
+      android:title="@string/prefs_octopus_leg_particles_title"
+      android:summary="@string/prefs_octopus_leg_particles_summary"
+      android:defaultValue="false"
+      android:key="octopus_leg_particles" />
+    <SwitchPreference
+      android:title="@string/prefs_octopus_leg_path_debug_title"
+      android:summary="@string/prefs_octopus_leg_path_debug_summary"
+      android:defaultValue="false"
+      android:key="octopus_leg_path_debug" />
+  </PreferenceCategory>
+  <PreferenceCategory android:title="@string/prefs_category_background">
+    <com.rarepebble.colorpicker.ColorPreference
+      android:key="gradient_start_color"
+      android:defaultValue="#FF205090"
+      android:summary="@string/prefs_gradient_start_color_summary"
+      app:colorpicker_showAlpha="false"
+      android:title="@string/prefs_gradient_start_color_title" />
+    <com.rarepebble.colorpicker.ColorPreference
+      android:key="gradient_end_color"
+      android:title="@string/prefs_gradient_end_color_title"
+      android:summary="@string/prefs_gradient_end_color_summary"
+      app:colorpicker_showAlpha="false"
+      android:defaultValue="#FF001040"/>
+  </PreferenceCategory>
+  <PreferenceCategory android:title="@string/prefs_category_animations">
+    <ListPreference
+      android:title="@string/prefs_octo_fade_in_duration_title"
+      android:summary="%s"
+      android:entries="@array/prefs_fade_duration_entries"
+      android:entryValues="@array/prefs_fade_duration_values"
+      android:defaultValue="@string/anim_short"
+      android:key="octo_fade_in_duration"
+      android:positiveButtonText="@null"
+      android:negativeButtonText="@null"/>
+  </PreferenceCategory>
 </PreferenceScreen>

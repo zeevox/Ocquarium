@@ -16,7 +16,6 @@
 package com.zeevox.octo.screensaver;
 
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.GradientDrawable.Orientation;
 import android.preference.PreferenceManager;
@@ -26,6 +25,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+
+import com.zeevox.octo.OctopusDrawable;
+import com.zeevox.octo.R;
 
 public class OcquariumScreensaver extends DreamService {
 
@@ -61,8 +63,8 @@ public class OcquariumScreensaver extends DreamService {
     GradientDrawable backgroundGradient = new GradientDrawable();
     // Set the background colors / fetch them from the preferences menu
     backgroundGradient.setColors(new int[]{
-        Color.parseColor(preferences.getString("gradient_start_color", "#FF205090")),
-        Color.parseColor(preferences.getString("gradient_end_color", "#FF001040"))
+            preferences.getInt("gradient_start_color", getResources().getColor(R.color.octo_bg_default_start_color)),
+            preferences.getInt("gradient_end_color", getResources().getColor(R.color.octo_bg_default_end_color))
     });
     // Linear gradient
     backgroundGradient.setGradientType(GradientDrawable.LINEAR_GRADIENT);
@@ -72,17 +74,23 @@ public class OcquariumScreensaver extends DreamService {
     getWindow().setBackgroundDrawable(backgroundGradient);
 
     FrameLayout bg = new FrameLayout(this);
+    //FrameLayout settings_button = (FrameLayout) LayoutInflater.from(getApplicationContext()).inflate(R.layout.ocquarium_settings_button, bg);
+    //bg.addView(LayoutInflater.from(getApplicationContext()).inflate(R.layout.ocquarium_settings_button, null));
     setContentView(bg);
+
     bg.setAlpha(0f);
-    bg.animate().setStartDelay(500).setDuration(5000).alpha(1f).start();
+    bg.animate().setStartDelay(500).setDuration(Integer.valueOf(preferences.getString(
+            "octo_fade_in_duration", getResources().getString(R.string.anim_even_longer)))).alpha(1f).start();
 
     mImageView = new ImageView(this);
     bg.addView(mImageView, new FrameLayout.LayoutParams(
-        ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
-    final com.zeevox.octo.OctopusDrawable octo = new com.zeevox.octo.OctopusDrawable(
-        getApplicationContext());
-    octo.setSizePx((int) (com.zeevox.octo.OctopusDrawable.randfrange(40f, 180f) * dp));
+    float octoMinSize = Float.parseFloat(preferences.getString("octopus_min_size", "40"));
+    float octoMaxSize = Float.parseFloat(preferences.getString("octopus_max_size", "180"));
+    final OctopusDrawable octo = new OctopusDrawable(
+            getApplicationContext());
+    octo.setSizePx((int) (OctopusDrawable.randfrange(octoMinSize, octoMaxSize) * dp));
     mImageView.setImageDrawable(octo);
     octo.startDrift();
 

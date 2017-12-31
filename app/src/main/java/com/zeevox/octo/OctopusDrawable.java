@@ -17,6 +17,7 @@ package com.zeevox.octo;
 
 import android.animation.TimeAnimator;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.DashPathEffect;
@@ -29,6 +30,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
+import android.preference.PreferenceManager;
 import android.support.animation.DynamicAnimation;
 import android.support.animation.FloatValueHolder;
 import android.support.animation.SpringAnimation;
@@ -39,6 +41,8 @@ import android.support.annotation.Nullable;
 public class OctopusDrawable extends Drawable {
 
   public static boolean PATH_DEBUG = false;
+  public static boolean PARTICLE_LEGS = false;
+  public static boolean WEIRD_EYES = false;
   private static float BASE_SCALE = 100f;
   private static int BODY_COLOR = 0xFF101010;
   private static int ARM_COLOR = 0xFF101010;
@@ -59,6 +63,11 @@ public class OctopusDrawable extends Drawable {
   private float[] scaledBounds = new float[2];
 
   public OctopusDrawable(Context context) {
+    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+    PATH_DEBUG = preferences.getBoolean("octopus_leg_path_debug", false);
+    PARTICLE_LEGS = preferences.getBoolean("octopus_leg_particles", false);
+    WEIRD_EYES = preferences.getBoolean("octopus_weird_eyes", false);
+
     float dp = context.getResources().getDisplayMetrics().density;
     setSizePx((int) (100 * dp));
     mPaint.setAntiAlias(true);
@@ -103,8 +112,11 @@ public class OctopusDrawable extends Drawable {
   public void setSizePx(int size) {
     mSizePx = size;
     M.setScale(mSizePx / BASE_SCALE, mSizePx / BASE_SCALE);
-    // TaperedPathStroke.setMinStep(20f*BASE_SCALE/mSizePx); // nice little floaty circles
-    com.zeevox.octo.TaperedPathStroke.setMinStep(8f * BASE_SCALE / mSizePx); // classic tentacles
+    if (PARTICLE_LEGS) {
+      TaperedPathStroke.setMinStep(20f * BASE_SCALE / mSizePx); // nice little floaty circles
+    } else {
+      TaperedPathStroke.setMinStep(8f * BASE_SCALE / mSizePx); // classic tentacles
+    }
     M.invert(M_inv);
   }
 
@@ -252,7 +264,7 @@ public class OctopusDrawable extends Drawable {
       }
 
       // too much?
-      if (false) {
+      if (WEIRD_EYES) {
         mPaint.setColor(0xFF000000);
         drawPupil(canvas, point.x - 16f, point.y - 12f, 5f, true, mPaint);
         drawPupil(canvas, point.x + 16f, point.y - 12f, 5f, true, mPaint);
@@ -403,7 +415,7 @@ public class OctopusDrawable extends Drawable {
 
     public void draw(@NonNull Canvas canvas, Paint pt) {
       final Path p = getPath();
-      com.zeevox.octo.TaperedPathStroke.drawPath(canvas, p, max, min, pt);
+      TaperedPathStroke.drawPath(canvas, p, max, min, pt);
     }
 
     public void drawDebug(Canvas canvas) {
