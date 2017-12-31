@@ -14,17 +14,17 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
     limitations under the License.
 -->
 <shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
-  <shortcut
-    android:enabled="true"
-    android:icon="@drawable/ic_shortcut_settings"
-    android:shortcutDisabledMessage="@string/shortcut_settings_disabled"
-    android:shortcutId="settings"
-    android:shortcutLongLabel="@string/shortcut_settings_long"
-    android:shortcutShortLabel="@string/shortcut_settings_short">
-    <intent
-      android:action="android.intent.action.VIEW"
-      android:targetClass="com.zeevox.octo.settings.SettingsActivity"
-      android:targetPackage="com.zeevox.octo" />
-    <categories android:name="android.shortcut.preferences" />
-  </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_shortcut_settings"
+        android:shortcutDisabledMessage="@string/shortcut_settings_disabled"
+        android:shortcutId="settings"
+        android:shortcutLongLabel="@string/shortcut_settings_long"
+        android:shortcutShortLabel="@string/shortcut_settings_short">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.zeevox.octo.settings.SettingsActivity"
+            android:targetPackage="com.zeevox.octo" />
+        <categories android:name="android.shortcut.preferences" />
+    </shortcut>
 </shortcuts>

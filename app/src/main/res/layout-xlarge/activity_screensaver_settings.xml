@@ -14,13 +14,14 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
     limitations under the License.
 -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  tools:context="com.zeevox.octo.settings.SettingsActivity">
-  <fragment
-    android:id="@+id/preferences_fragment"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:name="com.zeevox.octo.settings.SettingsFragment" />
+    android:layout_height="match_parent"
+    tools:context="com.zeevox.octo.settings.SettingsActivity">
+
+    <fragment
+        android:id="@+id/preferences_fragment"
+        android:name="com.zeevox.octo.settings.SettingsFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </RelativeLayout>

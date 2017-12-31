@@ -21,9 +21,9 @@ import com.zeevox.octo.R;
 
 public class SettingsFragment extends PreferenceFragment {
 
-  @Override
-  public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    addPreferencesFromResource(R.xml.preferences_ocquarium);
-  }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        addPreferencesFromResource(R.xml.preferences_ocquarium);
+    }
 }

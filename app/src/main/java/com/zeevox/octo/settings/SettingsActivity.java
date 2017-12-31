@@ -16,29 +16,30 @@ package com.zeevox.octo.settings;
 
 import android.app.Activity;
 import android.os.Bundle;
+
 import com.zeevox.octo.R;
 
 public class SettingsActivity extends Activity {
 
-  @Override
-  public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    // Inflate layout
-    setContentView(R.layout.activity_screensaver_settings);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // Inflate layout
+        setContentView(R.layout.activity_screensaver_settings);
 
-    // Enable back button in Toolbar
-    try {
-      //noinspection ConstantConditions
-      getActionBar().setDisplayHomeAsUpEnabled(true);
-    } catch (NullPointerException npe) {
-      npe.printStackTrace();
+        // Enable back button in Toolbar
+        try {
+            //noinspection ConstantConditions
+            getActionBar().setDisplayHomeAsUpEnabled(true);
+        } catch (NullPointerException npe) {
+            npe.printStackTrace();
+        }
     }
-  }
 
-  // Handle clicking on the back button
-  @Override
-  public boolean onNavigateUp() {
-    finish();
-    return true;
-  }
+    // Handle clicking on the back button
+    @Override
+    public boolean onNavigateUp() {
+        finish();
+        return true;
+    }
 }

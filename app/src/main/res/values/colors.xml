@@ -15,8 +15,8 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
     limitations under the License.
 -->
 <resources>
-  <color name="ic_launcher_background">#283593</color>
-  <color name="octo_bg_default_start_color">#FF205090</color>
-  <color name="octo_bg_default_end_color">#FF001040</color>
-  <color name="transparent">@android:color/transparent</color>
+    <color name="ic_launcher_background">#283593</color>
+    <color name="octo_bg_default_start_color">#FF205090</color>
+    <color name="octo_bg_default_end_color">#FF001040</color>
+    <color name="transparent">@android:color/transparent</color>
 </resources>

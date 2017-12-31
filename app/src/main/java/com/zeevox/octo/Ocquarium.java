@@ -34,96 +34,96 @@ import com.zeevox.octo.util.ColorUtils;
 
 public class Ocquarium extends Activity {
 
-  ImageView mImageView;
-  ImageButton mImageButton;
+    ImageView mImageView;
+    ImageButton mImageButton;
 
-  /* We place the code in onResume() so that the activity is redrawn after visiting settings. */
-  @Override
-  protected void onResume() {
-    super.onResume();
+    /* We place the code in onResume() so that the activity is redrawn after visiting settings. */
+    @Override
+    protected void onResume() {
+        super.onResume();
 
-    // Initialize preferences
-    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        // Initialize preferences
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-    final float dp = getResources().getDisplayMetrics().density;
+        final float dp = getResources().getDisplayMetrics().density;
 
-    // Recreate octo_bg.xml programmatically
-    GradientDrawable backgroundGradient = new GradientDrawable();
-    // Set the background colors / fetch them from the preferences menu
-    backgroundGradient.setColors(new int[]{
-            preferences.getInt("gradient_start_color", getResources().getColor(R.color.octo_bg_default_start_color)),
-            preferences.getInt("gradient_end_color", getResources().getColor(R.color.octo_bg_default_end_color))
-    });
-    // Linear gradient
-    backgroundGradient.setGradientType(GradientDrawable.LINEAR_GRADIENT);
-    // Set the gradient angle to -90 (same as 270)
-    backgroundGradient.setOrientation(Orientation.TOP_BOTTOM);
-    // Set the background to the new drawable we've created
-    getWindow().setBackgroundDrawable(backgroundGradient);
+        // Recreate octo_bg.xml programmatically
+        GradientDrawable backgroundGradient = new GradientDrawable();
+        // Set the background colors / fetch them from the preferences menu
+        backgroundGradient.setColors(new int[]{
+                preferences.getInt("gradient_start_color", getResources().getColor(R.color.octo_bg_default_start_color)),
+                preferences.getInt("gradient_end_color", getResources().getColor(R.color.octo_bg_default_end_color))
+        });
+        // Linear gradient
+        backgroundGradient.setGradientType(GradientDrawable.LINEAR_GRADIENT);
+        // Set the gradient angle to -90 (same as 270)
+        backgroundGradient.setOrientation(Orientation.TOP_BOTTOM);
+        // Set the background to the new drawable we've created
+        getWindow().setBackgroundDrawable(backgroundGradient);
 
-    FrameLayout bg = new FrameLayout(this);
-    //FrameLayout settings_button = (FrameLayout) LayoutInflater.from(getApplicationContext()).inflate(R.layout.ocquarium_settings_button, bg);
-    //bg.addView(LayoutInflater.from(getApplicationContext()).inflate(R.layout.ocquarium_settings_button, null));
-    setContentView(bg);
+        FrameLayout bg = new FrameLayout(this);
+        //FrameLayout settings_button = (FrameLayout) LayoutInflater.from(getApplicationContext()).inflate(R.layout.ocquarium_settings_button, bg);
+        //bg.addView(LayoutInflater.from(getApplicationContext()).inflate(R.layout.ocquarium_settings_button, null));
+        setContentView(bg);
 
-    bg.setAlpha(0f);
-    bg.animate().setStartDelay(500).setDuration(Integer.valueOf(preferences.getString(
-            "octo_fade_in_duration", getResources().getString(R.string.anim_even_longer)))).alpha(1f).start();
+        bg.setAlpha(0f);
+        bg.animate().setStartDelay(500).setDuration(Integer.valueOf(preferences.getString(
+                "octo_fade_in_duration", getResources().getString(R.string.anim_even_longer)))).alpha(1f).start();
 
-    mImageView = new ImageView(this);
-    bg.addView(mImageView, new FrameLayout.LayoutParams(
-        ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        mImageView = new ImageView(this);
+        bg.addView(mImageView, new FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
     /* START Settings button */
-    mImageButton = new ImageButton(this);
-    mImageButton = (ImageButton) LayoutInflater.from(getApplicationContext()).inflate(R.layout.ocquarium_settings_button, bg, false);
-    // If it's a light background make sure the icon is contrasting
-    if (ColorUtils.isColorLight(preferences.getInt("gradient_start_color", getResources().getColor(R.color.octo_bg_default_start_color)))) {
-      mImageButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_settings_dark));
-    }
-    mImageButton.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        startActivity(new Intent(Ocquarium.this, SettingsActivity.class));
-      }
-    });
-    bg.addView(mImageButton, new FrameLayout.LayoutParams(
-            ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        mImageButton = new ImageButton(this);
+        mImageButton = (ImageButton) LayoutInflater.from(getApplicationContext()).inflate(R.layout.ocquarium_settings_button, bg, false);
+        // If it's a light background make sure the icon is contrasting
+        if (ColorUtils.isColorLight(preferences.getInt("gradient_start_color", getResources().getColor(R.color.octo_bg_default_start_color)))) {
+            mImageButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_settings_dark));
+        }
+        mImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Ocquarium.this, SettingsActivity.class));
+            }
+        });
+        bg.addView(mImageButton, new FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
     /* END Settings button */
 
-    float octoMinSize = Float.parseFloat(preferences.getString("octopus_min_size", "40"));
-    float octoMaxSize = Float.parseFloat(preferences.getString("octopus_max_size", "180"));
-    final OctopusDrawable octo = new OctopusDrawable(
-        getApplicationContext());
-    octo.setSizePx((int) (OctopusDrawable.randfrange(octoMinSize, octoMaxSize) * dp));
-    mImageView.setImageDrawable(octo);
-    octo.startDrift();
+        float octoMinSize = Float.parseFloat(preferences.getString("octopus_min_size", "40"));
+        float octoMaxSize = Float.parseFloat(preferences.getString("octopus_max_size", "180"));
+        final OctopusDrawable octo = new OctopusDrawable(
+                getApplicationContext());
+        octo.setSizePx((int) (OctopusDrawable.randfrange(octoMinSize, octoMaxSize) * dp));
+        mImageView.setImageDrawable(octo);
+        octo.startDrift();
 
-    mImageView.setOnTouchListener(new View.OnTouchListener() {
-      boolean touching;
+        mImageView.setOnTouchListener(new View.OnTouchListener() {
+            boolean touching;
 
-      @Override
-      public boolean onTouch(View view, MotionEvent motionEvent) {
-        switch (motionEvent.getActionMasked()) {
-          case MotionEvent.ACTION_DOWN:
-            if (octo.hitTest(motionEvent.getX(), motionEvent.getY())) {
-              touching = true;
-              octo.stopDrift();
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getActionMasked()) {
+                    case MotionEvent.ACTION_DOWN:
+                        if (octo.hitTest(motionEvent.getX(), motionEvent.getY())) {
+                            touching = true;
+                            octo.stopDrift();
+                        }
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        if (touching) {
+                            octo.moveTo(motionEvent.getX(), motionEvent.getY());
+                        }
+                        break;
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL:
+                        touching = false;
+                        octo.startDrift();
+                        break;
+                }
+                return true;
             }
-            break;
-          case MotionEvent.ACTION_MOVE:
-            if (touching) {
-              octo.moveTo(motionEvent.getX(), motionEvent.getY());
-            }
-            break;
-          case MotionEvent.ACTION_UP:
-          case MotionEvent.ACTION_CANCEL:
-            touching = false;
-            octo.startDrift();
-            break;
-        }
-        return true;
-      }
-    });
-  }
+        });
+    }
 }
