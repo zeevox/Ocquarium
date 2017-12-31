@@ -28,7 +28,7 @@
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round">
         <activity
-            android:name=".Ocquarium"
+            android:name=".OcquariumActivity"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.DeviceDefault.NoActionBar.Fullscreen">
             <intent-filter>

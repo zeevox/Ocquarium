@@ -13,7 +13,7 @@
  * permissions and limitations under the License.
  */
 
-package com.zeevox.octo;
+package com.zeevox.octo.bhs;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;

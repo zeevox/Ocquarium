@@ -1,5 +1,4 @@
 /*
- * Copyright (C) 2015 Aidan "afollestad" Follestad
  * Copyright (C) 2017 Timothy "ZeevoX" Langer
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
@@ -13,15 +12,18 @@
  * permissions and limitations under the License.
  */
 
-package com.zeevox.octo.util;
+package com.zeevox.octo;
 
-import android.graphics.Color;
-import android.support.annotation.ColorInt;
+import android.app.Activity;
 
-public class ColorUtils {
-    /* From https://github.com/kabouzeid/app-theme-helper/blob/master/library/src/main/java/com/kabouzeid/appthemehelper/util/ColorUtil.java#L36 */
-    public static boolean isColorLight(@ColorInt int color) {
-        final double darkness = 1 - (0.299 * Color.red(color) + 0.587 * Color.green(color) + 0.114 * Color.blue(color)) / 255;
-        return darkness < 0.4;
+import com.zeevox.octo.bhs.Ocquarium;
+
+public class OcquariumActivity extends Activity {
+
+    /* We place the code in onResume() so that the activity is redrawn after visiting settings. */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Ocquarium.start(this, getWindow(), getResources(), true);
     }
 }
