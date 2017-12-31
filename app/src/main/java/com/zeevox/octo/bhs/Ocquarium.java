@@ -42,15 +42,6 @@ public class Ocquarium {
     }
 
     public static void start(@NonNull final ContextWrapper context, @NonNull Window window, @NonNull Resources resources, boolean showSettingsButton) {
-
-        /*if (parameter instanceof Activity) {
-            Activity context = (Activity) parameter;
-        } else if (parameter instanceof DreamService) {
-            DreamService context = (DreamService) parameter;
-        } else {
-            Object context = null;
-        }*/
-
         // Initialize preferences
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
