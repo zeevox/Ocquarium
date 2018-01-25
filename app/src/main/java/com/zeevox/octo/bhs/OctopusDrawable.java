@@ -27,6 +27,7 @@ import android.graphics.Path;
 import android.graphics.PixelFormat;
 import android.graphics.PointF;
 import android.graphics.Rect;
+import android.graphics.Region;
 import android.graphics.drawable.Drawable;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
@@ -245,7 +246,14 @@ public class OctopusDrawable extends Drawable {
             canvas.save();
             {
                 if (VERSION.SDK_INT >= VERSION_CODES.O) {
+                    // New method for SDK 26 and above
                     canvas.clipOutRect(point.x - 61f, point.y + 8f, point.x + 61f, point.y + 12f);
+                } else {
+                    /* Thank you to WAVDEVTEAM@Github for this suggestion! */
+                    
+                    // This method is available on all Android
+                    // devices and was deprecated in SDK 26+
+                    canvas.clipRect(point.x - 61f, point.y + 8f, point.x + 61f, point.y + 12f, Region.Op.DIFFERENCE);
                 }
                 if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
                     canvas.drawOval(point.x - 40f, point.y - 60f, point.x + 40f, point.y + 40f, mPaint);
