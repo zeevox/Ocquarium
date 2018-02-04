@@ -28,21 +28,6 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
             android:key="octopus_max_size"
             android:summary="@string/prefs_octopus_max_size_summary"
             android:title="@string/prefs_octopus_max_size_title" />
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="octopus_weird_eyes"
-            android:summary="@string/prefs_octopus_weird_eyes_summary"
-            android:title="@string/prefs_octopus_weird_eyes_title" />
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="octopus_leg_particles"
-            android:summary="@string/prefs_octopus_leg_particles_summary"
-            android:title="@string/prefs_octopus_leg_particles_title" />
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="octopus_leg_path_debug"
-            android:summary="@string/prefs_octopus_leg_path_debug_summary"
-            android:title="@string/prefs_octopus_leg_path_debug_title" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/prefs_category_background">
         <com.rarepebble.colorpicker.ColorPreference
@@ -58,6 +43,11 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
             android:title="@string/prefs_gradient_end_color_title"
             app:colorpicker_showAlpha="false" />
     </PreferenceCategory>
+    <PreferenceCategory android:title="@string/prefs_category_live_wallpaper">
+        <Preference android:title="@string/prefs_set_live_wall_title"
+            android:summary="@string/prefs_set_live_wall_summary"
+            android:key="set_live_wallpaper" />
+    </PreferenceCategory>
     <PreferenceCategory android:title="@string/prefs_category_animations">
         <ListPreference
             android:defaultValue="@string/anim_short"
@@ -69,9 +59,21 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
             android:summary="%s"
             android:title="@string/prefs_octo_fade_in_duration_title" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="Live wallpaper">
-        <Preference android:title="Set live wallpaper"
-            android:summary="Click me to set Ocquarium as your live wallpaper."
-            android:key="set_live_wallpaper" />
+    <PreferenceCategory android:title="Experimental">
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="octopus_weird_eyes"
+            android:summary="@string/prefs_octopus_weird_eyes_summary"
+            android:title="@string/prefs_octopus_weird_eyes_title" />
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="octopus_leg_particles"
+            android:summary="@string/prefs_octopus_leg_particles_summary"
+            android:title="@string/prefs_octopus_leg_particles_title" />
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="octopus_leg_path_debug"
+            android:summary="@string/prefs_octopus_leg_path_debug_summary"
+            android:title="@string/prefs_octopus_leg_path_debug_title" />
     </PreferenceCategory>
 </PreferenceScreen>
