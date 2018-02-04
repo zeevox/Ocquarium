@@ -16,12 +16,12 @@
 package com.zeevox.octo.bhs;
 
 import android.content.ContextWrapper;
-import android.support.annotation.NonNull;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.drawable.GradientDrawable;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;

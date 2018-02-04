@@ -8,15 +8,13 @@ public abstract class LiveWallpaperService extends WallpaperService {
 
     protected abstract class LiveWallpaperEngine extends WallpaperService.Engine {
         private Handler mHandler = new Handler();
-
+        private boolean mVisible;
         private Runnable mIteration = new Runnable() {
             public void run() {
                 iteration();
                 drawFrame();
             }
         };
-
-        private boolean mVisible;
 
         @Override
         public void onDestroy() {

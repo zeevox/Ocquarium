@@ -24,7 +24,7 @@ static def buildDate() {
 
 android {
     compileSdkVersion 27
-    buildToolsVersion "27.0.2"
+    buildToolsVersion "27.0.3"
 
     defaultConfig {
         applicationId "com.zeevox.octo"
