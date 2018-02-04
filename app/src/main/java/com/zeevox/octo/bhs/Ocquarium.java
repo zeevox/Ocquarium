@@ -45,25 +45,14 @@ public class Ocquarium {
         // Initialize preferences
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
+        // Get the display density
         final float dp = resources.getDisplayMetrics().density;
 
-        // Recreate octo_bg.xml programmatically
-        GradientDrawable backgroundGradient = new GradientDrawable();
-        // Set the background colors / fetch them from the preferences menu
-        backgroundGradient.setColors(new int[]{
-                preferences.getInt("gradient_start_color", resources.getColor(R.color.octo_bg_default_start_color)),
-                preferences.getInt("gradient_end_color", resources.getColor(R.color.octo_bg_default_end_color))
-        });
-        // Linear gradient
-        backgroundGradient.setGradientType(GradientDrawable.LINEAR_GRADIENT);
-        // Set the gradient angle to -90 (same as 270)
-        backgroundGradient.setOrientation(GradientDrawable.Orientation.TOP_BOTTOM);
-        // Set the background to the new drawable we've created
-        window.setBackgroundDrawable(backgroundGradient);
+        // Set the background to be the gradient with user defined colors
+        // See bgGradient(ContextWrapper, Resources) for more info about this
+        window.setBackgroundDrawable(bgGradient(context, resources));
 
         FrameLayout bg = new FrameLayout(context);
-        //FrameLayout settings_button = (FrameLayout) LayoutInflater.from(getApplicationContext()).inflate(R.layout.ocquarium_settings_button, bg);
-        //bg.addView(LayoutInflater.from(getApplicationContext()).inflate(R.layout.ocquarium_settings_button, null));
         window.setContentView(bg);
 
         bg.setAlpha(0f);
@@ -126,5 +115,23 @@ public class Ocquarium {
                 return true;
             }
         });
+    }
+
+    public static GradientDrawable bgGradient(ContextWrapper context, Resources resources) {
+        // Initialize preferences
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        // Recreate octo_bg.xml programmatically
+        GradientDrawable backgroundGradient = new GradientDrawable();
+        // Set the background colors / fetch them from the preferences menu
+        backgroundGradient.setColors(new int[]{
+                preferences.getInt("gradient_start_color", resources.getColor(R.color.octo_bg_default_start_color)),
+                preferences.getInt("gradient_end_color", resources.getColor(R.color.octo_bg_default_end_color))
+        });
+        // Linear gradient
+        backgroundGradient.setGradientType(GradientDrawable.LINEAR_GRADIENT);
+        // Set the gradient angle to -90 (same as 270)
+        backgroundGradient.setOrientation(GradientDrawable.Orientation.TOP_BOTTOM);
+        // Return the final result
+        return backgroundGradient;
     }
 }

@@ -1,0 +1,7 @@
+<wallpaper xmlns:android="http://schemas.android.com/apk/res/android"
+    android:description="@string/live_wall_description"
+    android:author="@string/live_wall_author"
+    android:contextDescription="@string/live_wall_description"
+    android:settingsActivity="com.zeevox.octo.settings.SettingsActivity"
+    android:showMetadataInPreview="true"
+    android:thumbnail="@drawable/live_wallpaper_preview" />

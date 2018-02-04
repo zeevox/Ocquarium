@@ -69,4 +69,9 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
             android:summary="%s"
             android:title="@string/prefs_octo_fade_in_duration_title" />
     </PreferenceCategory>
+    <PreferenceCategory android:title="Live wallpaper">
+        <Preference android:title="Set live wallpaper"
+            android:summary="Click me to set Ocquarium as your live wallpaper."
+            android:key="set_live_wallpaper" />
+    </PreferenceCategory>
 </PreferenceScreen>

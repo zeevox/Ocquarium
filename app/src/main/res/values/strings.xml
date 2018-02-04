@@ -23,6 +23,10 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
 
     <string name="app_name" translatable="false">Ocquarium</string>
 
+    <string name="live_wall_name">Ocquarium live wallpaper</string>
+    <string name="live_wall_description">Watch as a playful octopus floats behind your home screen.</string>
+    <string name="live_wall_author">Timothy Langer &amp; the AOSP</string>
+
     <string name="prefs_category_animations">Animations</string>
     <string name="prefs_category_background">Background</string>
     <string name="prefs_category_octopus">Octopus</string>
