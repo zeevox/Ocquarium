@@ -14,6 +14,7 @@
 
 package com.zeevox.octo.settings;
 
+import android.app.WallpaperInfo;
 import android.app.WallpaperManager;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -31,7 +32,8 @@ public class SettingsFragment extends PreferenceFragment {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences_ocquarium);
 
-        findPreference("set_live_wallpaper").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+        Preference setLiveWallpaper = findPreference("set_live_wallpaper");
+        setLiveWallpaper.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 Intent intent = new Intent(
@@ -42,5 +44,12 @@ public class SettingsFragment extends PreferenceFragment {
                 return false;
             }
         });
+        WallpaperManager wpm = WallpaperManager.getInstance(getActivity());
+        WallpaperInfo info = wpm.getWallpaperInfo();
+
+        if (info != null && info.getPackageName().equals(getActivity().getPackageName())) {
+            setLiveWallpaper.setEnabled(false);
+            setLiveWallpaper.setSummary("Ocquarium live wallpaper already set.");
+        }
     }
 }
