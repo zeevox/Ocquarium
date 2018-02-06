@@ -18,9 +18,12 @@ import android.app.WallpaperInfo;
 import android.app.WallpaperManager;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
+import android.widget.Toast;
 
 import com.zeevox.octo.R;
 import com.zeevox.octo.wallpaper.OcquariumWallpaperService;
@@ -32,8 +35,7 @@ public class SettingsFragment extends PreferenceFragment {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences_ocquarium);
 
-        Preference setLiveWallpaper = findPreference("set_live_wallpaper");
-        setLiveWallpaper.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+        findPreference("set_live_wallpaper").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 Intent intent = new Intent(
@@ -44,12 +46,45 @@ public class SettingsFragment extends PreferenceFragment {
                 return false;
             }
         });
-        WallpaperManager wpm = WallpaperManager.getInstance(getActivity());
-        WallpaperInfo info = wpm.getWallpaperInfo();
 
-        if (info != null && info.getPackageName().equals(getActivity().getPackageName())) {
+        findPreference("restart_live_wallpaper").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                Toast.makeText(getActivity(), "Restarting live wallpaper...", Toast.LENGTH_SHORT).show();
+                restartLiveWallpaper();
+                return false;
+            }
+        });
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        restartLiveWallpaper();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Preference setLiveWallpaper = findPreference("set_live_wallpaper");
+        Preference restartLiveWallpaper = findPreference("restart_live_wallpaper");
+        if (isLiveWallpaperSet()) {
             setLiveWallpaper.setEnabled(false);
             setLiveWallpaper.setSummary("Ocquarium live wallpaper already set.");
+            restartLiveWallpaper.setEnabled(true);
+        }
+    }
+
+    private boolean isLiveWallpaperSet() {
+        WallpaperInfo info = WallpaperManager.getInstance(getActivity()).getWallpaperInfo();
+        return info != null && info.getPackageName().equals(getActivity().getPackageName());
+    }
+
+    private void restartLiveWallpaper() {
+        if (isLiveWallpaperSet()) {
+            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getActivity()).edit();
+            editor.putBoolean("restart_live_wallpaper", true);
+            editor.apply();
         }
     }
 }

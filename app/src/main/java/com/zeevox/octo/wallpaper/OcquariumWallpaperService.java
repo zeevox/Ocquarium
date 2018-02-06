@@ -35,23 +35,13 @@ public class OcquariumWallpaperService extends LiveWallpaperService {
 
         int offsetX;
         int offsetY;
-        int height;
-        int width;
-        int visibleWidth;
         ImageView mImageView = null;
         OctopusDrawable octo = null;
+        GradientDrawable backgroundGradient = null;
 
         @Override
         public void onSurfaceChanged(SurfaceHolder holder, int format,
                                      int width, int height) {
-
-            this.height = height;
-            if (this.isPreview()) {
-                this.width = width;
-            } else {
-                this.width = 2 * width;
-            }
-            this.visibleWidth = width;
 
             super.onSurfaceChanged(holder, format, width, height);
         }
@@ -83,7 +73,7 @@ public class OcquariumWallpaperService extends LiveWallpaperService {
 
             // By default we don't get touch events, so enable them.
             // TODO disabled until properly implement touch on the wallpaper
-            setTouchEventsEnabled(false);
+            //setTouchEventsEnabled(true);
         }
 
         @Override
@@ -102,36 +92,46 @@ public class OcquariumWallpaperService extends LiveWallpaperService {
             }
         }
 
-
         void draw(Canvas c) {
-            // Recreate octo_bg.xml programmatically
-            GradientDrawable backgroundGradient = Ocquarium.bgGradient(mContextWrapper, getResources());
-            // Set the size of the gradient background
-            backgroundGradient.setBounds(c.getClipBounds());
-            // Display the gradient background
-            backgroundGradient.draw(c);
-
-            // Create the ImageView which will contain the octopus
-            mImageView = new ImageView(mContextWrapper);
-            // Set boundaries / size for the octopus
-            mImageView.setClipBounds(c.getClipBounds());
-
-            if (octo == null) {
-                // Display the octopus
-                float octoMinSize = Float.parseFloat(preferences.getString("octopus_min_size", "40"));
-                float octoMaxSize = Float.parseFloat(preferences.getString("octopus_max_size", "180"));
-                octo = new OctopusDrawable(mContextWrapper);
-                octo.setSizePx((int) (OctopusDrawable.randfrange(octoMinSize, octoMaxSize) * dp));
-                mImageView.setImageDrawable(octo);
-                octo.setBounds(mImageView.getClipBounds());
-                octo.startDrift();
-            } else {
-                //octo.stopDrift();
-                mImageView.setImageDrawable(octo);
-                octo.startDrift();
+            c.save();
+            if (preferences.getBoolean("restart_live_wallpaper", false)) {
+                backgroundGradient = null;
+                mImageView = null;
+                octo = null;
+                preferences.edit().putBoolean("restart_live_wallpaper", false).apply();
             }
-            // Draw to the canvas
-            mImageView.draw(c);
+            if (backgroundGradient == null) {
+                // Recreate octo_bg.xml programmatically
+                backgroundGradient = Ocquarium.bgGradient(mContextWrapper, getResources());
+                // Set the size of the gradient background
+                backgroundGradient.setBounds(c.getClipBounds());
+            } else {
+                // Display the gradient background
+                backgroundGradient.draw(c);
+            }
+
+            if (mImageView == null) {
+                // Create the ImageView which will contain the octopus
+                mImageView = new ImageView(mContextWrapper);
+                // Set boundaries / size for the octopus
+                mImageView.setClipBounds(c.getClipBounds());
+            } else {
+                if (octo == null) {
+                    // Display the octopus
+                    float octoMinSize = Float.parseFloat(preferences.getString("octopus_min_size", "40"));
+                    float octoMaxSize = Float.parseFloat(preferences.getString("octopus_max_size", "180"));
+                    octo = new OctopusDrawable(mContextWrapper);
+                    octo.setSizePx((int) (OctopusDrawable.randfrange(octoMinSize, octoMaxSize) * dp));
+                    mImageView.setImageDrawable(octo);
+                    octo.setBounds(mImageView.getClipBounds());
+                    octo.startDrift();
+                } else {
+                    mImageView.setImageDrawable(octo);
+                }
+                // Draw to the canvas
+                mImageView.draw(c);
+            }
+            c.restore();
         }
     }
 }

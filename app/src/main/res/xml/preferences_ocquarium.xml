@@ -47,6 +47,11 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
         <Preference android:title="@string/prefs_set_live_wall_title"
             android:summary="@string/prefs_set_live_wall_summary"
             android:key="set_live_wallpaper" />
+        <Preference android:title="Restart wallpaper"
+            android:summary="Use this option to force restart the live wallpaper."
+            android:enabled="false"
+            android:defaultValue="false"
+            android:key="restart_live_wallpaper" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/prefs_category_animations">
         <ListPreference
