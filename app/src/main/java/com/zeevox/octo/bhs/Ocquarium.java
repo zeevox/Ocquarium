@@ -19,6 +19,8 @@ import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -67,8 +69,11 @@ public class Ocquarium {
         if (showSettingsButton) {
             ImageButton mImageButton = new ImageButton(context);
             mImageButton = (ImageButton) LayoutInflater.from(context).inflate(R.layout.ocquarium_settings_button, bg, false);
+            // Set a transparent icon if user set in preferences
+            if (preferences.getBoolean("transparent_settings_icon", true)) {
+                mImageButton.setImageDrawable(new ColorDrawable(Color.TRANSPARENT));
             // If it's a light background make sure the icon is contrasting
-            if (ColorUtils.isColorLight(preferences.getInt("gradient_start_color", resources.getColor(R.color.octo_bg_default_start_color)))) {
+            } else if (ColorUtils.isColorLight(preferences.getInt("gradient_start_color", resources.getColor(R.color.octo_bg_default_start_color)))) {
                 mImageButton.setImageDrawable(resources.getDrawable(R.drawable.ic_settings_dark));
             }
             mImageButton.setOnClickListener(new View.OnClickListener() {

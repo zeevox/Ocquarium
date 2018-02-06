@@ -59,6 +59,12 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
             android:summary="%s"
             android:title="@string/prefs_octo_fade_in_duration_title" />
     </PreferenceCategory>
+    <PreferenceCategory android:title="General">
+        <SwitchPreference android:title="Transparent settings icon"
+            android:defaultValue="false"
+            android:summary="Don't show an icon but still allow tapping in the top left corner to access settings."
+            android:key="transparent_settings_icon"/>
+    </PreferenceCategory>
     <PreferenceCategory android:title="Experimental">
         <SwitchPreference
             android:defaultValue="false"
