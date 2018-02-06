@@ -70,7 +70,7 @@ public class Ocquarium {
             ImageButton mImageButton = new ImageButton(context);
             mImageButton = (ImageButton) LayoutInflater.from(context).inflate(R.layout.ocquarium_settings_button, bg, false);
             // Set a transparent icon if user set in preferences
-            if (preferences.getBoolean("transparent_settings_icon", true)) {
+            if (preferences.getBoolean("transparent_settings_icon", false)) {
                 mImageButton.setImageDrawable(new ColorDrawable(Color.TRANSPARENT));
             // If it's a light background make sure the icon is contrasting
             } else if (ColorUtils.isColorLight(preferences.getInt("gradient_start_color", resources.getColor(R.color.octo_bg_default_start_color)))) {
