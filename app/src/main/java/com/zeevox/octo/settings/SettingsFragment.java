@@ -25,6 +25,7 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
 
+import com.rarepebble.colorpicker.ColorPreference;
 import com.zeevox.octo.R;
 import com.zeevox.octo.wallpaper.OcquariumWallpaperService;
 
@@ -59,11 +60,11 @@ public class SettingsFragment extends PreferenceFragment {
         findPreference("reset_background_colors").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getActivity()).edit();
-                editor.putInt("gradient_start_color", getResources().getColor(R.color.octo_bg_default_start_color));
-                editor.putInt("gradient_end_color", getResources().getColor(R.color.octo_bg_default_end_color));
-                editor.apply();
-                return false;
+                ColorPreference startColor = (ColorPreference) findPreference("gradient_start_color");
+                startColor.setColor(getResources().getColor(R.color.octo_bg_default_start_color));
+                ColorPreference endColor = (ColorPreference) findPreference("gradient_end_color");
+                endColor.setColor(getResources().getColor(R.color.octo_bg_default_end_color));
+                return true;
             }
         });
     }
