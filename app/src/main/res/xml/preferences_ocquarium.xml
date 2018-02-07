@@ -42,16 +42,22 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
             android:summary="@string/prefs_gradient_end_color_summary"
             android:title="@string/prefs_gradient_end_color_title"
             app:colorpicker_showAlpha="false" />
+        <Preference
+            android:key="reset_background_colors"
+            android:summary="Reset the background colors to the default Oreo blues."
+            android:title="Reset colors" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/prefs_category_live_wallpaper">
-        <Preference android:title="@string/prefs_set_live_wall_title"
+        <Preference
+            android:key="set_live_wallpaper"
             android:summary="@string/prefs_set_live_wall_summary"
-            android:key="set_live_wallpaper" />
-        <Preference android:title="Restart wallpaper"
-            android:summary="Use this option to force restart the live wallpaper."
-            android:enabled="false"
+            android:title="@string/prefs_set_live_wall_title" />
+        <Preference
             android:defaultValue="false"
-            android:key="restart_live_wallpaper" />
+            android:enabled="false"
+            android:key="restart_live_wallpaper"
+            android:summary="Use this option to force restart the live wallpaper."
+            android:title="Restart wallpaper" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/prefs_category_animations">
         <ListPreference
@@ -65,10 +71,11 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
             android:title="@string/prefs_octo_fade_in_duration_title" />
     </PreferenceCategory>
     <PreferenceCategory android:title="General">
-        <SwitchPreference android:title="Transparent settings icon"
+        <SwitchPreference
             android:defaultValue="false"
+            android:key="transparent_settings_icon"
             android:summary="Don't show an icon but still allow tapping in the top left corner to access settings."
-            android:key="transparent_settings_icon"/>
+            android:title="Transparent settings icon" />
     </PreferenceCategory>
     <PreferenceCategory android:title="Experimental">
         <SwitchPreference

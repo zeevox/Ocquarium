@@ -55,6 +55,17 @@ public class SettingsFragment extends PreferenceFragment {
                 return false;
             }
         });
+
+        findPreference("reset_background_colors").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getActivity()).edit();
+                editor.putInt("gradient_start_color", getResources().getColor(R.color.octo_bg_default_start_color));
+                editor.putInt("gradient_end_color", getResources().getColor(R.color.octo_bg_default_end_color));
+                editor.apply();
+                return false;
+            }
+        });
     }
 
     @Override
