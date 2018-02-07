@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?><!--
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--
 Copyright (C) 2016 The Android Open Source Project
 Copyright (C) 2017 Timothy "ZeevoX" Langer
 
@@ -13,8 +14,7 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
--->
-<resources>
+--><resources>
     <string name="anim_even_longer">5000</string>
     <string name="anim_long">2000</string>
     <string name="anim_medium">1000</string>
@@ -23,14 +23,17 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
 
     <string name="app_name" translatable="false">Ocquarium</string>
 
-    <string name="live_wall_name">Ocquarium live wallpaper</string>
-    <string name="live_wall_description">Watch as a playful octopus floats behind your home screen.</string>
     <string name="live_wall_author">Timothy Langer &amp; the AOSP</string>
+    <string name="live_wall_description">Watch as a playful octopus floats behind your home screen.</string>
+    <string name="live_wall_name">Ocquarium live wallpaper</string>
 
     <string name="prefs_category_animations">Animations</string>
     <string name="prefs_category_background">Background</string>
+    <string name="prefs_category_experimental">Experimental</string>
+    <string name="prefs_category_general">General</string>
     <string name="prefs_category_live_wallpaper">Live wallpaper</string>
     <string name="prefs_category_octopus">Octopus</string>
+    <string name="prefs_category_screensaver">Screensaver</string>
     <string-array name="prefs_fade_duration_entries">
         <item>Short</item>
         <item>Medium</item>
@@ -49,6 +52,8 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
     <string name="prefs_gradient_end_color_title">Gradient end color</string>
     <string name="prefs_gradient_start_color_summary">Set the background gradient start color.</string>
     <string name="prefs_gradient_start_color_title">Gradient start color</string>
+    <string name="prefs_hide_settings_summary">Don\'t show an icon but still allow tapping in the top left corner to access settings.</string>
+    <string name="prefs_hide_settings_title">Transparent settings icon</string>
     <string name="prefs_octo_fade_in_duration_title">Fade in animation duration</string>
     <string name="prefs_octopus_leg_particles_summary">Make the tentacles out of small floating particles.</string>
     <string name="prefs_octopus_leg_particles_title">Enable particle legs</string>
@@ -60,8 +65,14 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
     <string name="prefs_octopus_min_size_title">Minimum octopus size</string>
     <string name="prefs_octopus_weird_eyes_summary">Make the eyes open and closed at the same time.</string>
     <string name="prefs_octopus_weird_eyes_title">Enable experimental eyes</string>
-    <string name="prefs_set_live_wall_title">Set live wallpaper</string>
+    <string name="prefs_reset_colors_summary">Reset the background colors to the default Oreo blues.</string>
+    <string name="prefs_reset_colors_title">Reset colors</string>
+    <string name="prefs_reset_live_wallpaper_summary">Use this option to force restart the live wallpaper.</string>
+    <string name="prefs_reset_live_wallpaper_title">Restart wallpaper</string>
     <string name="prefs_set_live_wall_summary">Click me to set Ocquarium as your live wallpaper.</string>
+    <string name="prefs_set_live_wall_title">Set live wallpaper</string>
+    <string name="prefs_set_screensaver_summary">Click me to set Ocquarium as your device\'s screensaver.</string>
+    <string name="prefs_set_screensaver_title">Set screensaver</string>
 
     <string name="shortcut_settings_disabled">This application shortcut has been disabled.</string>
     <string name="shortcut_settings_long">Change Ocquarium preferences</string>

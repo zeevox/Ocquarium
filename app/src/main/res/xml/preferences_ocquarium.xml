@@ -44,8 +44,8 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
             app:colorpicker_showAlpha="false" />
         <Preference
             android:key="reset_background_colors"
-            android:summary="Reset the background colors to the default Oreo blues."
-            android:title="Reset colors" />
+            android:summary="@string/prefs_reset_colors_summary"
+            android:title="@string/prefs_reset_colors_title" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/prefs_category_live_wallpaper">
         <Preference
@@ -56,14 +56,14 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
             android:defaultValue="false"
             android:enabled="false"
             android:key="restart_live_wallpaper"
-            android:summary="Use this option to force restart the live wallpaper."
-            android:title="Restart wallpaper" />
+            android:summary="@string/prefs_reset_live_wallpaper_summary"
+            android:title="@string/prefs_reset_live_wallpaper_title" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="Screensaver">
+    <PreferenceCategory android:title="@string/prefs_category_screensaver">
         <Preference
             android:key="set_screensaver"
-            android:summary="Click me to set Ocquarium as your device's screensaver."
-            android:title="Set screensaver" />
+            android:summary="@string/prefs_set_screensaver_summary"
+            android:title="@string/prefs_set_screensaver_title" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/prefs_category_animations">
         <ListPreference
@@ -76,14 +76,14 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
             android:summary="%s"
             android:title="@string/prefs_octo_fade_in_duration_title" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="General">
+    <PreferenceCategory android:title="@string/prefs_category_general">
         <SwitchPreference
             android:defaultValue="false"
             android:key="transparent_settings_icon"
-            android:summary="Don't show an icon but still allow tapping in the top left corner to access settings."
-            android:title="Transparent settings icon" />
+            android:summary="@string/prefs_hide_settings_summary"
+            android:title="@string/prefs_hide_settings_title" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="Experimental">
+    <PreferenceCategory android:title="@string/prefs_category_experimental">
         <SwitchPreference
             android:defaultValue="false"
             android:key="octopus_weird_eyes"
