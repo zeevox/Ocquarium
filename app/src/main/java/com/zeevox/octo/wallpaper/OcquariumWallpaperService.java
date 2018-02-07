@@ -44,6 +44,9 @@ public class OcquariumWallpaperService extends LiveWallpaperService {
                                      int width, int height) {
 
             super.onSurfaceChanged(holder, format, width, height);
+            backgroundGradient = null;
+            octo = null;
+            mImageView = null;
         }
 
         @Override
