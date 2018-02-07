@@ -59,6 +59,12 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
             android:summary="Use this option to force restart the live wallpaper."
             android:title="Restart wallpaper" />
     </PreferenceCategory>
+    <PreferenceCategory android:title="Screensaver">
+        <Preference
+            android:key="set_screensaver"
+            android:summary="Click me to set Ocquarium as your device's screensaver."
+            android:title="Set screensaver" />
+    </PreferenceCategory>
     <PreferenceCategory android:title="@string/prefs_category_animations">
         <ListPreference
             android:defaultValue="@string/anim_short"

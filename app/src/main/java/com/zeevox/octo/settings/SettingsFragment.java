@@ -67,6 +67,14 @@ public class SettingsFragment extends PreferenceFragment {
                 return true;
             }
         });
+
+        findPreference("set_screensaver").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                startActivity(new Intent().setComponent(new ComponentName("com.android.settings", "com.android.settings.Settings$DreamSettingsActivity")));
+                return false;
+            }
+        });
     }
 
     @Override
