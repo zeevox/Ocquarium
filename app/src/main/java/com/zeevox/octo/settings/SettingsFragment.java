@@ -16,6 +16,7 @@ package com.zeevox.octo.settings;
 
 import android.app.WallpaperInfo;
 import android.app.WallpaperManager;
+import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,6 +24,7 @@ import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.widget.Toast;
 
 import com.rarepebble.colorpicker.ColorPreference;
@@ -71,7 +73,11 @@ public class SettingsFragment extends PreferenceFragment {
         findPreference("set_screensaver").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                startActivity(new Intent().setComponent(new ComponentName("com.android.settings", "com.android.settings.Settings$DreamSettingsActivity")));
+                try {
+                    startActivity(new Intent(Settings.ACTION_DREAM_SETTINGS));
+                } catch (ActivityNotFoundException e) {
+                    Toast.makeText(getActivity(), "Your device doesn't support setting a screensaver, sorry.", Toast.LENGTH_SHORT).show();
+                }
                 return false;
             }
         });
