@@ -16,14 +16,16 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <PreferenceCategory android:title="@string/prefs_category_octopus">
-        <EditTextPreference
+        <com.zeevox.octo.settings.CustomEditTextPreference
             android:defaultValue="40"
+            android:dialogTitle="@string/prefs_octopus_min_size_title"
             android:inputType="number"
             android:key="octopus_min_size"
             android:summary="@string/prefs_octopus_min_size_summary"
             android:title="@string/prefs_octopus_min_size_title" />
-        <EditTextPreference
+        <com.zeevox.octo.settings.CustomEditTextPreference
             android:defaultValue="180"
+            android:dialogTitle="@string/prefs_octopus_max_size_title"
             android:inputType="number"
             android:key="octopus_max_size"
             android:summary="@string/prefs_octopus_max_size_summary"

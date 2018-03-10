@@ -81,6 +81,16 @@ public class SettingsFragment extends PreferenceFragment {
                 return false;
             }
         });
+
+        findPreference("octopus_min_size").setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object o) {
+                if (o.toString().equals("")) {
+
+                }
+                return true;
+            }
+        });
     }
 
     @Override
