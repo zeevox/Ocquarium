@@ -23,7 +23,8 @@ public class CustomEditTextPreference extends EditTextPreference {
 
     @Override
     protected void onDialogClosed(boolean positiveResult) {
-        boolean valid = this.getEditText().getText().toString().length() > 0;
+        boolean valid = this.getEditText().getText().toString().length() > 0
+                && Integer.parseInt(this.getEditText().getText().toString()) <= 500;
         super.onDialogClosed(valid);
     }
 }
