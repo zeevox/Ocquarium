@@ -250,7 +250,7 @@ public class OctopusDrawable extends Drawable {
                     canvas.clipOutRect(point.x - 61f, point.y + 8f, point.x + 61f, point.y + 12f);
                 } else {
                     /* Thank you to WAVDEVTEAM@Github for this suggestion! */
-                    
+
                     // This method is available on all Android
                     // devices and was deprecated in SDK 26+
                     canvas.clipRect(point.x - 61f, point.y + 8f, point.x + 61f, point.y + 12f, Region.Op.DIFFERENCE);
