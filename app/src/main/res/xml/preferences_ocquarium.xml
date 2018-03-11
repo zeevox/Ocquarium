@@ -79,6 +79,11 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
             android:key="set_screensaver"
             android:summary="@string/prefs_set_screensaver_summary"
             android:title="@string/prefs_set_screensaver_title" />
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="screensaver_enable_touch"
+            android:summary="@string/prefs_screensaver_enable_touch_summary"
+            android:title="@string/prefs_screensaver_enable_touch_title" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/prefs_category_animations">
         <ListPreference

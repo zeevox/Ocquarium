@@ -15,6 +15,7 @@
 
 package com.zeevox.octo.screensaver;
 
+import android.preference.PreferenceManager;
 import android.service.dreams.DreamService;
 import android.util.Log;
 
@@ -41,7 +42,9 @@ public class OcquariumScreensaver extends DreamService {
     @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
-        setInteractive(true);
+        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("screensaver_enable_touch", true)) {
+            setInteractive(true);
+        }
         setFullscreen(true);
         Log.d(getClass().getSimpleName(), "Dreaming octopi...");
         Ocquarium.start(this, getWindow(), getResources());

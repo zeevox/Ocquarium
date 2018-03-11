@@ -73,6 +73,8 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
     <string name="prefs_reset_colors_title">Reset colors</string>
     <string name="prefs_reset_live_wallpaper_summary">Use this option to force restart the live wallpaper.</string>
     <string name="prefs_reset_live_wallpaper_title">Restart wallpaper</string>
+    <string name="prefs_screensaver_enable_touch_summary">Allow moving the octopus by touch during screensaver mode</string>
+    <string name="prefs_screensaver_enable_touch_title">Enable touch</string>
     <string name="prefs_set_live_wall_summary">Click me to set Ocquarium as your live wallpaper.</string>
     <string name="prefs_set_live_wall_title">Set live wallpaper</string>
     <string name="prefs_set_screensaver_summary">Click me to set Ocquarium as your device\'s screensaver.</string>
