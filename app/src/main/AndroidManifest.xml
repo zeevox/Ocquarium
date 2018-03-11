@@ -22,6 +22,10 @@
         android:name="android.software.live_wallpaper"
         android:required="false" />
 
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+
     <application
         android:allowBackup="true"
         android:fullBackupContent="@xml/backup_descriptor"
@@ -74,10 +78,11 @@
         </activity>
 
         <!-- PlatLogoActivity where the platform logo appears -->
-        <activity android:name=".PlatLogoActivity"
-            android:theme="@android:style/Theme.Wallpaper.NoTitleBar.Fullscreen"
+        <activity
+            android:name=".PlatLogoActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:process=":ui"/>
+            android:process=":ui"
+            android:theme="@android:style/Theme.Wallpaper.NoTitleBar.Fullscreen" />
 
         <!-- Live wallpaper service -->
         <service
