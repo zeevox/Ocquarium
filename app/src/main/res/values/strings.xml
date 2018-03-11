@@ -55,6 +55,8 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
     <string name="prefs_hide_settings_summary">Don\'t show an icon but still allow tapping in the top left corner to access settings.</string>
     <string name="prefs_hide_settings_title">Transparent settings icon</string>
     <string name="prefs_octo_fade_in_duration_title">Fade in animation duration</string>
+    <string name="prefs_octopus_blink_frequency_summary">Change how often the octopus blinks. Default is 10, maximum is 500.</string>
+    <string name="prefs_octopus_blink_frequency_title">Blink frequency</string>
     <string name="prefs_octopus_leg_particles_summary">Make the tentacles out of small floating particles.</string>
     <string name="prefs_octopus_leg_particles_title">Enable particle legs</string>
     <string name="prefs_octopus_leg_path_debug_summary">Give the tentacles a geometric makeover.</string>
@@ -65,6 +67,8 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
     <string name="prefs_octopus_min_size_title">Minimum octopus size</string>
     <string name="prefs_octopus_weird_eyes_summary">Make the eyes open and closed at the same time.</string>
     <string name="prefs_octopus_weird_eyes_title">Enable experimental eyes</string>
+    <string name="prefs_platlogo_v2_summary">Show the new Android Oreo logo instead of the previous one.</string>
+    <string name="prefs_platlogo_v2_title">New platform logo</string>
     <string name="prefs_reset_colors_summary">Reset the background colors to the default Oreo blues.</string>
     <string name="prefs_reset_colors_title">Reset colors</string>
     <string name="prefs_reset_live_wallpaper_summary">Use this option to force restart the live wallpaper.</string>
@@ -73,10 +77,10 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
     <string name="prefs_set_live_wall_title">Set live wallpaper</string>
     <string name="prefs_set_screensaver_summary">Click me to set Ocquarium as your device\'s screensaver.</string>
     <string name="prefs_set_screensaver_title">Set screensaver</string>
+    <string name="prefs_show_platlogo_summary">Display the Android Oreo logo before the octopus.</string>
+    <string name="prefs_show_platlogo_title">Show platform logo</string>
 
     <string name="shortcut_settings_disabled">This application shortcut has been disabled.</string>
     <string name="shortcut_settings_long">Change Ocquarium preferences</string>
     <string name="shortcut_settings_short">Settings</string>
-    <string name="prefs_octopus_blink_frequency_summary">Change how often the octopus blinks. Default is 10, maximum is 500.</string>
-    <string name="prefs_octopus_blink_frequency_title">Blink frequency</string>
 </resources>

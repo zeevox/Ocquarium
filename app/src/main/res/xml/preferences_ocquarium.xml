@@ -100,13 +100,13 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
         <SwitchPreference
             android:defaultValue="false"
             android:key="show_platlogo"
-            android:summary="Display the Android Oreo logo before the octopus."
-            android:title="Show platform logo" />
+            android:summary="@string/prefs_show_platlogo_summary"
+            android:title="@string/prefs_show_platlogo_title" />
         <SwitchPreference
             android:defaultValue="true"
             android:key="platlogo_v2"
-            android:summary="Show the new Android Oreo logo instead of the previous one."
-            android:title="New platform logo" />
+            android:summary="@string/prefs_platlogo_v2_summary"
+            android:title="@string/prefs_platlogo_v2_title" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/prefs_category_experimental">
         <SwitchPreference
