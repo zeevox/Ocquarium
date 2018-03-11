@@ -16,20 +16,24 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <PreferenceCategory android:title="@string/prefs_category_octopus">
-        <com.zeevox.octo.settings.CustomEditTextPreference
+        <com.zeevox.octo.settings.EditNumberPreference
             android:defaultValue="40"
             android:dialogTitle="@string/prefs_octopus_min_size_title"
             android:inputType="number"
             android:key="octopus_min_size"
             android:summary="@string/prefs_octopus_min_size_summary"
-            android:title="@string/prefs_octopus_min_size_title" />
-        <com.zeevox.octo.settings.CustomEditTextPreference
+            android:title="@string/prefs_octopus_min_size_title"
+            app:maximum="500"
+            app:minimum="15" />
+        <com.zeevox.octo.settings.EditNumberPreference
             android:defaultValue="180"
             android:dialogTitle="@string/prefs_octopus_max_size_title"
             android:inputType="number"
             android:key="octopus_max_size"
             android:summary="@string/prefs_octopus_max_size_summary"
-            android:title="@string/prefs_octopus_max_size_title" />
+            android:title="@string/prefs_octopus_max_size_title"
+            app:maximum="500"
+            app:minimum="15" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/prefs_category_background">
         <com.rarepebble.colorpicker.ColorPreference
