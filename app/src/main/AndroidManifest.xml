@@ -73,6 +73,12 @@
             </intent-filter>
         </activity>
 
+        <!-- PlatLogoActivity where the platform logo appears -->
+        <activity android:name=".PlatLogoActivity"
+            android:theme="@android:style/Theme.Wallpaper.NoTitleBar.Fullscreen"
+            android:configChanges="orientation|keyboardHidden"
+            android:process=":ui"/>
+
         <!-- Live wallpaper service -->
         <service
             android:name=".wallpaper.OcquariumWallpaperService"

@@ -20,10 +20,12 @@ import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.preference.SwitchPreference;
 import android.provider.Settings;
 import android.widget.Toast;
 
@@ -127,6 +129,19 @@ public class SettingsFragment extends PreferenceFragment {
             }
         });
 
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+            getPreferenceScreen().removePreference(findPreference("platlogo_v2"));
+        }
+
+        findPreference("platlogo_v2").setEnabled(((SwitchPreference) findPreference("show_platlogo")).isChecked());
+
+        findPreference("show_platlogo").setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                findPreference("platlogo_v2").setEnabled(((boolean) newValue));
+                return true;
+            }
+        });
     }
 
     @Override
