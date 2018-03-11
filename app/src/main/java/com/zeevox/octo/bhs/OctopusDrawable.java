@@ -44,6 +44,7 @@ public class OctopusDrawable extends Drawable {
     public static boolean PATH_DEBUG = false;
     public static boolean PARTICLE_LEGS = false;
     public static boolean WEIRD_EYES = false;
+    public static float BLINK_FREQUENCY = 0.001f;
     private static float BASE_SCALE = 100f;
     private static int BODY_COLOR = 0xFF101010;
     private static int ARM_COLOR = 0xFF101010;
@@ -68,6 +69,7 @@ public class OctopusDrawable extends Drawable {
         PATH_DEBUG = preferences.getBoolean("octopus_leg_path_debug", false);
         PARTICLE_LEGS = preferences.getBoolean("octopus_leg_particles", false);
         WEIRD_EYES = preferences.getBoolean("octopus_weird_eyes", false);
+        BLINK_FREQUENCY = (float) (Integer.parseInt(preferences.getString("blink_frequency", "10"))) / 10000;
 
         float dp = context.getResources().getDisplayMetrics().density;
         setSizePx((int) (100 * dp));
@@ -144,7 +146,7 @@ public class OctopusDrawable extends Drawable {
                     if (unblink > 0 && t > unblink) {
                         setBlinking(false);
                         unblink = 0;
-                    } else if (Math.random() < 0.001f) {
+                    } else if (Math.random() < BLINK_FREQUENCY) {
                         setBlinking(true);
                         unblink = t + 200;
                     }

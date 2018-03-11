@@ -77,4 +77,6 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
     <string name="shortcut_settings_disabled">This application shortcut has been disabled.</string>
     <string name="shortcut_settings_long">Change Ocquarium preferences</string>
     <string name="shortcut_settings_short">Settings</string>
+    <string name="prefs_octopus_blink_frequency_summary">Change how often the octopus blinks. Default is 10, maximum is 500.</string>
+    <string name="prefs_octopus_blink_frequency_title">Blink frequency</string>
 </resources>
