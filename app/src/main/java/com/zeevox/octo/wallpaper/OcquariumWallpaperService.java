@@ -1,12 +1,17 @@
 package com.zeevox.octo.wallpaper;
 
+import android.annotation.TargetApi;
+import android.app.WallpaperColors;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.drawable.GradientDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.view.SurfaceHolder;
 import android.widget.ImageView;
 
@@ -38,6 +43,7 @@ public class OcquariumWallpaperService extends LiveWallpaperService {
         ImageView mImageView = null;
         OctopusDrawable octo = null;
         GradientDrawable backgroundGradient = null;
+        private WallpaperColors wallpaperColors;
 
         @Override
         public void onSurfaceChanged(SurfaceHolder holder, int format,
@@ -95,6 +101,15 @@ public class OcquariumWallpaperService extends LiveWallpaperService {
             }
         }
 
+        @Nullable
+        @Override
+        @RequiresApi(Build.VERSION_CODES.O_MR1)
+        @TargetApi(Build.VERSION_CODES.O_MR1)
+        public WallpaperColors onComputeColors() {
+            super.onComputeColors();
+            return wallpaperColors;
+        }
+
         void draw(Canvas c) {
             c.save();
             if (preferences.getBoolean("restart_live_wallpaper", false)) {
@@ -106,6 +121,12 @@ public class OcquariumWallpaperService extends LiveWallpaperService {
             if (backgroundGradient == null) {
                 // Recreate octo_bg.xml programmatically
                 backgroundGradient = Ocquarium.bgGradient(mContextWrapper, getResources());
+                // Only on Android 8.1+ - see https://developer.android.com/about/versions/oreo/android-8.1.html#wallpaper
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
+                    // Report to the WallpaperColors API
+                    wallpaperColors = WallpaperColors.fromDrawable(backgroundGradient);
+                    notifyColorsChanged();
+                }
                 // Set the size of the gradient background
                 backgroundGradient.setBounds(c.getClipBounds());
             } else {
