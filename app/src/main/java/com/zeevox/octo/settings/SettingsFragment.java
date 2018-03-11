@@ -31,7 +31,12 @@ import com.rarepebble.colorpicker.ColorPreference;
 import com.zeevox.octo.R;
 import com.zeevox.octo.wallpaper.OcquariumWallpaperService;
 
+import java.util.Objects;
+
 public class SettingsFragment extends PreferenceFragment {
+
+    private boolean wasGradientStartDefault = false;
+    private boolean wasGradientEndDefault = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,50 +64,44 @@ public class SettingsFragment extends PreferenceFragment {
             }
         });
 
-        /*
-         Commented out due to https://github.com/martin-stone/hsv-alpha-color-picker-android/issues/42
-         preventing this from working properly.
+        wasGradientStartDefault = Objects.equals(((ColorPreference) findPreference("gradient_start_color")).getColor(),
+                getResources().getColor(R.color.octo_bg_default_start_color));
+        wasGradientEndDefault = Objects.equals(((ColorPreference) findPreference("gradient_end_color")).getColor(),
+                getResources().getColor(R.color.octo_bg_default_end_color));
 
-         https://github.com/ZeevoX/Ocquarium/issues/21 is suspended until further notice.
-        */
-
-        /*
-        Integer prefGradStaCol = ((ColorPreference) findPreference("gradient_start_color")).getColor();
-        Integer prefGradStaDefCol = getResources().getColor(R.color.octo_bg_default_start_color);
-        boolean isGradientStartColorDefault = Objects.equals(prefGradStaCol,prefGradStaDefCol);
-
-        Integer prefGradEndCol = ((ColorPreference) findPreference("gradient_end_color")).getColor();
-        Integer prefGradEndDefCol = getResources().getColor(R.color.octo_bg_default_end_color);
-        boolean isGradientEndColorDefault = Objects.equals(prefGradEndCol, prefGradEndDefCol);
-
-        if (isGradientStartColorDefault && isGradientEndColorDefault) {
+        if (wasGradientStartDefault && wasGradientEndDefault) {
             findPreference("reset_background_colors").setEnabled(false);
         } else {
             findPreference("reset_background_colors").setEnabled(true);
         }
 
-        Preference.OnPreferenceChangeListener onColorPreferenceChangeListener = new Preference.OnPreferenceChangeListener() {
+        findPreference("gradient_start_color").setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
-            public boolean onPreferenceChange(Preference preference, Object o) {
-                Integer prefGradStaCol = ((ColorPreference) findPreference("gradient_start_color")).getColor();
-                Integer prefGradStaDefCol = getResources().getColor(R.color.octo_bg_default_start_color);
-                boolean isGradientStartColorDefault = Objects.equals(prefGradStaCol,prefGradStaDefCol);
-
-                Integer prefGradEndCol = ((ColorPreference) findPreference("gradient_end_color")).getColor();
-                Integer prefGradEndDefCol = getResources().getColor(R.color.octo_bg_default_end_color);
-                boolean isGradientEndColorDefault = Objects.equals(prefGradEndCol, prefGradEndDefCol);
-
-                if (isGradientStartColorDefault && isGradientEndColorDefault) {
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                wasGradientStartDefault = Objects.equals(newValue,
+                        getResources().getColor(R.color.octo_bg_default_start_color));
+                if (wasGradientStartDefault && wasGradientEndDefault) {
                     findPreference("reset_background_colors").setEnabled(false);
                 } else {
                     findPreference("reset_background_colors").setEnabled(true);
                 }
                 return true;
             }
-        };
+        });
 
-        findPreference("gradient_start_color").setOnPreferenceChangeListener(onColorPreferenceChangeListener);
-        findPreference("gradient_end_color").setOnPreferenceChangeListener(onColorPreferenceChangeListener);*/
+        findPreference("gradient_end_color").setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                wasGradientEndDefault = Objects.equals(newValue,
+                        getResources().getColor(R.color.octo_bg_default_end_color));
+                if (wasGradientStartDefault && wasGradientEndDefault) {
+                    findPreference("reset_background_colors").setEnabled(false);
+                } else {
+                    findPreference("reset_background_colors").setEnabled(true);
+                }
+                return true;
+            }
+        });
 
         findPreference("reset_background_colors").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
@@ -111,7 +110,7 @@ public class SettingsFragment extends PreferenceFragment {
                 startColor.setColor(getResources().getColor(R.color.octo_bg_default_start_color));
                 ColorPreference endColor = (ColorPreference) findPreference("gradient_end_color");
                 endColor.setColor(getResources().getColor(R.color.octo_bg_default_end_color));
-                //preference.setEnabled(false);
+                preference.setEnabled(false);
                 return true;
             }
         });
