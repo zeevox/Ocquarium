@@ -13,7 +13,7 @@
  * permissions and limitations under the License.
  */
 
-package com.zeevox.octo.bhs;
+package com.zeevox.octo.core;
 
 import android.animation.TimeAnimator;
 import android.content.Context;

@@ -18,7 +18,7 @@ package com.zeevox.octo.screensaver;
 import android.service.dreams.DreamService;
 import android.util.Log;
 
-import com.zeevox.octo.bhs.Ocquarium;
+import com.zeevox.octo.core.Ocquarium;
 
 public class OcquariumScreensaver extends DreamService {
 

@@ -10,8 +10,8 @@ import android.preference.PreferenceManager;
 import android.view.SurfaceHolder;
 import android.widget.ImageView;
 
-import com.zeevox.octo.bhs.Ocquarium;
-import com.zeevox.octo.bhs.OctopusDrawable;
+import com.zeevox.octo.core.Ocquarium;
+import com.zeevox.octo.core.OctopusDrawable;
 
 public class OcquariumWallpaperService extends LiveWallpaperService {
     private final String TAG = this.getClass().getSimpleName();
