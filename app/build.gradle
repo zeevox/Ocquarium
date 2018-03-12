@@ -30,8 +30,8 @@ android {
         applicationId "com.zeevox.octo"
         minSdkVersion 21
         targetSdkVersion 27
-        versionCode 10
-        versionName "3.2"
+        versionCode 11
+        versionName "3.2.1"
 
         android.applicationVariants.all { variant ->
             variant.outputs.all {
