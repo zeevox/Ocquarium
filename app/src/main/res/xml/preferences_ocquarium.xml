@@ -96,7 +96,7 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
             android:summary="%s"
             android:title="@string/prefs_octo_fade_in_duration_title" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/prefs_category_general">
+    <PreferenceCategory android:title="@string/prefs_category_general" android:key="category_general">
         <SwitchPreference
             android:defaultValue="false"
             android:key="transparent_settings_icon"

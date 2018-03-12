@@ -23,6 +23,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.Preference;
+import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.SwitchPreference;
@@ -130,18 +131,19 @@ public class SettingsFragment extends PreferenceFragment {
         });
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-            getPreferenceScreen().removePreference(findPreference("platlogo_v2"));
+            ((SwitchPreference) findPreference("platlogo_v2")).setChecked(false);
+            findPreference("platlogo_v2").setEnabled(false);
+            ((PreferenceCategory) findPreference("category_general")).removePreference(findPreference("platlogo_v2"));
+        } else {
+            findPreference("platlogo_v2").setEnabled(((SwitchPreference) findPreference("show_platlogo")).isChecked());
+            findPreference("show_platlogo").setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    findPreference("platlogo_v2").setEnabled(((boolean) newValue));
+                    return true;
+                }
+            });
         }
-
-        findPreference("platlogo_v2").setEnabled(((SwitchPreference) findPreference("show_platlogo")).isChecked());
-
-        findPreference("show_platlogo").setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-            @Override
-            public boolean onPreferenceChange(Preference preference, Object newValue) {
-                findPreference("platlogo_v2").setEnabled(((boolean) newValue));
-                return true;
-            }
-        });
     }
 
     @Override

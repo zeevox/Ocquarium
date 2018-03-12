@@ -69,7 +69,8 @@ public class PlatLogoActivity extends Activity {
 
         if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("platlogo_v2",
                 // New OMR1 platlogo only supported on SDK 24+
-                Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)) {
+                Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) &&
+                Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             im.setBackground(new RippleDrawable(
                     ColorStateList.valueOf(0xFF776677),
                     getDrawable(R.drawable.platlogo_oreo_mr1),
