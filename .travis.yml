@@ -19,7 +19,7 @@ before_install:
 before_script:
 - bash scripts/changelog.sh > changelog.txt
 script:
-- bash ./gradlew app:assembleRelease
+- bash ./gradlew app:assembleTravis
 before_cache:
 - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
 - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
@@ -29,7 +29,7 @@ cache:
   - "$HOME/.gradle/wrapper/"
   - "$HOME/.android/build-cache"
 before_deploy:
-  - cp app/build/outputs/apk/release/*.apk ./
+  - cp app/build/outputs/apk/travis/*.apk ./
 deploy:
 - provider: script
   skip_cleanup: true

@@ -42,14 +42,18 @@ android {
         versionCode 11
 
         if (System.getenv("TRAVIS") == "true") {
-            versionName = "SNAPSHOT_" + "git rev-list --count master".execute().text.trim().toString()
+            versionName = "Alpha build #" + "git rev-list --count master".execute().text.trim().toString()
+			android.applicationVariants.all { variant ->
+                variant.outputs.all {
+                    outputFileName = "Ocquarium-" + "git rev-list --count master".execute().text.trim().toString() + "-alpha.apk"
+                }
+            }
         } else {
             versionName "3.2.1"
-        }
-
-        android.applicationVariants.all { variant ->
-            variant.outputs.all {
-                outputFileName = "Ocquarium-${versionName}-${buildDate()}-release.apk"
+			android.applicationVariants.all { variant ->
+                variant.outputs.all {
+                    outputFileName = "Ocquarium-${versionName}-${buildDate()}-release.apk"
+                }
             }
         }
     }
@@ -64,6 +68,12 @@ android {
         release {
             minifyEnabled true
             shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.txt'
+        }
+        travis {
+            minifyEnabled true
+            shrinkResources true
+            applicationIdSuffix '.alpha'
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.txt'
             if (System.getenv("TRAVIS") == "true") {
                 signingConfig signingConfigs.travis
