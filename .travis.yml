@@ -1,42 +1,41 @@
-{
-  "language": "android",
-  "sudo": "false",
-  "dist": "trusty",
-  "group": "edge",
-  "jdk": "oraclejdk8",
-  "env": "MAJOR_MINOR=1.1.0",
-  "android": {
-    "components": [
-      "tools",
-      "platform-tools",
-      "build-tools-27.0.2",
-      "android-27",
-      "extra-google-m2repository"
-    ]
-  },
-  "before_install": [
-    "yes | sdkmanager \"platforms;android-27\"",
-    "git fetch --tags"
-  ],
-  "script": [
-    "bash ./gradlew assembleDebug check;",
-    "bash ./gradlew app:assembleRelease check;"
-  ],
-  "before_cache": [
-    "rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock",
-    "rm -fr $HOME/.gradle/caches/*/plugin-resolution/"
-  ],
-  "cache": {
-    "directories": [
-      "$HOME/.gradle/caches/",
-      "$HOME/.gradle/wrapper/",
-      "$HOME/.android/build-cache"
-    ]
-  },
-  "before_deploy": [
-    "cp app/build/outputs/apk/debug/app-debug.apk Ocquarium-TRAVIS.$TRAVIS_BUILD_NUMBER.apk",
-    "cp app/build/outputs/mapping/debug/mapping.txt proguard-TRAVIS.$TRAVIS_BUILD_NUMBER.txt"
-  ],
-  "os": "linux"
-}
-
+language: android
+dist: trusty
+jdk: oraclejdk8
+if: tag IS blank
+env:
+  global:
+  - APK_NAME=Ocquarium-SNAPSHOT_$(git rev-list --count ${TRAVIS_BRANCH}).apk
+android:
+  components:
+  - tools
+  - tools
+  - platform-tools
+  - build-tools-27.0.3
+  - android-27
+  - extra-google-m2repository
+before_install:
+- openssl aes-256-cbc -k ${encryption_password} -in ocquarium_keystore.jks.enc -out ocquarium_keystore.jks -d
+- yes | sdkmanager "platforms;android-27"
+- chmod a+x ./scripts/deploy-*.sh
+- chmod a+x ./scripts/changelog.sh
+- git fetch --tags
+before_script:
+- bash scripts/changelog.sh > changelog.txt
+script:
+- bash ./gradlew app:assembleRelease
+before_cache:
+- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  directories:
+  - "$HOME/.gradle/caches/"
+  - "$HOME/.gradle/wrapper/"
+  - "$HOME/.android/build-cache"
+before_deploy:
+  - cp app/build/outputs/apk/release/app-release.apk $APK_NAME
+deploy:
+- provider: script
+  skip_cleanup: true
+  script: scripts/deploy-telegram.sh
+  on:
+    branch: master
