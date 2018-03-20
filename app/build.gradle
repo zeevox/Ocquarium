@@ -42,7 +42,7 @@ android {
         versionCode 11
 
         if (System.getenv("TRAVIS") == "true") {
-            versionName = "SNAPSHOT_" + "git rev-list --count ${TRAVIS_BRANCH}".execute().text.trim().toString()
+            versionName = "SNAPSHOT_" + "git rev-list --count master".execute().text.trim().toString()
         } else {
             versionName "3.2.1"
         }
