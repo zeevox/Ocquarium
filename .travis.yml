@@ -2,9 +2,6 @@ language: android
 dist: trusty
 jdk: oraclejdk8
 if: tag IS blank
-env:
-  global:
-  - APK_NAME=Ocquarium-SNAPSHOT_$(git rev-list --count ${TRAVIS_BRANCH}).apk
 android:
   components:
   - tools
@@ -32,7 +29,7 @@ cache:
   - "$HOME/.gradle/wrapper/"
   - "$HOME/.android/build-cache"
 before_deploy:
-  - cp app/build/outputs/apk/release/app-release.apk $APK_NAME
+  - cp app/build/outputs/apk/release/*.apk ./
 deploy:
 - provider: script
   skip_cleanup: true
