@@ -26,12 +26,26 @@ android {
     compileSdkVersion 27
     buildToolsVersion "27.0.3"
 
+    signingConfigs {
+        travis {
+            storeFile file("../ocquarium_keystore.jks")
+            storePassword System.getenv("STORE_PASSWORD")
+            keyAlias System.getenv("KEY_ALIAS")
+            keyPassword System.getenv("KEY_PASSWORD")
+        }
+    }
+
     defaultConfig {
         applicationId "com.zeevox.octo"
         minSdkVersion 21
         targetSdkVersion 27
         versionCode 11
-        versionName "3.2.1"
+
+        if (System.getenv("TRAVIS") == "true") {
+            versionName = "SNAPSHOT_" + "git rev-list --count ${TRAVIS_BRANCH}".execute().text.trim().toString()
+        } else {
+            versionName "3.2.1"
+        }
 
         android.applicationVariants.all { variant ->
             variant.outputs.all {
@@ -51,6 +65,9 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.txt'
+            if (System.getenv("TRAVIS") == "true") {
+                signingConfig signingConfigs.travis
+            }
         }
         beta {
             minifyEnabled false
