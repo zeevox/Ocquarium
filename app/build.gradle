@@ -69,11 +69,6 @@ android {
                 signingConfig signingConfigs.travis
             }
         }
-        beta {
-            minifyEnabled false
-            shrinkResources false
-            versionNameSuffix ' beta'
-        }
     }
 }
 
