@@ -41,8 +41,8 @@ android {
         targetSdkVersion 27
 
         if (System.getenv("TRAVIS") == "true") {
-            versionCode ${TRAVIS_BUILD_NUMBER}
-            versionName = "Alpha build #" + ${TRAVIS_BUILD_NUMBER}
+            versionCode "${TRAVIS_BUILD_NUMBER}"
+            versionName = "Alpha build #${TRAVIS_BUILD_NUMBER}"
 			android.applicationVariants.all { variant ->
                 variant.outputs.all {
                     outputFileName = "Ocquarium-${TRAVIS_BUILD_NUMBER}-alpha.apk"
