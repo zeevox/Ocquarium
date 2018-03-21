@@ -15,7 +15,7 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
 -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <PreferenceCategory android:title="@string/prefs_category_octopus">
+    <PreferenceScreen android:title="@string/prefs_category_octopus">
         <com.zeevox.octo.settings.EditNumberPreference
             android:defaultValue="40"
             android:dialogTitle="@string/prefs_octopus_min_size_title"
@@ -43,8 +43,8 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
             android:title="@string/prefs_octopus_blink_frequency_title"
             app:maximum="500"
             app:minimum="1" />
-    </PreferenceCategory>
-    <PreferenceCategory android:title="@string/prefs_category_background">
+    </PreferenceScreen>
+    <PreferenceScreen android:title="@string/prefs_category_background">
         <com.rarepebble.colorpicker.ColorPreference
             android:defaultValue="#FF205090"
             android:key="gradient_start_color"
@@ -61,8 +61,8 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
             android:key="reset_background_colors"
             android:summary="@string/prefs_reset_colors_summary"
             android:title="@string/prefs_reset_colors_title" />
-    </PreferenceCategory>
-    <PreferenceCategory android:title="@string/prefs_category_live_wallpaper">
+    </PreferenceScreen>
+    <PreferenceScreen android:title="@string/prefs_category_live_wallpaper">
         <Preference
             android:key="set_live_wallpaper"
             android:summary="@string/prefs_set_live_wall_summary"
@@ -73,8 +73,8 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
             android:key="restart_live_wallpaper"
             android:summary="@string/prefs_reset_live_wallpaper_summary"
             android:title="@string/prefs_reset_live_wallpaper_title" />
-    </PreferenceCategory>
-    <PreferenceCategory android:title="@string/prefs_category_screensaver">
+    </PreferenceScreen>
+    <PreferenceScreen android:title="@string/prefs_category_screensaver">
         <Preference
             android:key="set_screensaver"
             android:summary="@string/prefs_set_screensaver_summary"
@@ -84,8 +84,8 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
             android:key="screensaver_enable_touch"
             android:summary="@string/prefs_screensaver_enable_touch_summary"
             android:title="@string/prefs_screensaver_enable_touch_title" />
-    </PreferenceCategory>
-    <PreferenceCategory android:title="@string/prefs_category_animations">
+    </PreferenceScreen>
+    <PreferenceScreen android:title="@string/prefs_category_animations">
         <ListPreference
             android:defaultValue="@string/anim_short"
             android:entries="@array/prefs_fade_duration_entries"
@@ -95,8 +95,8 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
             android:positiveButtonText="@null"
             android:summary="%s"
             android:title="@string/prefs_octo_fade_in_duration_title" />
-    </PreferenceCategory>
-    <PreferenceCategory android:title="@string/prefs_category_general" android:key="category_general">
+    </PreferenceScreen>
+    <PreferenceScreen android:title="@string/prefs_category_general" android:key="category_general">
         <SwitchPreference
             android:defaultValue="false"
             android:key="transparent_settings_icon"
@@ -112,8 +112,8 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
             android:key="platlogo_v2"
             android:summary="@string/prefs_platlogo_v2_summary"
             android:title="@string/prefs_platlogo_v2_title" />
-    </PreferenceCategory>
-    <PreferenceCategory android:title="@string/prefs_category_experimental">
+    </PreferenceScreen>
+    <PreferenceScreen android:title="@string/prefs_category_experimental">
         <SwitchPreference
             android:defaultValue="false"
             android:key="octopus_weird_eyes"
@@ -129,5 +129,5 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
             android:key="octopus_leg_path_debug"
             android:summary="@string/prefs_octopus_leg_path_debug_summary"
             android:title="@string/prefs_octopus_leg_path_debug_title" />
-    </PreferenceCategory>
+    </PreferenceScreen>
 </PreferenceScreen>
