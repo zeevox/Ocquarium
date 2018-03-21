@@ -39,16 +39,17 @@ android {
         applicationId "com.zeevox.octo"
         minSdkVersion 21
         targetSdkVersion 27
-        versionCode 11
 
         if (System.getenv("TRAVIS") == "true") {
-            versionName = "Alpha build #" + "git rev-list --count master".execute().text.trim().toString()
+            versionCode ${TRAVIS_BUILD_NUMBER}
+            versionName = "Alpha build #" + ${TRAVIS_BUILD_NUMBER}
 			android.applicationVariants.all { variant ->
                 variant.outputs.all {
-                    outputFileName = "Ocquarium-" + "git rev-list --count master".execute().text.trim().toString() + "-alpha.apk"
+                    outputFileName = "Ocquarium-${TRAVIS_BUILD_NUMBER}-alpha.apk"
                 }
             }
         } else {
+            versionCode 11
             versionName "3.2.1"
 			android.applicationVariants.all { variant ->
                 variant.outputs.all {

@@ -8,7 +8,7 @@ fi
 
 GIT_COMMIT_LOG="$(git log --format='%s (by %cn)' ${TRAVIS_COMMIT_RANGE})"
 
-echo " <b>Changelog for test build #$(git rev-list --count ${TRAVIS_BRANCH})</b>${NEWLINE}"
+echo " <b>Changelog for test build #${TRAVIS_BUILD_NUMBER}</b>${NEWLINE}"
 
 printf '%s\n' "$GIT_COMMIT_LOG" | while IFS= read -r line
 do
