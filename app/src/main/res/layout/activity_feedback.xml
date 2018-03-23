@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.zeevox.octo.FeedbackActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/feedback_issue_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:hint="@string/feedback_hint_issue_title"
+            android:imeOptions="actionNext"
+            android:inputType="textEmailSubject|textCapSentences" />
+
+
+        <EditText
+            android:id="@+id/feedback_issue_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_below="@+id/feedback_issue_title"
+            android:hint="Describe the issue"
+            android:inputType="textMultiLine|textCapSentences" />
+
+        <CheckBox
+            android:id="@+id/check_latest_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_below="@id/feedback_issue_description"
+            android:layout_alignParentStart="true"
+            android:text="@string/feedback_check_latest_version" />
+
+        <CheckBox
+            android:id="@+id/check_device_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_below="@id/check_latest_version"
+            android:layout_alignParentStart="true"
+            android:text="@string/feedback_check_device_info" />
+
+
+        <Button
+            android:id="@+id/feedback_send_button"
+            style="@android:style/Widget.Material.Button.Borderless.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_below="@id/check_device_info"
+            android:layout_alignParentEnd="true"
+            android:text="@string/action_send_feedback" />
+
+    </RelativeLayout>
+</ScrollView>

@@ -31,6 +31,7 @@ import android.provider.Settings;
 import android.widget.Toast;
 
 import com.rarepebble.colorpicker.ColorPreference;
+import com.zeevox.octo.FeedbackActivity;
 import com.zeevox.octo.R;
 import com.zeevox.octo.wallpaper.OcquariumWallpaperService;
 
@@ -144,6 +145,14 @@ public class SettingsFragment extends PreferenceFragment {
                 }
             });
         }
+
+        findPreference("send_feedback").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                startActivity(new Intent(getActivity(), FeedbackActivity.class));
+                return true;
+            }
+        });
     }
 
     @Override

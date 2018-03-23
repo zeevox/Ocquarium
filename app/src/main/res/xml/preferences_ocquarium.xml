@@ -96,7 +96,9 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
             android:summary="%s"
             android:title="@string/prefs_octo_fade_in_duration_title" />
     </PreferenceScreen>
-    <PreferenceScreen android:title="@string/prefs_category_general" android:key="category_general">
+    <PreferenceScreen
+        android:key="category_general"
+        android:title="@string/prefs_category_general">
         <SwitchPreference
             android:defaultValue="false"
             android:key="transparent_settings_icon"
@@ -129,5 +131,12 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
             android:key="octopus_leg_path_debug"
             android:summary="@string/prefs_octopus_leg_path_debug_summary"
             android:title="@string/prefs_octopus_leg_path_debug_title" />
+    </PreferenceScreen>
+    <PreferenceScreen
+        android:summary="Get more info or send feedback."
+        android:title="About">
+        <Preference
+            android:key="send_feedback"
+            android:title="Send feedback" />
     </PreferenceScreen>
 </PreferenceScreen>

@@ -23,6 +23,20 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
 
     <string name="app_name" translatable="false">Ocquarium</string>
 
+    <string name="action_send_feedback">Send feedback</string>
+    <string name="feedback_hint_issue_title">Issue title</string>
+    <string name="feedback_error_empty">Please make sure you have not forgotten this field.</string>
+    <!-- DO NOT TRANSLATE THE PLACEHOLDERS! -->
+    <string name="feedback_prefill_content">
+        ISSUE_DESCRIPTION\n\n
+        #### Device info\n\n
+         - Ocquarium build version: `ocquarium_version_name`\n
+         - Device fingerprint: `device_fingerprint`\n\n\n\n
+    </string>
+    <string name="feedback_check_latest_version">I have verified that I am using the latest version of Ocquarium</string>
+    <string name="feedback_check_device_info">I agree that by pressing the \"Send feedback\" button, Ocquarium will collect some non-identifiable device information such as device name and Android version</string>
+
+
     <string name="live_wall_author">Timothy Langer &amp; the AOSP</string>
     <string name="live_wall_description">Watch as a playful octopus floats behind your home screen.</string>
     <string name="live_wall_name">Ocquarium live wallpaper</string>

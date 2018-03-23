@@ -84,6 +84,15 @@
             android:process=":ui"
             android:theme="@android:style/Theme.Wallpaper.NoTitleBar.Fullscreen" />
 
+        <!-- User feedback activity -->
+        <activity
+            android:name=".FeedbackActivity"
+            android:label="@string/action_send_feedback">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.zeevox.octo.settings.SettingsActivity" />
+        </activity>
+
         <!-- Live wallpaper service -->
         <service
             android:name=".wallpaper.OcquariumWallpaperService"
