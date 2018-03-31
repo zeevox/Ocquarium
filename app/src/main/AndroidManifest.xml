@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-
    Copyright (C) 2016 The Android Open Source Project
    Copyright (C) 2017 Timothy "ZeevoX" Langer
 
@@ -21,7 +20,6 @@
     <uses-feature
         android:name="android.software.live_wallpaper"
         android:required="false" />
-
     <uses-feature
         android:name="android.hardware.touchscreen"
         android:required="false" />
@@ -47,6 +45,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="com.android.internal.category.PLATLOGO" />
             </intent-filter>
+
             <meta-data
                 android:name="android.app.shortcuts"
                 android:resource="@xml/app_shortcuts" />
@@ -60,8 +59,10 @@
             <meta-data
                 android:name="android.service.dream"
                 android:resource="@xml/dream_screensaver" />
+
             <intent-filter>
                 <action android:name="android.service.dreams.DreamService" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </service>
@@ -73,6 +74,7 @@
             android:theme="@android:style/Theme.DeviceDefault.Light.DarkActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
+
                 <category android:name="android.intent.category.PREFERENCE" />
             </intent-filter>
         </activity>
@@ -108,5 +110,11 @@
                 android:name="android.service.wallpaper"
                 android:resource="@xml/live_wallpaper" />
         </service>
+
+        <activity
+            android:name=".settings.SettingsActivityV2"
+            android:label="@string/title_activity_settings_v2"
+            android:theme="@android:style/Theme.DeviceDefault.Light.DarkActionBar" />
     </application>
+
 </manifest>

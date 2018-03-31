@@ -45,7 +45,7 @@ android {
         if (System.getenv("TRAVIS") == "true") {
             versionCode appVersionCode
             versionName = "Alpha build #" + appVersionCode
-			android.applicationVariants.all { variant ->
+            android.applicationVariants.all { variant ->
                 variant.outputs.all {
                     outputFileName = "Ocquarium-" + appVersionCode + "-alpha.apk"
                 }
@@ -53,7 +53,7 @@ android {
         } else {
             versionCode 11
             versionName "3.2.1"
-			android.applicationVariants.all { variant ->
+            android.applicationVariants.all { variant ->
                 variant.outputs.all {
                     outputFileName = "Ocquarium-${versionName}-${buildDate()}-release.apk"
                 }
