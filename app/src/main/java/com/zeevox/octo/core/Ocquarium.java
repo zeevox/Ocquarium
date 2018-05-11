@@ -45,7 +45,7 @@ public class Ocquarium {
 
     public static void start(@NonNull final ContextWrapper context, @NonNull Window window, @NonNull Resources resources, boolean showSettingsButton) {
         // Initialize preferences
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         // Get the display density
         final float dp = resources.getDisplayMetrics().density;
@@ -72,7 +72,7 @@ public class Ocquarium {
             // Set a transparent icon if user set in preferences
             if (preferences.getBoolean("transparent_settings_icon", false)) {
                 mImageButton.setImageDrawable(new ColorDrawable(Color.TRANSPARENT));
-            // If it's a light background make sure the icon is contrasting
+                // If it's a light background make sure the icon is contrasting
             } else if (ColorUtils.isColorLight(preferences.getInt("gradient_start_color", resources.getColor(R.color.octo_bg_default_start_color)))) {
                 mImageButton.setImageDrawable(resources.getDrawable(R.drawable.ic_settings_dark));
             }

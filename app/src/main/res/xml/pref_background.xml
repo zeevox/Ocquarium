@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.rarepebble.colorpicker.ColorPreference
+        android:defaultValue="#FF205090"
+        android:key="gradient_start_color"
+        android:summary="@string/prefs_gradient_start_color_summary"
+        android:title="@string/prefs_gradient_start_color_title"
+        app:colorpicker_showAlpha="false" />
+    <com.rarepebble.colorpicker.ColorPreference
+        android:defaultValue="#FF001040"
+        android:key="gradient_end_color"
+        android:summary="@string/prefs_gradient_end_color_summary"
+        android:title="@string/prefs_gradient_end_color_title"
+        app:colorpicker_showAlpha="false" />
+    <Preference
+        android:key="reset_background_colors"
+        android:summary="@string/prefs_reset_colors_summary"
+        android:title="@string/prefs_reset_colors_title" />
+</PreferenceScreen>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.zeevox.octo.settings.EditNumberPreference
+        android:defaultValue="40"
+        android:dialogTitle="@string/prefs_octopus_min_size_title"
+        android:inputType="number"
+        android:key="octopus_min_size"
+        android:summary="@string/prefs_octopus_min_size_summary"
+        android:title="@string/prefs_octopus_min_size_title"
+        app:maximum="500"
+        app:minimum="15" />
+    <com.zeevox.octo.settings.EditNumberPreference
+        android:defaultValue="180"
+        android:dialogTitle="@string/prefs_octopus_max_size_title"
+        android:inputType="number"
+        android:key="octopus_max_size"
+        android:summary="@string/prefs_octopus_max_size_summary"
+        android:title="@string/prefs_octopus_max_size_title"
+        app:maximum="500"
+        app:minimum="15" />
+    <com.zeevox.octo.settings.EditNumberPreference
+        android:defaultValue="10"
+        android:dialogTitle="@string/prefs_octopus_blink_frequency_title"
+        android:inputType="number"
+        android:key="blink_frequency"
+        android:summary="@string/prefs_octopus_blink_frequency_summary"
+        android:title="@string/prefs_octopus_blink_frequency_title"
+        app:maximum="500"
+        app:minimum="1" />
+    <Preference
+        android:fragment="com.zeevox.octo.settings.SettingsActivityV2$ExperimentalFragment"
+        android:icon="@drawable/ic_bug_report"
+        android:key="experimental_options"
+        android:title="Experimental options" />
+</PreferenceScreen>

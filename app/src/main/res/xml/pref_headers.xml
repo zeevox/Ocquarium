@@ -3,18 +3,33 @@
     <!-- These settings headers are only used on tablets. -->
 
     <header
+        android:fragment="com.zeevox.octo.settings.SettingsActivityV2$OctopusFragment"
+        android:icon="@drawable/ic_videogame"
+        android:summary="Change how the octopus looks"
+        android:title="Octopus" />
+
+    <header
         android:fragment="com.zeevox.octo.settings.SettingsActivityV2$GeneralPreferenceFragment"
-        android:icon="@drawable/ic_info_black_24dp"
+        android:icon="@drawable/ic_category"
+        android:summary="@string/pref_header_general_desc"
         android:title="@string/pref_header_general" />
 
     <header
-        android:fragment="com.zeevox.octo.settings.SettingsActivityV2$NotificationPreferenceFragment"
-        android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/pref_header_notifications" />
+        android:fragment="com.zeevox.octo.settings.SettingsActivityV2$BackgroundPreferenceFragment"
+        android:icon="@drawable/ic_format_color_fill"
+        android:summary="@string/pref_header_background_desc"
+        android:title="@string/pref_header_background" />
 
     <header
-        android:fragment="com.zeevox.octo.settings.SettingsActivityV2$DataSyncPreferenceFragment"
-        android:icon="@drawable/ic_sync_black_24dp"
-        android:title="@string/pref_header_data_sync" />
+        android:fragment="com.zeevox.octo.settings.SettingsActivityV2$WallpaperFragment"
+        android:icon="@drawable/ic_settings"
+        android:summary="Let the octopus calmly drift past your home screen."
+        android:title="Screensaver and wallpaper" />
+
+    <header
+        android:fragment="com.zeevox.octo.settings.SettingsActivityV2$FeedbackFragment"
+        android:icon="@drawable/ic_info"
+        android:summary="Get more info or send feedback."
+        android:title="About" />
 
 </preference-headers>

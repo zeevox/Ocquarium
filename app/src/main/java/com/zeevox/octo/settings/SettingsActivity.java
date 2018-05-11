@@ -15,15 +15,26 @@
 package com.zeevox.octo.settings;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 
 import com.zeevox.octo.R;
 
 public class SettingsActivity extends Activity {
 
+    public static boolean ENABLE_V2_SETTINGS = true;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        if (ENABLE_V2_SETTINGS || !PreferenceManager.getDefaultSharedPreferences(this)
+                .getBoolean("dev_settings_v2", false)) {
+            this.startActivity(new Intent(this, SettingsActivityV2.class));
+            finish();
+        }
+
         super.onCreate(savedInstanceState);
+
         // Inflate layout
         setContentView(R.layout.activity_screensaver_settings);
 

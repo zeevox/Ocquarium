@@ -1,33 +1,37 @@
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="category_general"
+    android:title="@string/prefs_category_general">
 
     <SwitchPreference
+        android:defaultValue="false"
+        android:key="transparent_settings_icon"
+        android:summary="@string/prefs_hide_settings_summary"
+        android:title="@string/prefs_hide_settings_title" />
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="show_platlogo"
+        android:summary="@string/prefs_show_platlogo_summary"
+        android:title="@string/prefs_show_platlogo_title" />
+    <SwitchPreference
         android:defaultValue="true"
-        android:key="example_switch"
-        android:summary="@string/pref_description_social_recommendations"
-        android:title="@string/pref_title_social_recommendations" />
+        android:key="platlogo_v2"
+        android:summary="@string/prefs_platlogo_v2_summary"
+        android:title="@string/prefs_platlogo_v2_title" />
 
-    <!-- NOTE: EditTextPreference accepts EditText attributes. -->
-    <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
-    <EditTextPreference
-        android:capitalize="words"
-        android:defaultValue="@string/pref_default_display_name"
-        android:inputType="textCapWords"
-        android:key="example_text"
-        android:maxLines="1"
-        android:selectAllOnFocus="true"
-        android:singleLine="true"
-        android:title="@string/pref_title_display_name" />
-
-    <!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
-         dismiss it. -->
-    <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
-    <ListPreference
-        android:defaultValue="-1"
-        android:entries="@array/pref_example_list_titles"
-        android:entryValues="@array/pref_example_list_values"
-        android:key="example_list"
-        android:negativeButtonText="@null"
-        android:positiveButtonText="@null"
-        android:title="@string/pref_title_add_friends_to_messages" />
-
+    <PreferenceCategory android:title="@string/prefs_category_animations">
+        <ListPreference
+            android:defaultValue="@string/anim_short"
+            android:entries="@array/prefs_fade_duration_entries"
+            android:entryValues="@array/prefs_fade_duration_values"
+            android:key="octo_fade_in_duration"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:selectable="true"
+            android:summary="%s"
+            android:title="@string/prefs_octo_fade_in_duration_title" />
+        <Preference
+            android:icon="@drawable/ic_info_outline_24dp"
+            android:selectable="false"
+            android:summary="Removing the animation prevents lag when opening the app." />
+    </PreferenceCategory>
 </PreferenceScreen>

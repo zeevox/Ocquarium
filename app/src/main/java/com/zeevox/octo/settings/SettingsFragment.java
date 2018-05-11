@@ -31,6 +31,7 @@ import android.provider.Settings;
 import android.widget.Toast;
 
 import com.rarepebble.colorpicker.ColorPreference;
+import com.zeevox.octo.BuildConfig;
 import com.zeevox.octo.FeedbackActivity;
 import com.zeevox.octo.R;
 import com.zeevox.octo.wallpaper.OcquariumWallpaperService;
@@ -153,6 +154,12 @@ public class SettingsFragment extends PreferenceFragment {
                 return true;
             }
         });
+
+        if (!BuildConfig.DEBUG) {
+            PreferenceScreen rootPreferenceScreen = (PreferenceScreen) findPreference("root_preferences_ocquarium");
+            PreferenceScreen devOptionsPrefScreen = (PreferenceScreen) findPreference("dev_settings");
+            rootPreferenceScreen.removePreference(devOptionsPrefScreen);
+        }
     }
 
     @Override

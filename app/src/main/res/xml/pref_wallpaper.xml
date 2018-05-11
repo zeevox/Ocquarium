@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/prefs_category_live_wallpaper">
+        <Preference
+            android:icon="@drawable/ic_wallpaper"
+            android:key="set_live_wallpaper"
+            android:summary="@string/prefs_set_live_wall_summary"
+            android:title="@string/prefs_set_live_wall_title" />
+        <Preference
+            android:defaultValue="false"
+            android:enabled="false"
+            android:key="restart_live_wallpaper"
+            android:summary="@string/prefs_reset_live_wallpaper_summary"
+            android:title="@string/prefs_reset_live_wallpaper_title" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/prefs_category_screensaver">
+        <Preference
+            android:key="set_screensaver"
+            android:summary="@string/prefs_set_screensaver_summary"
+            android:title="@string/prefs_set_screensaver_title" />
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="screensaver_enable_touch"
+            android:summary="@string/prefs_screensaver_enable_touch_summary"
+            android:title="@string/prefs_screensaver_enable_touch_title" />
+    </PreferenceCategory>
+</PreferenceScreen>
