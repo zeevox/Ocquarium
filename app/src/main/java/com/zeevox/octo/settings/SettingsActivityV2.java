@@ -146,7 +146,6 @@ public class SettingsActivityV2 extends PreferenceActivity {
                 || GeneralPreferenceFragment.class.getName().equals(fragmentName)
                 || BackgroundPreferenceFragment.class.getName().equals(fragmentName)
                 || WallpaperFragment.class.getName().equals(fragmentName)
-                || ExperimentalFragment.class.getName().equals(fragmentName)
                 || OctopusFragment.class.getName().equals(fragmentName)
                 || FeedbackFragment.class.getName().equals(fragmentName);
     }
@@ -242,6 +241,18 @@ public class SettingsActivityV2 extends PreferenceActivity {
         public void onCreate(@Nullable Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.pref_octopus);
+
+            findPreference("experimental_options_expand").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    PreferenceScreen prefOctopus = (PreferenceScreen) findPreference("pref_octopus");
+                    // Hide the option to expand experimental options
+                    prefOctopus.removePreference(preference);
+                    // Add the experimental options
+                    addPreferencesFromResource(R.xml.pref_experimental);
+                    return true;
+                }
+            });
         }
     }
 
@@ -314,14 +325,6 @@ public class SettingsActivityV2 extends PreferenceActivity {
                 editor.putBoolean("restart_live_wallpaper", true);
                 editor.apply();
             }
-        }
-    }
-
-    public static class ExperimentalFragment extends BasePreferenceFragment {
-        @Override
-        public void onCreate(@Nullable Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            addPreferencesFromResource(R.xml.pref_experimental);
         }
     }
 

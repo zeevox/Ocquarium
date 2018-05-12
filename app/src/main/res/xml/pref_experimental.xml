@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     android:title="@string/prefs_category_experimental">
-    <SwitchPreference
-        android:defaultValue="false"
-        android:key="octopus_weird_eyes"
-        android:summary="@string/prefs_octopus_weird_eyes_summary"
-        android:title="@string/prefs_octopus_weird_eyes_title" />
-    <SwitchPreference
-        android:defaultValue="false"
-        android:key="octopus_leg_particles"
-        android:summary="@string/prefs_octopus_leg_particles_summary"
-        android:title="@string/prefs_octopus_leg_particles_title" />
-    <SwitchPreference
-        android:defaultValue="false"
-        android:key="octopus_leg_path_debug"
-        android:summary="@string/prefs_octopus_leg_path_debug_summary"
-        android:title="@string/prefs_octopus_leg_path_debug_title" />
+    <PreferenceCategory android:title="@string/prefs_category_experimental">
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="octopus_weird_eyes"
+            android:summary="@string/prefs_octopus_weird_eyes_summary"
+            android:title="@string/prefs_octopus_weird_eyes_title" />
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="octopus_leg_particles"
+            android:summary="@string/prefs_octopus_leg_particles_summary"
+            android:title="@string/prefs_octopus_leg_particles_title" />
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="octopus_leg_path_debug"
+            android:summary="@string/prefs_octopus_leg_path_debug_summary"
+            android:title="@string/prefs_octopus_leg_path_debug_title" />
+    </PreferenceCategory>
 </PreferenceScreen>

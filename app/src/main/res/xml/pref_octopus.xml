@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:key="pref_octopus">
     <com.zeevox.octo.settings.EditNumberPreference
         android:defaultValue="40"
         android:dialogTitle="@string/prefs_octopus_min_size_title"
@@ -29,8 +30,8 @@
         app:maximum="500"
         app:minimum="1" />
     <Preference
-        android:fragment="com.zeevox.octo.settings.SettingsActivityV2$ExperimentalFragment"
-        android:icon="@drawable/ic_bug_report"
-        android:key="experimental_options"
-        android:title="Experimental options" />
+        android:icon="@drawable/ic_arrow_down"
+        android:key="experimental_options_expand"
+        android:summary="Configure experimental options"
+        android:title="Advanced" />
 </PreferenceScreen>
