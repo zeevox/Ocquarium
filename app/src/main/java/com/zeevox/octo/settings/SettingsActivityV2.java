@@ -9,6 +9,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
@@ -21,6 +23,8 @@ import android.preference.SwitchPreference;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.rarepebble.colorpicker.ColorPreference;
@@ -353,6 +357,15 @@ public class SettingsActivityV2 extends PreferenceActivity {
         public void onCreate(@Nullable Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setHasOptionsMenu(true);
+        }
+
+        @Override
+        public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+            super.onViewCreated(view, savedInstanceState);
+            // Hide divider lines between preferences
+            ListView listView = view.findViewById(android.R.id.list);
+            listView.setDivider(new ColorDrawable(Color.TRANSPARENT));
+            listView.setDividerHeight(0);
         }
 
         @Override
