@@ -1,6 +1,7 @@
 package com.zeevox.octo.settings;
 
 import android.app.ActionBar;
+import android.app.Fragment;
 import android.app.WallpaperInfo;
 import android.app.WallpaperManager;
 import android.content.ActivityNotFoundException;
@@ -8,9 +9,11 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
@@ -22,12 +25,16 @@ import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rarepebble.colorpicker.ColorPreference;
+import com.zeevox.octo.BuildConfig;
 import com.zeevox.octo.FeedbackActivity;
 import com.zeevox.octo.R;
 import com.zeevox.octo.wallpaper.OcquariumWallpaperService;
@@ -151,7 +158,50 @@ public class SettingsActivityV2 extends PreferenceActivity {
                 || BackgroundPreferenceFragment.class.getName().equals(fragmentName)
                 || WallpaperFragment.class.getName().equals(fragmentName)
                 || OctopusFragment.class.getName().equals(fragmentName)
-                || FeedbackFragment.class.getName().equals(fragmentName);
+                || AboutFragment.class.getName().equals(fragmentName);
+    }
+
+    public void share(View view) {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND)
+                .putExtra(Intent.EXTRA_TEXT, String.format(
+                        getResources().getString(R.string.share_text), getString(R.string.app_name)))
+                .setType("text/plain");
+        startActivity(Intent.createChooser(sendIntent, String.format(
+                getResources().getString(R.string.share_with), getString(R.string.app_name))));
+    }
+
+    public void githubUrl(View view) {
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/ZeevoX/Ocquarium")));
+    }
+
+    public void playStoreUrl(View view) {
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.zeevox.octo")));
+    }
+
+    public void telegramAlpha(View view) {
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/OcquariumAlpha")));
+    }
+
+    public void sendEmail(View view) {
+        //Set who to send email to
+        Uri uri = Uri.parse("mailto:zeevox.dev@gmail.com");
+        //Set up email intent
+        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, uri);
+        //Set email title
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Ocquarium question");
+        //Set email intent
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "Hello there, \n\n I'd like to...");
+        try {
+            //Start default email client
+            startActivity(emailIntent);
+        } catch (ActivityNotFoundException activityNotFoundException) {
+            Toast.makeText(this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void feedback(View view) {
+        startActivity(new Intent(this, FeedbackActivity.class));
     }
 
     public static class GeneralPreferenceFragment extends BasePreferenceFragment {
@@ -332,19 +382,37 @@ public class SettingsActivityV2 extends PreferenceActivity {
         }
     }
 
-    public static class FeedbackFragment extends BasePreferenceFragment {
+    public static class AboutFragment extends Fragment {
         @Override
-        public void onCreate(@Nullable Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            addPreferencesFromResource(R.xml.pref_feedback);
+        public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+            super.onViewCreated(view, savedInstanceState);
 
-            findPreference("send_feedback").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                @Override
-                public boolean onPreferenceClick(Preference preference) {
-                    startActivity(new Intent(getActivity(), FeedbackActivity.class));
-                    return true;
-                }
-            });
+            TextView textView = Objects.requireNonNull(getView()).findViewById(R.id.about_app_version);
+            textView.setText(BuildConfig.VERSION_NAME);
+
+            TextView alphaBuilds = getView().findViewById(R.id.about_action_alpha);
+            TextView sendFeedback = getView().findViewById(R.id.about_action_feedback);
+            //noinspection ConstantConditions
+            if (BuildConfig.BUILD_TYPE.equals("travis") ||
+                    isPackageInstalled("com.zeevox.octo.alpha",
+                            getActivity().getPackageManager())) {
+                alphaBuilds.setVisibility(View.GONE);
+                sendFeedback.setVisibility(View.VISIBLE);
+            }
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            return inflater.inflate(R.layout.activity_about, container, false);
+        }
+
+        private boolean isPackageInstalled(String packageName, PackageManager packageManager) {
+            try {
+                packageManager.getPackageInfo(packageName, 0);
+                return true;
+            } catch (PackageManager.NameNotFoundException e) {
+                return false;
+            }
         }
     }
 

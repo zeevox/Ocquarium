@@ -175,4 +175,7 @@ Copyright (C) 2017 Timothy "ZeevoX" Langer
     <string name="pref_header_background">Background</string>
     <string name="pref_header_background_desc">Change the color of the background</string>
     <string name="pref_header_general_desc">Change miscellaneous options</string>
+
+    <string name="share_with">Share \"%s\" with</string>
+    <string name="share_text">Check out \"%s\"\nhttps://play.google.com/store/apps/details?id=com.zeevox.octo</string>
 </resources>

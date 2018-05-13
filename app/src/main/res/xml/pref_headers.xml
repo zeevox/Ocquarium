@@ -27,7 +27,7 @@
         android:title="Screensaver and wallpaper" />
 
     <header
-        android:fragment="com.zeevox.octo.settings.SettingsActivityV2$FeedbackFragment"
+        android:fragment="com.zeevox.octo.settings.SettingsActivityV2$AboutFragment"
         android:icon="@drawable/ic_info"
         android:summary="Get more info or send feedback."
         android:title="About" />

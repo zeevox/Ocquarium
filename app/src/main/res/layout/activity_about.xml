@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            card_view:cardCornerRadius="4dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="8dp">
+
+                <LinearLayout
+                    android:id="@+id/about_linear_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/about_app_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="Ocquarium application icon"
+                        android:src="@drawable/ic_launcher_web" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="16dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/about_app_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/app_name"
+                            android:textAppearance="@android:style/TextAppearance.Material.Title" />
+
+                        <TextView
+                            android:id="@+id/about_app_version"
+                            android:layout_width="wrap_content"
+                            android:layout_height="21dp"
+                            android:layout_marginTop="2dp"
+                            tools:text="Alpha build #23" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/about_action_share"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/about_linear_layout"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:drawablePadding="16dp"
+                    android:drawableStart="@drawable/ic_share"
+                    android:gravity="center_vertical"
+                    android:onClick="share"
+                    android:paddingBottom="8dp"
+                    android:paddingEnd="16dp"
+                    android:paddingStart="16dp"
+                    android:paddingTop="16dp"
+                    android:text="Share"
+                    android:textColor="?android:textColorPrimary" />
+
+                <TextView
+                    android:id="@+id/about_action_github"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/about_action_share"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:drawablePadding="16dp"
+                    android:drawableStart="@drawable/ic_code"
+                    android:gravity="center_vertical"
+                    android:onClick="githubUrl"
+                    android:paddingBottom="8dp"
+                    android:paddingEnd="16dp"
+                    android:paddingStart="16dp"
+                    android:paddingTop="8dp"
+                    android:text="View source code"
+                    android:textColor="?android:textColorPrimary" />
+
+                <TextView
+                    android:id="@+id/about_action_alpha"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/about_action_github"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:drawablePadding="16dp"
+                    android:drawableStart="@drawable/ic_test"
+                    android:gravity="center_vertical"
+                    android:onClick="telegramAlpha"
+                    android:paddingBottom="8dp"
+                    android:paddingEnd="16dp"
+                    android:paddingStart="16dp"
+                    android:paddingTop="8dp"
+                    android:text="Test alpha builds"
+                    android:textColor="?android:textColorPrimary" />
+
+                <TextView
+                    android:id="@+id/about_action_feedback"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/about_action_alpha"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:drawablePadding="16dp"
+                    android:drawableStart="@drawable/ic_feedback"
+                    android:gravity="center_vertical"
+                    android:onClick="feedback"
+                    android:paddingBottom="8dp"
+                    android:paddingEnd="16dp"
+                    android:paddingStart="16dp"
+                    android:paddingTop="8dp"
+                    android:text="Send feedback"
+                    android:textColor="?android:textColorPrimary"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/about_action_g_play"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/about_action_feedback"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:drawablePadding="16dp"
+                    android:drawableStart="@drawable/ic_g_play"
+                    android:gravity="center_vertical"
+                    android:onClick="playStoreUrl"
+                    android:paddingBottom="8dp"
+                    android:paddingEnd="16dp"
+                    android:paddingStart="16dp"
+                    android:paddingTop="8dp"
+                    android:text="Write a review"
+                    android:textColor="?android:textColorPrimary" />
+
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Author"
+                    android:textAppearance="@android:style/TextAppearance.Material.Title" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:drawablePadding="16dp"
+                    android:drawableStart="@drawable/ic_person"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="8dp"
+                    android:paddingEnd="16dp"
+                    android:paddingStart="16dp"
+                    android:paddingTop="8dp"
+                    android:text="ZeevoX"
+                    android:textColor="?android:textColorPrimary" />
+
+                <TextView
+                    android:id="@+id/about_action_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:drawablePadding="16dp"
+                    android:drawableStart="@drawable/ic_email"
+                    android:gravity="center_vertical"
+                    android:onClick="sendEmail"
+                    android:paddingBottom="8dp"
+                    android:paddingEnd="16dp"
+                    android:paddingStart="16dp"
+                    android:paddingTop="8dp"
+                    android:text="Send an email"
+                    android:textColor="?android:textColorPrimary" />
+
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+</ScrollView>

@@ -92,7 +92,7 @@
             android:label="@string/action_send_feedback">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.zeevox.octo.settings.SettingsActivity" />
+                android:value="com.zeevox.octo.settings.SettingsActivityV2" />
         </activity>
 
         <!-- Live wallpaper service -->
@@ -115,6 +115,7 @@
             android:name=".settings.SettingsActivityV2"
             android:label="@string/title_activity_settings_v2"
             android:theme="@android:style/Theme.DeviceDefault.Light.DarkActionBar" />
+
     </application>
 
 </manifest>
