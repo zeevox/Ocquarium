@@ -1,3 +1,19 @@
+/*
+ * Copyright (C) 2018 Timothy "ZeevoX" Langer
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.zeevox.octo;
 
 import android.app.Activity;
@@ -142,9 +158,9 @@ public class FeedbackActivity extends Activity {
     public void dialogInvalid() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        builder.setTitle("Error")
-                .setMessage("Please make sure you have checked all the boxes.")
-                .setPositiveButton("OK", autoDismissDialogClickListener);
+        builder.setTitle(R.string.feedback_dialog_title_error)
+                .setMessage(R.string.feedback_dialog_invalid_checkboxes)
+                .setPositiveButton(R.string.action_ok, autoDismissDialogClickListener);
 
         builder.create().show();
     }
@@ -152,9 +168,9 @@ public class FeedbackActivity extends Activity {
     public void dialogNoField() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        builder.setTitle("Error")
-                .setMessage("Please make sure you have filled in all the input fields.")
-                .setPositiveButton("OK", autoDismissDialogClickListener);
+        builder.setTitle(R.string.feedback_dialog_title_error)
+                .setMessage(R.string.feedback_dialog_fields_error)
+                .setPositiveButton(R.string.action_ok, autoDismissDialogClickListener);
 
         builder.create().show();
     }
@@ -162,9 +178,9 @@ public class FeedbackActivity extends Activity {
     public void dialogNoEmailApp() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        builder.setTitle("Error")
-                .setMessage("No email application found on your device.\nPlease install a supported email app and try again.")
-                .setPositiveButton("OK", autoDismissDialogClickListener);
+        builder.setTitle(R.string.feedback_dialog_title_error)
+                .setMessage(R.string.feedback_dialog_email_app_error)
+                .setPositiveButton(R.string.action_ok, autoDismissDialogClickListener);
 
         builder.create().show();
     }

@@ -1,3 +1,19 @@
+<!--
+  ~ Copyright (C) 2018 Timothy "ZeevoX" Langer
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
 <preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- These settings headers are only used on tablets. -->
@@ -5,8 +21,8 @@
     <header
         android:fragment="com.zeevox.octo.settings.SettingsActivityV2$OctopusFragment"
         android:icon="@drawable/ic_videogame"
-        android:summary="Change how the octopus looks"
-        android:title="Octopus" />
+        android:summary="@string/prefs_category_octopus_desc"
+        android:title="@string/prefs_category_octopus" />
 
     <header
         android:fragment="com.zeevox.octo.settings.SettingsActivityV2$GeneralPreferenceFragment"
@@ -23,13 +39,13 @@
     <header
         android:fragment="com.zeevox.octo.settings.SettingsActivityV2$WallpaperFragment"
         android:icon="@drawable/ic_settings"
-        android:summary="Let the octopus calmly drift past your home screen."
-        android:title="Screensaver and wallpaper" />
+        android:summary="@string/prefs_category_ss_and_wallpaper_desc"
+        android:title="@string/prefs_category_ss_and_wallpaper" />
 
     <header
         android:fragment="com.zeevox.octo.settings.SettingsActivityV2$AboutFragment"
         android:icon="@drawable/ic_info"
-        android:summary="Get more info or send feedback."
-        android:title="About" />
+        android:summary="@string/prefs_category_about_desc"
+        android:title="@string/prefs_category_about" />
 
 </preference-headers>

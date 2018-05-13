@@ -19,7 +19,6 @@ package com.zeevox.octo;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
-import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Outline;
 import android.graphics.drawable.RippleDrawable;

@@ -1,3 +1,19 @@
+/*
+ * Copyright (C) 2018 Timothy "ZeevoX" Langer
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.zeevox.octo.settings;
 
 import android.app.ActionBar;
@@ -189,14 +205,14 @@ public class SettingsActivityV2 extends PreferenceActivity {
         //Set up email intent
         Intent emailIntent = new Intent(Intent.ACTION_SENDTO, uri);
         //Set email title
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Ocquarium question");
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.about_action_email_title));
         //Set email intent
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "Hello there, \n\n I'd like to...");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.about_action_email_text));
         try {
             //Start default email client
             startActivity(emailIntent);
         } catch (ActivityNotFoundException activityNotFoundException) {
-            Toast.makeText(this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.about_action_email_error, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -331,7 +347,7 @@ public class SettingsActivityV2 extends PreferenceActivity {
             findPreference("restart_live_wallpaper").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    Toast.makeText(getActivity(), "Restarting live wallpaper...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.prefs_restarting_wallpaper, Toast.LENGTH_SHORT).show();
                     restartLiveWallpaper();
                     return false;
                 }
@@ -343,7 +359,7 @@ public class SettingsActivityV2 extends PreferenceActivity {
                     try {
                         startActivity(new Intent(Settings.ACTION_DREAM_SETTINGS));
                     } catch (ActivityNotFoundException e) {
-                        Toast.makeText(getActivity(), "Your device doesn't support setting a screensaver, sorry.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), R.string.prefs_screensaver_error, Toast.LENGTH_SHORT).show();
                     }
                     return false;
                 }
@@ -363,7 +379,7 @@ public class SettingsActivityV2 extends PreferenceActivity {
             Preference restartLiveWallpaper = findPreference("restart_live_wallpaper");
             if (isLiveWallpaperSet()) {
                 setLiveWallpaper.setEnabled(false);
-                setLiveWallpaper.setSummary("Ocquarium live wallpaper already set.");
+                setLiveWallpaper.setSummary(R.string.prefs_wallpaper_disabled_desc);
                 restartLiveWallpaper.setEnabled(true);
             }
         }

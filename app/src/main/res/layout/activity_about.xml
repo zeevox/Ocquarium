@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2018 Timothy "ZeevoX" Langer
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -31,13 +47,12 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:id="@+id/about_app_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="fill_parent"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
                         android:adjustViewBounds="true"
-                        android:contentDescription="Ocquarium application icon"
+                        android:contentDescription="@string/about_desc_app_icon"
                         android:src="@drawable/ic_launcher_web" />
 
                     <LinearLayout
@@ -48,7 +63,6 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/about_app_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/app_name"
@@ -80,7 +94,7 @@
                     android:paddingEnd="16dp"
                     android:paddingStart="16dp"
                     android:paddingTop="16dp"
-                    android:text="Share"
+                    android:text="@string/about_action_share"
                     android:textColor="?android:textColorPrimary" />
 
                 <TextView
@@ -97,7 +111,7 @@
                     android:paddingEnd="16dp"
                     android:paddingStart="16dp"
                     android:paddingTop="8dp"
-                    android:text="View source code"
+                    android:text="@string/about_action_github"
                     android:textColor="?android:textColorPrimary" />
 
                 <TextView
@@ -114,7 +128,7 @@
                     android:paddingEnd="16dp"
                     android:paddingStart="16dp"
                     android:paddingTop="8dp"
-                    android:text="Test alpha builds"
+                    android:text="@string/about_action_alpha"
                     android:textColor="?android:textColorPrimary" />
 
                 <TextView
@@ -131,12 +145,11 @@
                     android:paddingEnd="16dp"
                     android:paddingStart="16dp"
                     android:paddingTop="8dp"
-                    android:text="Send feedback"
+                    android:text="@string/action_send_feedback"
                     android:textColor="?android:textColorPrimary"
                     android:visibility="gone" />
 
                 <TextView
-                    android:id="@+id/about_action_g_play"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/about_action_feedback"
@@ -149,7 +162,7 @@
                     android:paddingEnd="16dp"
                     android:paddingStart="16dp"
                     android:paddingTop="8dp"
-                    android:text="Write a review"
+                    android:text="@string/about_action_g_play"
                     android:textColor="?android:textColorPrimary" />
 
 
@@ -172,7 +185,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:text="Author"
+                    android:text="@string/about_text_author"
                     android:textAppearance="@android:style/TextAppearance.Material.Title" />
 
                 <TextView
@@ -187,11 +200,10 @@
                     android:paddingEnd="16dp"
                     android:paddingStart="16dp"
                     android:paddingTop="8dp"
-                    android:text="ZeevoX"
+                    android:text="@string/about_author_name"
                     android:textColor="?android:textColorPrimary" />
 
                 <TextView
-                    android:id="@+id/about_action_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground"
@@ -203,7 +215,7 @@
                     android:paddingEnd="16dp"
                     android:paddingStart="16dp"
                     android:paddingTop="8dp"
-                    android:text="Send an email"
+                    android:text="@string/about_action_email"
                     android:textColor="?android:textColorPrimary" />
 
 
