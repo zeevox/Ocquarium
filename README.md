@@ -4,7 +4,7 @@
 
 **Android Oreo 8.0 Easter Egg - Backported to Lollipop**
 
-![Screenshots](./art/art.png?raw=true)
+![Screenshots](./art/art-min.png?raw=true)
 
 <a href="https://play.google.com/store/apps/details?id=com.zeevox.octo">
   <img height="50" alt="Get it on Google Play"
