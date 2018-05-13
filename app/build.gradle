@@ -53,8 +53,8 @@ android {
                 }
             }
         } else {
-            versionCode 11
-            versionName "3.2.1"
+            versionCode 12
+            versionName "3.3.0"
             android.applicationVariants.all { variant ->
                 variant.outputs.all {
                     outputFileName = "Ocquarium-${versionName}-${buildDate()}-release.apk"
