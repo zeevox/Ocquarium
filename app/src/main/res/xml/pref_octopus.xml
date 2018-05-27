@@ -18,7 +18,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:key="pref_octopus">
-    <com.zeevox.octo.settings.EditNumberPreference
+    <!-- <com.zeevox.octo.settings.EditNumberPreference
         android:defaultValue="40"
         android:dialogTitle="@string/prefs_octopus_min_size_title"
         android:inputType="number"
@@ -35,7 +35,7 @@
         android:summary="@string/prefs_octopus_max_size_summary"
         android:title="@string/prefs_octopus_max_size_title"
         app:maximum="500"
-        app:minimum="15" />
+        app:minimum="15" /> -->
     <com.zeevox.octo.settings.EditNumberPreference
         android:defaultValue="10"
         android:dialogTitle="@string/prefs_octopus_blink_frequency_title"

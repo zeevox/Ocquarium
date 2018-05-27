@@ -98,10 +98,12 @@ public class Ocquarium {
         }
         /* END Settings button */
 
-        float octoMinSize = Float.parseFloat(preferences.getString("octopus_min_size", "40"));
-        float octoMaxSize = Float.parseFloat(preferences.getString("octopus_max_size", "180"));
+        //float octoMinSize = Float.parseFloat(preferences.getString("octopus_min_size", "40"));
+        //float octoMaxSize = Float.parseFloat(preferences.getString("octopus_max_size", "180"));
         final OctopusDrawable octo = new OctopusDrawable(context);
-        octo.setSizePx((int) (OctopusDrawable.randfrange(octoMinSize, octoMaxSize) * dp));
+        //octo.setSizePx((int) (OctopusDrawable.randfrange(octoMinSize, octoMaxSize) * dp));
+        int averageOctopusSize = Integer.parseInt(preferences.getString("octopus_average_size", "110"));
+        octo.setSizePx((int) OctopusDrawable.randfrange(averageOctopusSize - 70, averageOctopusSize + 70) * (int) dp);
         mImageView.setImageDrawable(octo);
         octo.startDrift();
 

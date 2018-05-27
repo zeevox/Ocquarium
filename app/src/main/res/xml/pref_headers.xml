@@ -48,4 +48,10 @@
         android:summary="@string/prefs_category_about_desc"
         android:title="@string/prefs_category_about" />
 
+    <header
+        android:fragment="com.zeevox.octo.settings.SettingsActivityV2$OctopusFragmentV2"
+        android:icon="@drawable/ic_videogame"
+        android:summary="Developer testing"
+        android:title="V2 Octopus Settings" />
+
 </preference-headers>

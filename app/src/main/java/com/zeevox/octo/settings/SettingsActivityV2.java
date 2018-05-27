@@ -45,7 +45,9 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,6 +55,8 @@ import com.rarepebble.colorpicker.ColorPreference;
 import com.zeevox.octo.BuildConfig;
 import com.zeevox.octo.FeedbackActivity;
 import com.zeevox.octo.R;
+import com.zeevox.octo.core.Ocquarium;
+import com.zeevox.octo.core.OctopusDrawable;
 import com.zeevox.octo.wallpaper.OcquariumWallpaperService;
 
 import java.util.List;
@@ -174,7 +178,8 @@ public class SettingsActivityV2 extends PreferenceActivity {
                 || BackgroundPreferenceFragment.class.getName().equals(fragmentName)
                 || WallpaperFragment.class.getName().equals(fragmentName)
                 || OctopusFragment.class.getName().equals(fragmentName)
-                || AboutFragment.class.getName().equals(fragmentName);
+                || AboutFragment.class.getName().equals(fragmentName)
+                || OctopusFragmentV2.class.getName().equals(fragmentName);
     }
 
     public void share(View view) {
@@ -408,7 +413,7 @@ public class SettingsActivityV2 extends PreferenceActivity {
 
             TextView alphaBuilds = getView().findViewById(R.id.about_action_alpha);
             //noinspection ConstantConditions
-            if (!BuildConfig.BUILD_TYPE.equals("travis") &&
+            if (!BuildConfig.BUILD_TYPE.equals("alpha") &&
                     isPackageInstalled("com.zeevox.octo.alpha",
                             getActivity().getPackageManager())) {
                 alphaBuilds.setText("Open Ocquarium Alpha");
@@ -433,6 +438,66 @@ public class SettingsActivityV2 extends PreferenceActivity {
             } catch (PackageManager.NameNotFoundException e) {
                 return false;
             }
+        }
+    }
+
+    public static class OctopusFragmentV2 extends Fragment {
+        @Override
+        public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+            super.onViewCreated(view, savedInstanceState);
+
+            final int OCTOPUS_MIN_SIZE = 20;
+            final int OCTOPUS_MAX_SIZE = 500;
+            final int OCTOPUS_SIZE_VARIATION = 70;
+            final int OCTOPUS_RANGE = (OCTOPUS_MAX_SIZE - OCTOPUS_SIZE_VARIATION) - (OCTOPUS_MIN_SIZE + OCTOPUS_SIZE_VARIATION);
+
+            // Initialize preferences
+            final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
+            // Get the display density
+            final float dp = getResources().getDisplayMetrics().density;
+
+            int averageOctopusSize = Integer.parseInt(preferences.getString("octopus_average_size", "110"));
+
+            // Set the background to be the gradient with user defined colors
+            // See bgGradient(ContextWrapper, Resources) for more info about this
+            Objects.requireNonNull(getView()).findViewById(R.id.prefs_octopus_bg).setBackground(Ocquarium.bgGradient(getActivity(), getResources()));
+
+            final OctopusDrawable octo = new OctopusDrawable(getActivity());
+            octo.setSizePx(averageOctopusSize * (int) dp);
+            ((ImageView) Objects.requireNonNull(getView()).findViewById(R.id.pref_octopus_image_view)).setImageDrawable(octo);
+            octo.startDrift();
+
+            SeekBar octopusSizeSeekBar = Objects.requireNonNull(getView()).findViewById(R.id.prefs_octopus_average_size_seekbar);
+            octopusSizeSeekBar.setProgress(averageOctopusSize / OCTOPUS_RANGE + OCTOPUS_MIN_SIZE);
+            octopusSizeSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                    octo.stopDrift();
+                    octo.moveTo(getResources().getDisplayMetrics().widthPixels / 2,
+                            getResources().getDisplayMetrics().heightPixels / 2 - 100 * (int) dp);
+                    octo.setSizePx((i * OCTOPUS_RANGE / 100 + OCTOPUS_MIN_SIZE) * (int) dp);
+                    octo.startDrift();
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("octopus_average_size", Integer.toString(i * OCTOPUS_RANGE / 100 + OCTOPUS_MIN_SIZE));
+                    editor.apply();
+                }
+
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {
+
+                }
+
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
+
+                }
+            });
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            return inflater.inflate(R.layout.pref_octopus, container, false);
         }
     }
 
