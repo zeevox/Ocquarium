@@ -407,13 +407,11 @@ public class SettingsActivityV2 extends PreferenceActivity {
             textView.setText(BuildConfig.VERSION_NAME);
 
             TextView alphaBuilds = getView().findViewById(R.id.about_action_alpha);
-            TextView sendFeedback = getView().findViewById(R.id.about_action_feedback);
             //noinspection ConstantConditions
             if (BuildConfig.BUILD_TYPE.equals("travis") ||
                     isPackageInstalled("com.zeevox.octo.alpha",
                             getActivity().getPackageManager())) {
                 alphaBuilds.setVisibility(View.GONE);
-                sendFeedback.setVisibility(View.VISIBLE);
             }
         }
 
