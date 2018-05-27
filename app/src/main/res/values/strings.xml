@@ -126,6 +126,8 @@
     <string name="prefs_set_live_wall_title">Set live wallpaper</string>
     <string name="prefs_set_screensaver_summary">Click me to set Ocquarium as your device\'s screensaver.</string>
     <string name="prefs_set_screensaver_title">Set screensaver</string>
+    <string name="prefs_show_navigation_bar_title">Show system navbar</string>
+    <string name="prefs_show_navigation_bar_summary">Display the navigation bar while playing Ocquarium</string>
     <string name="prefs_show_platlogo_summary">Display the Android Oreo logo before the octopus.</string>
     <string name="prefs_show_platlogo_title">Show platform logo</string>
     <string name="prefs_wallpaper_disabled_desc">Ocquarium live wallpaper already set.</string>
