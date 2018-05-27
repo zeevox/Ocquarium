@@ -85,6 +85,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/about_linear_layout"
+                    android:layout_marginTop="8dp"
                     android:background="?android:attr/selectableItemBackground"
                     android:drawablePadding="16dp"
                     android:drawableStart="@drawable/ic_share"
@@ -93,7 +94,7 @@
                     android:paddingBottom="8dp"
                     android:paddingEnd="16dp"
                     android:paddingStart="16dp"
-                    android:paddingTop="16dp"
+                    android:paddingTop="8dp"
                     android:text="@string/about_action_share"
                     android:textColor="?android:textColorPrimary" />
 
