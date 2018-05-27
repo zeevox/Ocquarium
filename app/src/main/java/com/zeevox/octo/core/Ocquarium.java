@@ -56,6 +56,15 @@ public class Ocquarium {
         // See bgGradient(ContextWrapper, Resources) for more info about this
         window.setBackgroundDrawable(bgGradient(context, resources));
 
+        // Hide the navigation bar if set by the user
+        if (!preferences.getBoolean("show_navigation_bar", true)) {
+            View decorView = window.getDecorView();
+            int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                    | View.SYSTEM_UI_FLAG_FULLSCREEN;
+            decorView.setSystemUiVisibility(uiOptions);
+        }
+
         FrameLayout bg = new FrameLayout(context);
         window.setContentView(bg);
 
