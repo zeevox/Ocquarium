@@ -17,12 +17,14 @@
 package com.zeevox.octo.settings;
 
 import android.app.ActionBar;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.WallpaperInfo;
 import android.app.WallpaperManager;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -57,10 +59,12 @@ import com.zeevox.octo.FeedbackActivity;
 import com.zeevox.octo.R;
 import com.zeevox.octo.core.Ocquarium;
 import com.zeevox.octo.core.OctopusDrawable;
+import com.zeevox.octo.util.ColorUtils;
 import com.zeevox.octo.wallpaper.OcquariumWallpaperService;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On
@@ -305,6 +309,38 @@ public class SettingsActivityV2 extends PreferenceActivity {
                     ColorPreference endColor = (ColorPreference) findPreference("gradient_end_color");
                     endColor.setColor(getResources().getColor(R.color.octo_bg_default_end_color));
                     preference.setEnabled(false);
+                    return true;
+                }
+            });
+
+            findPreference("random_ui_gradients").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    final String[][] randomGradientDetails = {ColorUtils.getGradientDetails(
+                            ThreadLocalRandom.current().nextInt(0, ColorUtils.gradients.size() + 1))};
+
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+                    builder.setTitle("Random gradient")
+                            .setMessage("Apply gradient called " + ColorUtils.getGradientName(randomGradientDetails[0])
+                                    + "?\n\nIf you would like to try a different gradient, press cancel and select \"Random gradient\" again.")
+                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.dismiss();
+                                }
+                            })
+                            .setPositiveButton("Apply", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    ColorPreference startColor = (ColorPreference) findPreference("gradient_start_color");
+                                    startColor.setColor(ColorUtils.getGradientStartColor(randomGradientDetails[0]));
+                                    ColorPreference endColor = (ColorPreference) findPreference("gradient_end_color");
+                                    endColor.setColor(ColorUtils.getGradientEndColor(randomGradientDetails[0]));
+                                }
+                            });
+
+                    builder.create().show();
                     return true;
                 }
             });
