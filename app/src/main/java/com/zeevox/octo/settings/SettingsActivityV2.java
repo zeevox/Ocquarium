@@ -413,7 +413,7 @@ public class SettingsActivityV2 extends PreferenceActivity {
 
             TextView alphaBuilds = getView().findViewById(R.id.about_action_alpha);
             //noinspection ConstantConditions
-            if (!BuildConfig.BUILD_TYPE.equals("alpha") &&
+            if (!BuildConfig.BUILD_TYPE.equals("travis") &&
                     isPackageInstalled("com.zeevox.octo.alpha",
                             getActivity().getPackageManager())) {
                 alphaBuilds.setText("Open Ocquarium Alpha");
