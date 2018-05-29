@@ -89,7 +89,8 @@
         <!-- User feedback activity -->
         <activity
             android:name=".FeedbackActivity"
-            android:label="@string/action_send_feedback">
+            android:label="@string/action_send_feedback"
+            android:theme="@style/OcquariumTheme.Settings">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.zeevox.octo.settings.SettingsActivityV2" />
