@@ -64,7 +64,7 @@ import com.zeevox.octo.wallpaper.OcquariumWallpaperService;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.Random;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On
@@ -317,7 +317,7 @@ public class SettingsActivityV2 extends PreferenceActivity {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
                     final String[][] randomGradientDetails = {ColorUtils.getGradientDetails(
-                            ThreadLocalRandom.current().nextInt(0, ColorUtils.gradients.size() + 1))};
+                            getRandomInt(ColorUtils.gradients.size()))};
 
                     final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
@@ -342,6 +342,11 @@ public class SettingsActivityV2 extends PreferenceActivity {
 
                     builder.create().show();
                     return true;
+                }
+
+                private int getRandomInt(int max) {
+                    Random random = new Random();
+                    return new Random().nextInt(max);
                 }
             });
         }
