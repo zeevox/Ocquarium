@@ -63,17 +63,11 @@
             </intent-filter>
         </service>
 
-        <!-- Screensaver preferences activity -->
+        <!-- Preferences activity -->
         <activity
-            android:name=".settings.SettingsActivity"
-            android:exported="true"
-            android:theme="@android:style/Theme.DeviceDefault.Light.DarkActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
-
-                <category android:name="android.intent.category.PREFERENCE" />
-            </intent-filter>
-        </activity>
+            android:name=".settings.SettingsActivityV2"
+            android:label="@string/action_settings"
+            android:theme="@style/OcquariumTheme.Settings" />
 
         <!-- PlatLogoActivity where the platform logo appears -->
         <activity
@@ -107,11 +101,6 @@
                 android:name="android.service.wallpaper"
                 android:resource="@xml/live_wallpaper" />
         </service>
-
-        <activity
-            android:name=".settings.SettingsActivityV2"
-            android:label="@string/action_settings"
-            android:theme="@style/OcquariumTheme.Settings" />
 
     </application>
 

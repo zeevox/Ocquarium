@@ -34,7 +34,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.zeevox.octo.R;
-import com.zeevox.octo.settings.SettingsActivity;
+import com.zeevox.octo.settings.SettingsActivityV2;
 import com.zeevox.octo.util.ColorUtils;
 
 public class Ocquarium {
@@ -88,7 +88,7 @@ public class Ocquarium {
             mImageButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    context.startActivity(new Intent(context, SettingsActivity.class));
+                    context.startActivity(new Intent(context, SettingsActivityV2.class));
                 }
             });
             bg.addView(mImageButton, new FrameLayout.LayoutParams(

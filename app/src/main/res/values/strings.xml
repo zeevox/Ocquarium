@@ -69,7 +69,6 @@
     <string name="prefs_category_about">About</string>
     <string name="prefs_category_about_desc">Get more info or send feedback.</string>
     <string name="prefs_category_animations">Animations</string>
-    <string name="prefs_category_background">Background</string>
     <string name="prefs_category_experimental">Experimental</string>
     <string name="prefs_category_general">General</string>
     <string name="prefs_category_live_wallpaper">Live wallpaper</string>
@@ -111,10 +110,6 @@
     <string name="prefs_octopus_leg_particles_title">Enable particle legs</string>
     <string name="prefs_octopus_leg_path_debug_summary">Give the tentacles a geometric makeover.</string>
     <string name="prefs_octopus_leg_path_debug_title">Enable experimental legs</string>
-    <string name="prefs_octopus_max_size_summary" translatable="false">Set the biggest size that octopus can become. Default is 180.</string>
-    <string name="prefs_octopus_max_size_title" translatable="false">Maximum octopus size</string>
-    <string name="prefs_octopus_min_size_summary" translatable="false">Set the smallest size that octopus can become. Default is 40.</string>
-    <string name="prefs_octopus_min_size_title" translatable="false">Minimum octopus size</string>
     <string name="prefs_octopus_weird_eyes_summary">Make the eyes open and closed at the same time.</string>
     <string name="prefs_octopus_weird_eyes_title">Enable experimental eyes</string>
     <string name="prefs_platlogo_v2_summary">Show the new Android Oreo logo instead of the previous one.</string>

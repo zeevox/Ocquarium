@@ -53,7 +53,6 @@
     <string name="prefs_category_about">О проекте</string>
     <string name="prefs_category_about_desc">Узнать больше о проекте или послать комментарии.</string>
     <string name="prefs_category_animations">Оживление изображеня</string>
-    <string name="prefs_category_background">Фон</string>
     <string name="prefs_category_experimental">Эксперементальные настройки</string>
     <string name="prefs_category_general">Общие настройки</string>
     <string name="prefs_category_live_wallpaper">Живие обои</string>
