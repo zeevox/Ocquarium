@@ -103,6 +103,7 @@
     <string name="prefs_octopus_advanced_summary">Configure experimental options</string>
     <string name="prefs_octopus_advanced_title">Advanced</string>
     <string name="prefs_octopus_average_size_notice">Moving the octopus by touching and dragging is currently not available on this screen.</string>
+    <string name="prefs_octopus_average_size_summary">Change the size of the octopus</string>
     <string name="prefs_octopus_average_size_title">Octopus average size</string>
     <string name="prefs_octopus_blink_frequency_summary">Change how often the octopus blinks. Default is 10, maximum is 500.</string>
     <string name="prefs_octopus_blink_frequency_title">Blink frequency</string>

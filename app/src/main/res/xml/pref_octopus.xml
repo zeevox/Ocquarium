@@ -18,24 +18,12 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:key="pref_octopus">
-    <!-- <com.zeevox.octo.settings.EditNumberPreference
-        android:defaultValue="40"
-        android:dialogTitle="@string/prefs_octopus_min_size_title"
-        android:inputType="number"
-        android:key="octopus_min_size"
-        android:summary="@string/prefs_octopus_min_size_summary"
-        android:title="@string/prefs_octopus_min_size_title"
-        app:maximum="500"
-        app:minimum="15" />
-    <com.zeevox.octo.settings.EditNumberPreference
-        android:defaultValue="180"
-        android:dialogTitle="@string/prefs_octopus_max_size_title"
-        android:inputType="number"
-        android:key="octopus_max_size"
-        android:summary="@string/prefs_octopus_max_size_summary"
-        android:title="@string/prefs_octopus_max_size_title"
-        app:maximum="500"
-        app:minimum="15" /> -->
+
+    <Preference
+        android:summary="@string/prefs_octopus_average_size_summary"
+        android:title="@string/prefs_octopus_average_size_title"
+        android:fragment="com.zeevox.octo.settings.SettingsActivityV2$OctopusFragmentV2" />
+
     <com.zeevox.octo.settings.EditNumberPreference
         android:defaultValue="10"
         android:dialogTitle="@string/prefs_octopus_blink_frequency_title"

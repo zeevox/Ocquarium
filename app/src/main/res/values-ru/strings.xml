@@ -80,6 +80,7 @@
     <string name="prefs_octopus_advanced_summary">Настроить эксперементальные опции</string>
     <string name="prefs_octopus_advanced_title">Сложные настройки</string>
     <string name="prefs_octopus_average_size_notice">Управлять и двигать осминог не возможно на этом экране.</string>
+    <string name="prefs_octopus_average_size_summary">Выставить размер осминога</string>
     <string name="prefs_octopus_average_size_title">Средний размер осминога</string>
     <string name="prefs_octopus_blink_frequency_summary">Поменять как часто осминог моргает. По умолчанию 10, максимум 500.</string>
     <string name="prefs_octopus_blink_frequency_title">Частота моргания</string>
