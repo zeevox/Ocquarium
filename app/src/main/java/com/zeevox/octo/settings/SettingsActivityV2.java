@@ -520,7 +520,8 @@ public class SettingsActivityV2 extends PreferenceActivity {
             octo.startDrift();
 
             SeekBar octopusSizeSeekBar = Objects.requireNonNull(getView()).findViewById(R.id.prefs_octopus_average_size_seekbar);
-            octopusSizeSeekBar.setProgress(averageOctopusSize / OCTOPUS_RANGE + OCTOPUS_MIN_SIZE);
+            int progress = (int) Math.round((double) averageOctopusSize / (double) OCTOPUS_RANGE * (double) 100);
+            octopusSizeSeekBar.setProgress(progress);
             octopusSizeSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
