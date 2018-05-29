@@ -53,7 +53,7 @@ public class OcquariumActivity extends Activity {
             settingsShortcut.setAction(Intent.ACTION_VIEW);
 
             ShortcutInfo shortcut = new ShortcutInfo.Builder(this, "id1")
-                    .setShortLabel(getResources().getString(R.string.shortcut_settings_short))
+                    .setShortLabel(getResources().getString(R.string.action_settings))
                     .setLongLabel(getResources().getString(R.string.shortcut_settings_long))
                     .setDisabledMessage(getResources().getString(R.string.shortcut_settings_disabled))
                     .setIcon(Icon.createWithResource(this, R.drawable.ic_shortcut_settings))

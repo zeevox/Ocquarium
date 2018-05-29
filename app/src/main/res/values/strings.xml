@@ -14,7 +14,8 @@
   ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
-  --><resources>
+  -->
+<resources>
     <string name="about_action_alpha">Test alpha builds</string>
     <string name="about_action_email">Send an email</string>
     <string name="about_action_email_error">There are no email clients installed.</string>
@@ -23,19 +24,20 @@
     <string name="about_action_g_play">Write a review</string>
     <string name="about_action_github">View source code</string>
     <string name="about_action_share">Share</string>
-    <string name="about_author_name">ZeevoX</string>
+    <string name="about_author_name" translatable="false">ZeevoX</string>
     <string name="about_desc_app_icon">Ocquarium application icon</string>
     <string name="about_text_author">Author</string>
 
     <string name="action_apply">Apply</string>
-    <string name="action_ok">@android:string/ok</string>
+    <string name="action_ok" translatable="false">@android:string/ok</string>
     <string name="action_send_feedback">Send feedback</string>
+    <string name="action_settings">Settings</string>
 
-    <string name="anim_even_longer">5000</string>
-    <string name="anim_long">2000</string>
-    <string name="anim_medium">1000</string>
-    <string name="anim_no_duration">0</string>
-    <string name="anim_short">500</string>
+    <string name="anim_even_longer" translatable="false">5000</string>
+    <string name="anim_long" translatable="false">2000</string>
+    <string name="anim_medium" translatable="false">1000</string>
+    <string name="anim_no_duration" translatable="false">0</string>
+    <string name="anim_short" translatable="false">500</string>
 
     <string name="app_name" translatable="false">Ocquarium</string>
 
@@ -48,15 +50,14 @@
     <string name="feedback_dialog_title_error">Error</string>
     <string name="feedback_error_empty">Please make sure you have not forgotten this field.</string>
     <string name="feedback_hint_issue_title">Issue title</string>
-    <!-- DO NOT TRANSLATE THE PLACEHOLDERS! -->
-    <string name="feedback_prefill_content">
+    <string name="feedback_prefill_content" translatable="false">
         ISSUE_DESCRIPTION\n\n
         #### Device info\n\n
          - Ocquarium build version: `ocquarium_version_name`\n
          - Device fingerprint: `device_fingerprint`\n\n\n\n
     </string>
 
-    <string name="live_wall_author">Timothy Langer &amp; the AOSP</string>
+    <string name="live_wall_author" translatable="false">Timothy Langer &amp; the AOSP</string>
     <string name="live_wall_description">Watch as a playful octopus floats behind your home screen.</string>
     <string name="live_wall_name">Ocquarium live wallpaper</string>
 
@@ -101,16 +102,18 @@
     <string name="prefs_octo_fade_in_duration_title">Fade in animation duration</string>
     <string name="prefs_octopus_advanced_summary">Configure experimental options</string>
     <string name="prefs_octopus_advanced_title">Advanced</string>
+    <string name="prefs_octopus_average_size_notice">Moving the octopus by touching and dragging is currently not available on this screen.</string>
+    <string name="prefs_octopus_average_size_title">Octopus average size</string>
     <string name="prefs_octopus_blink_frequency_summary">Change how often the octopus blinks. Default is 10, maximum is 500.</string>
     <string name="prefs_octopus_blink_frequency_title">Blink frequency</string>
     <string name="prefs_octopus_leg_particles_summary">Make the tentacles out of small floating particles.</string>
     <string name="prefs_octopus_leg_particles_title">Enable particle legs</string>
     <string name="prefs_octopus_leg_path_debug_summary">Give the tentacles a geometric makeover.</string>
     <string name="prefs_octopus_leg_path_debug_title">Enable experimental legs</string>
-    <string name="prefs_octopus_max_size_summary">Set the biggest size that octopus can become. Default is 180.</string>
-    <string name="prefs_octopus_max_size_title">Maximum octopus size</string>
-    <string name="prefs_octopus_min_size_summary">Set the smallest size that octopus can become. Default is 40.</string>
-    <string name="prefs_octopus_min_size_title">Minimum octopus size</string>
+    <string name="prefs_octopus_max_size_summary" translatable="false">Set the biggest size that octopus can become. Default is 180.</string>
+    <string name="prefs_octopus_max_size_title" translatable="false">Maximum octopus size</string>
+    <string name="prefs_octopus_min_size_summary" translatable="false">Set the smallest size that octopus can become. Default is 40.</string>
+    <string name="prefs_octopus_min_size_title" translatable="false">Minimum octopus size</string>
     <string name="prefs_octopus_weird_eyes_summary">Make the eyes open and closed at the same time.</string>
     <string name="prefs_octopus_weird_eyes_title">Enable experimental eyes</string>
     <string name="prefs_platlogo_v2_summary">Show the new Android Oreo logo instead of the previous one.</string>
@@ -127,22 +130,19 @@
     <string name="prefs_set_live_wall_title">Set live wallpaper</string>
     <string name="prefs_set_screensaver_summary">Click me to set Ocquarium as your device\'s screensaver.</string>
     <string name="prefs_set_screensaver_title">Set screensaver</string>
-    <string name="prefs_show_navigation_bar_title">Show system navbar</string>
     <string name="prefs_show_navigation_bar_summary">Display the navigation bar while playing Ocquarium</string>
+    <string name="prefs_show_navigation_bar_title">Show system navbar</string>
     <string name="prefs_show_platlogo_summary">Display the Android Oreo logo before the octopus.</string>
     <string name="prefs_show_platlogo_title">Show platform logo</string>
+    <string name="prefs_uigradients_dialog_description">Apply gradient called %s?\n\nIf you would like to try a different gradient, press cancel and select \"Random gradient\" again.</string>
     <string name="prefs_uigradients_dialog_title">Random gradient</string>
-    <string name="prefs_uigradients_dialog_description">Apply gradient called %s?  If you would like to try a different gradient, press cancel and select \"Random gradient\" again.</string>
     <string name="prefs_uigradients_summary">Random gradient</string>
     <string name="prefs_uigradients_title">Pick a random set of colors from uigradients.com</string>
     <string name="prefs_wallpaper_disabled_desc">Ocquarium live wallpaper already set.</string>
 
-    <string name="share_text">Check out \"%s\"\nhttps://play.google.com/store/apps/details?id=com.zeevox.octo</string>
+    <string name="share_text">Check out %s https://play.google.com/store/apps/details?id=com.zeevox.octo</string>
     <string name="share_with">Share \"%s\" with</string>
 
     <string name="shortcut_settings_disabled">This application shortcut has been disabled.</string>
     <string name="shortcut_settings_long">Change Ocquarium preferences</string>
-    <string name="shortcut_settings_short">Settings</string>
-
-    <string name="title_activity_settings_v2">Settings</string>
 </resources>

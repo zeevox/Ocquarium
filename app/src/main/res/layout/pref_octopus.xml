@@ -48,7 +48,7 @@
             android:textColor="@android:color/white"
             android:textAppearance="@android:style/TextAppearance.Material.Medium"
             android:layout_height="wrap_content"
-            android:text="Octopus average size"/>
+            android:text="@string/prefs_octopus_average_size_title"/>
         <SeekBar
             android:layout_width="match_parent"
             android:progress="50"
@@ -65,6 +65,6 @@
             android:paddingEnd="16dp"
             android:textColor="@android:color/white"
             android:textAppearance="@android:style/TextAppearance.Material.Small"
-            android:text="Moving the octopus by touching and dragging is currently not available on this screen."/>
+            android:text="@string/prefs_octopus_average_size_notice"/>
     </LinearLayout>
 </RelativeLayout>
