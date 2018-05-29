@@ -35,6 +35,6 @@
         android:title="@string/prefs_reset_colors_title" />
     <Preference
         android:key="random_ui_gradients"
-        android:summary="Pick a random set of colors from uigradients.com"
-        android:title="Random gradient" />
+        android:summary="@string/prefs_uigradients_title"
+        android:title="@string/prefs_uigradients_summary" />
 </PreferenceScreen>

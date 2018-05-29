@@ -321,16 +321,16 @@ public class SettingsActivityV2 extends PreferenceActivity {
 
                     final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-                    builder.setTitle("Random gradient")
-                            .setMessage("Apply gradient called " + ColorUtils.getGradientName(randomGradientDetails[0])
-                                    + "?\n\nIf you would like to try a different gradient, press cancel and select \"Random gradient\" again.")
-                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    builder.setTitle(R.string.prefs_uigradients_dialog_title)
+                            .setMessage(String.format(getResources().getString(R.string.prefs_uigradients_dialog_description),
+                                    ColorUtils.getGradientName(randomGradientDetails[0])))
+                            .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     dialogInterface.dismiss();
                                 }
                             })
-                            .setPositiveButton("Apply", new DialogInterface.OnClickListener() {
+                            .setPositiveButton(R.string.action_apply, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     ColorPreference startColor = (ColorPreference) findPreference("gradient_start_color");

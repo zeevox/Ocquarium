@@ -27,7 +27,8 @@
     <string name="about_desc_app_icon">Ocquarium application icon</string>
     <string name="about_text_author">Author</string>
 
-    <string name="action_ok">OK</string>
+    <string name="action_apply">Apply</string>
+    <string name="action_ok">@android:string/ok</string>
     <string name="action_send_feedback">Send feedback</string>
 
     <string name="anim_even_longer">5000</string>
@@ -130,6 +131,10 @@
     <string name="prefs_show_navigation_bar_summary">Display the navigation bar while playing Ocquarium</string>
     <string name="prefs_show_platlogo_summary">Display the Android Oreo logo before the octopus.</string>
     <string name="prefs_show_platlogo_title">Show platform logo</string>
+    <string name="prefs_uigradients_dialog_title">Random gradient</string>
+    <string name="prefs_uigradients_dialog_description">Apply gradient called %s?  If you would like to try a different gradient, press cancel and select \"Random gradient\" again.</string>
+    <string name="prefs_uigradients_summary">Random gradient</string>
+    <string name="prefs_uigradients_title">Pick a random set of colors from uigradients.com</string>
     <string name="prefs_wallpaper_disabled_desc">Ocquarium live wallpaper already set.</string>
 
     <string name="share_text">Check out \"%s\"\nhttps://play.google.com/store/apps/details?id=com.zeevox.octo</string>
