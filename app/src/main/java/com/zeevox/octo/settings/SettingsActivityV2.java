@@ -514,6 +514,10 @@ public class SettingsActivityV2 extends PreferenceActivity {
             // See bgGradient(ContextWrapper, Resources) for more info about this
             Objects.requireNonNull(getView()).findViewById(R.id.prefs_octopus_bg).setBackground(Ocquarium.bgGradient(getActivity(), getResources()));
 
+            if (!ColorUtils.isColorLight(preferences.getInt("gradient_end_color", getResources().getColor(R.color.octo_bg_default_end_color)))) {
+                Objects.requireNonNull(getView()).findViewById(R.id.prefs_octopus_v2_bottom_gradient).setBackground(null);
+            }
+
             final OctopusDrawable octo = new OctopusDrawable(getActivity());
             octo.setSizePx(averageOctopusSize * (int) dp);
             ((ImageView) Objects.requireNonNull(getView()).findViewById(R.id.pref_octopus_image_view)).setImageDrawable(octo);
