@@ -18,11 +18,17 @@ package com.zeevox.octo;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ShortcutInfo;
+import android.content.pm.ShortcutManager;
+import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 
 import com.zeevox.octo.core.Ocquarium;
+import com.zeevox.octo.settings.SettingsActivityV2;
+
+import java.util.Collections;
 
 public class OcquariumActivity extends Activity {
 
@@ -38,6 +44,25 @@ public class OcquariumActivity extends Activity {
         super.onCreate(savedInstanceState);
         if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("show_platlogo", false)) {
             startActivity(new Intent(OcquariumActivity.this, PlatLogoActivity.class));
+        }
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N_MR1) {
+            ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);
+
+            Intent settingsShortcut = new Intent(this, SettingsActivityV2.class);
+            settingsShortcut.setAction(Intent.ACTION_VIEW);
+
+            ShortcutInfo shortcut = new ShortcutInfo.Builder(this, "id1")
+                    .setShortLabel(getResources().getString(R.string.shortcut_settings_short))
+                    .setLongLabel(getResources().getString(R.string.shortcut_settings_long))
+                    .setDisabledMessage(getResources().getString(R.string.shortcut_settings_disabled))
+                    .setIcon(Icon.createWithResource(this, R.drawable.ic_shortcut_settings))
+                    .setIntent(settingsShortcut)
+                    .build();
+
+            if (shortcutManager != null) {
+                shortcutManager.setDynamicShortcuts(Collections.singletonList(shortcut));
+            }
         }
     }
 }

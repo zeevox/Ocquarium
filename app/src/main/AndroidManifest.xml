@@ -45,10 +45,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="com.android.internal.category.PLATLOGO" />
             </intent-filter>
-
-            <meta-data
-                android:name="android.app.shortcuts"
-                android:resource="@xml/app_shortcuts" />
         </activity>
 
         <!-- Screensaver service -->
