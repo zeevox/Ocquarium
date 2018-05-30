@@ -77,7 +77,8 @@ import java.util.Random;
  * href="http://developer.android.com/guide/topics/ui/settings.html">Settings
  * API Guide</a> for more information on developing a Settings UI.
  */
-public class SettingsActivityV2 extends PreferenceActivity {
+public class SettingsActivityV2 extends PreferenceActivity
+        implements PreferenceFragment.OnPreferenceStartFragmentCallback {
 
     /**
      * A preference value change listener that updates the preference's summary
