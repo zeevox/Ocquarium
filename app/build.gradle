@@ -72,13 +72,15 @@ android {
             versionNameSuffix ' debug'
         }
         release {
-            minifyEnabled true
-            shrinkResources true
+            minifyEnabled false
+            shrinkResources false
+            useProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
         travis {
-            minifyEnabled true
-            shrinkResources true
+            minifyEnabled false
+            shrinkResources false
+            useProguard false
             applicationIdSuffix '.alpha'
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
             if (System.getenv("TRAVIS") == "true") {
