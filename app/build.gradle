@@ -74,13 +74,13 @@ android {
         release {
             minifyEnabled true
             shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.txt'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
         travis {
             minifyEnabled true
             shrinkResources true
             applicationIdSuffix '.alpha'
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.txt'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
             if (System.getenv("TRAVIS") == "true") {
                 signingConfig signingConfigs.travis
             }
