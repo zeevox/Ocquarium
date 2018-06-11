@@ -42,7 +42,7 @@
 package com.zeevox.octo.util;
 
 import android.graphics.Color;
-import android.support.annotation.ColorInt;
+import androidx.annotation.ColorInt;
 
 import java.util.ArrayList;
 import java.util.List;

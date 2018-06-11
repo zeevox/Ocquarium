@@ -23,7 +23,7 @@ import android.content.pm.ShortcutManager;
 import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.zeevox.octo.core.Ocquarium;
 import com.zeevox.octo.settings.SettingsActivityV2;
