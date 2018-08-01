@@ -127,6 +127,7 @@ public class Ocquarium {
                         touching = false;
                         octo.startDrift();
                         break;
+                    default: break;
                 }
                 return true;
             }
