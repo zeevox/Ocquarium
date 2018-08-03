@@ -26,9 +26,4 @@
         <item name="android:colorPrimaryDark">#3f4ea3</item>
         <item name="android:colorAccent">#3f51b5</item>
     </style>
-
-    <style name="Transparent" parent="android:Theme.Material.NoActionBar" >
-        <item name="android:navigationBarColor">@color/octo_bg_default_end_color</item>
-        <item name="android:statusBarColor">@color/octo_bg_default_start_color</item>
-    </style>
 </resources>
