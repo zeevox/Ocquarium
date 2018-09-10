@@ -52,7 +52,7 @@ public class OcquariumActivity extends Activity {
             e.printStackTrace();
         }
 
-        if (!isPieInstalled && Math.random() >= 0.2 ) { // 1 in 5 chance of showing info about Pie easter egg app
+        if (!isPieInstalled && Math.random() <= 0.02 ) { // 2% chance of showing info about Pie easter egg app
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
