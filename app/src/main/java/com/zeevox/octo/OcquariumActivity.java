@@ -17,10 +17,14 @@
 package com.zeevox.octo;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
 import android.graphics.drawable.Icon;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import androidx.annotation.Nullable;
@@ -37,6 +41,44 @@ public class OcquariumActivity extends Activity {
     protected void onResume() {
         super.onResume();
         Ocquarium.start(this, getWindow(), getResources(), true);
+
+        PackageManager packageManager = this.getPackageManager();
+        boolean isPieInstalled = false;
+
+        try {
+            packageManager.getPackageInfo("com.zeevox.pie", 0);
+            isPieInstalled = true;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        if (!isPieInstalled && Math.random() <= 0.02 ) { // 2% chance of showing info about Pie easter egg app
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+            builder.setMessage(R.string.dialog_pie_info_message)
+                    .setTitle(R.string.dialog_pie_info_title);
+
+            builder.setPositiveButton(R.string.dialog_pie_info_positive, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    startActivity(new Intent(Intent.ACTION_VIEW)
+                            .setData(Uri.parse(getString(R.string.dialog_pie_info_url))));
+                    dialogInterface.dismiss();
+                }
+            });
+
+            builder.setNeutralButton(R.string.dialog_pie_info_neutral, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                }
+            });
+
+            AlertDialog dialog = builder.create();
+
+            dialog.show();
+        }
     }
 
     @Override

@@ -209,6 +209,11 @@ public class SettingsActivityV2 extends PreferenceActivity
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/OcquariumAlpha")));
     }
 
+    public void pieDownload(View view) {
+        startActivity(new Intent(Intent.ACTION_VIEW)
+                .setData(Uri.parse(getString(R.string.dialog_pie_info_url))));
+    }
+
     public void sendEmail(View view) {
         //Set who to send email to
         Uri uri = Uri.parse("mailto:zeevox.dev@gmail.com");
@@ -465,6 +470,21 @@ public class SettingsActivityV2 extends PreferenceActivity
                         startActivity(getActivity().getPackageManager().getLaunchIntentForPackage("com.zeevox.octo.alpha"));
                     }
                 });
+            }
+
+
+            PackageManager packageManager = getActivity().getPackageManager();
+            boolean isPieInstalled = false;
+
+            try {
+                packageManager.getPackageInfo("com.zeevox.pie", 0);
+                isPieInstalled = true;
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            if (isPieInstalled) {
+                getView().findViewById(R.id.pie_info_card).setVisibility(View.GONE);
             }
         }
 
