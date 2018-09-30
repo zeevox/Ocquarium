@@ -656,20 +656,6 @@ public class SettingsActivityV2 extends PreferenceActivity
          return(inflater.inflate(R.layout.pref_octopus, container, false));
       }
 
-      @Override
-      public boolean onOptionsItemSelected(MenuItem item)
-      {
-         int id = item.getItemId();
-
-         if (id == android.R.id.home)
-         {
-            startActivity(new Intent(getActivity(), SettingsActivityV2.class));
-            return(true);
-         }
-         return(super.onOptionsItemSelected(item));
-      }
-   }
-
    /**
     * This is the base class that enables the UI 'back' button in all child fragments.
     * Prevents unnecessary code duplication.
