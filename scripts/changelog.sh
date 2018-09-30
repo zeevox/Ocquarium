@@ -11,5 +11,5 @@ echo " <b>Changelog for test build #${TRAVIS_BUILD_NUMBER}</b>${NEWLINE}"
 
 printf '%s\n' "$GIT_COMMIT_LOG" | while IFS= read -r line
 do
-  echo "- ${line}"
+    echo "- ${line}"
 done
