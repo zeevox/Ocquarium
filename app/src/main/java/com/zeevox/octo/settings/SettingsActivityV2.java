@@ -691,18 +691,5 @@ public class SettingsActivityV2 extends PreferenceActivity
          listView.setDivider(new ColorDrawable(Color.TRANSPARENT));
          listView.setDividerHeight(0);
       }
-
-      @Override
-      public boolean onOptionsItemSelected(MenuItem item)
-      {
-         int id = item.getItemId();
-
-         if (id == android.R.id.home)
-         {
-            startActivity(new Intent(getActivity(), SettingsActivityV2.class));
-            return(true);
-         }
-         return(super.onOptionsItemSelected(item));
-      }
    }
 }
