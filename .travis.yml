@@ -1,7 +1,7 @@
-language: android
-dist: trusty
-jdk: oraclejdk8
-if: tag IS blank
+language:       android
+dist:           trusty
+jdk:            oraclejdk8
+if:             tag IS blank
 android:
   components:
   - tools
@@ -31,8 +31,8 @@ cache:
 before_deploy:
   - cp app/build/outputs/apk/travis/*.apk ./
 deploy:
-- provider: script
+- provider:     script
   skip_cleanup: true
-  script: scripts/deploy-telegram.sh
+  script:       scripts/deploy-telegram.sh
   on:
-    branch: master
+    branch:     master
