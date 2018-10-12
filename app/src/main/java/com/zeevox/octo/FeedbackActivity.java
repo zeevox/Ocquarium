@@ -30,163 +30,162 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-
 import java.util.Objects;
 
 public class FeedbackActivity extends Activity {
 
-    private DialogInterface.OnClickListener autoDismissDialogClickListener = new DialogInterface.OnClickListener() {
+  private DialogInterface.OnClickListener autoDismissDialogClickListener =
+      new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
-            dialog.dismiss();
+          dialog.dismiss();
         }
-    };
+      };
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_feedback);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_feedback);
 
-        Objects.requireNonNull(getActionBar()).setDisplayHomeAsUpEnabled(true);
+    Objects.requireNonNull(getActionBar()).setDisplayHomeAsUpEnabled(true);
 
-        final EditText issueTitleInput = findViewById(R.id.feedback_issue_title);
-        final EditText issueDescriptionInput = findViewById(R.id.feedback_issue_description);
+    final EditText issueTitleInput = findViewById(R.id.feedback_issue_title);
+    final EditText issueDescriptionInput = findViewById(R.id.feedback_issue_description);
 
-        issueTitleInput.addTextChangedListener(
-                new TextWatcher() {
-                    @Override
-                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    }
+    issueTitleInput.addTextChangedListener(
+        new TextWatcher() {
+          @Override
+          public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
 
-                    @Override
-                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    }
+          @Override
+          public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
 
-                    @Override
-                    public void afterTextChanged(Editable editable) {
-                        validateIssueTitle();
-                    }
-                });
+          @Override
+          public void afterTextChanged(Editable editable) {
+            validateIssueTitle();
+          }
+        });
 
-        issueDescriptionInput.addTextChangedListener(
-                new TextWatcher() {
-                    @Override
-                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    }
+    issueDescriptionInput.addTextChangedListener(
+        new TextWatcher() {
+          @Override
+          public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
 
-                    @Override
-                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    }
+          @Override
+          public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
 
-                    @Override
-                    public void afterTextChanged(Editable editable) {
-                        validateDescription();
-                    }
-                });
+          @Override
+          public void afterTextChanged(Editable editable) {
+            validateDescription();
+          }
+        });
 
-        //FEEDBACK BUTTON
-        final Button feedbackButton = findViewById(R.id.feedback_send_button);
-        feedbackButton.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //Set who to send email to
-                        Uri uri = Uri.parse("mailto:zeevox.dev@gmail.com");
-                        //Set up email intent
-                        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, uri);
+    // FEEDBACK BUTTON
+    final Button feedbackButton = findViewById(R.id.feedback_send_button);
+    feedbackButton.setOnClickListener(
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            // Set who to send email to
+            Uri uri = Uri.parse("mailto:zeevox.dev@gmail.com");
+            // Set up email intent
+            Intent emailIntent = new Intent(Intent.ACTION_SENDTO, uri);
 
-                        //Init feedback message
-                        String feedbackMessage = getString(R.string.feedback_prefill_content);
+            // Init feedback message
+            String feedbackMessage = getString(R.string.feedback_prefill_content);
 
-                        //Set email title
-                        emailIntent.putExtra(Intent.EXTRA_SUBJECT, issueTitleInput.getText().toString());
+            // Set email title
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, issueTitleInput.getText().toString());
 
-                        //Replace placeholder with data
-                        feedbackMessage = feedbackMessage.replace("ISSUE_DESCRIPTION",
-                                issueDescriptionInput.getText().toString());
+            // Replace placeholder with data
+            feedbackMessage =
+                feedbackMessage.replace(
+                    "ISSUE_DESCRIPTION", issueDescriptionInput.getText().toString());
 
-                        //Replace device info placeholders with data
-                        feedbackMessage = feedbackMessage.replace("ocquarium_version_name", BuildConfig.VERSION_NAME);
-                        feedbackMessage = feedbackMessage.replace("device_fingerprint", Build.FINGERPRINT);
+            // Replace device info placeholders with data
+            feedbackMessage =
+                feedbackMessage.replace("ocquarium_version_name", BuildConfig.VERSION_NAME);
+            feedbackMessage = feedbackMessage.replace("device_fingerprint", Build.FINGERPRINT);
 
-                        //Set email intent
-                        emailIntent.putExtra(Intent.EXTRA_TEXT, feedbackMessage);
+            // Set email intent
+            emailIntent.putExtra(Intent.EXTRA_TEXT, feedbackMessage);
 
-                        CheckBox checkLatestVersion = findViewById(R.id.check_latest_version);
-                        CheckBox checkDeviceInfo = findViewById(R.id.check_device_info);
+            CheckBox checkLatestVersion = findViewById(R.id.check_latest_version);
+            CheckBox checkDeviceInfo = findViewById(R.id.check_device_info);
 
-                        if (checkLatestVersion.isChecked()
-                                && checkDeviceInfo.isChecked()
-                                && validateIssueTitle()
-                                && validateDescription()) {
-                            try {
-                                //Start default email client
-                                startActivity(emailIntent);
-                                finish();
-                            } catch (ActivityNotFoundException activityNotFoundException) {
-                                dialogNoEmailApp();
-                            }
-                        } else {
-                            if (!checkLatestVersion.isChecked()
-                                    || !checkDeviceInfo.isChecked()) {
-                                dialogInvalid();
-                            } else if (!validateIssueTitle()
-                                    || !validateDescription()) {
-                                //dialogNoField();
-                            }
-                        }
-                    }
-                });
+            if (checkLatestVersion.isChecked()
+                && checkDeviceInfo.isChecked()
+                && validateIssueTitle()
+                && validateDescription()) {
+              try {
+                // Start default email client
+                startActivity(emailIntent);
+                finish();
+              } catch (ActivityNotFoundException activityNotFoundException) {
+                dialogNoEmailApp();
+              }
+            } else {
+              if (!checkLatestVersion.isChecked() || !checkDeviceInfo.isChecked()) {
+                dialogInvalid();
+              } else if (!validateIssueTitle() || !validateDescription()) {
+                // dialogNoField();
+              }
+            }
+          }
+        });
+  }
+
+  public boolean validateIssueTitle() {
+    final EditText issueTitleInput = findViewById(R.id.feedback_issue_title);
+    return !issueTitleInput.getText().toString().isEmpty();
+  }
+
+  public boolean validateDescription() {
+    final EditText issueReproduceInput = findViewById(R.id.feedback_issue_description);
+    if (issueReproduceInput.getText().toString().isEmpty()) {
+      issueReproduceInput.setError(getString(R.string.feedback_error_empty));
+      return false;
+    } else {
+      issueReproduceInput.setError(null);
+      return true;
     }
+  }
 
-    public boolean validateIssueTitle() {
-        final EditText issueTitleInput = findViewById(R.id.feedback_issue_title);
-        return !issueTitleInput.getText().toString().isEmpty();
-    }
+  public void dialogInvalid() {
+    AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-    public boolean validateDescription() {
-        final EditText issueReproduceInput = findViewById(R.id.feedback_issue_description);
-        if (issueReproduceInput.getText().toString().isEmpty()) {
-            issueReproduceInput.setError(getString(R.string.feedback_error_empty));
-            return false;
-        } else {
-            issueReproduceInput.setError(null);
-            return true;
-        }
-    }
+    builder
+        .setTitle(R.string.feedback_dialog_title_error)
+        .setMessage(R.string.feedback_dialog_invalid_checkboxes)
+        .setPositiveButton(R.string.action_ok, autoDismissDialogClickListener);
 
-    public void dialogInvalid() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    builder.create().show();
+  }
 
-        builder.setTitle(R.string.feedback_dialog_title_error)
-                .setMessage(R.string.feedback_dialog_invalid_checkboxes)
-                .setPositiveButton(R.string.action_ok, autoDismissDialogClickListener);
+  public void dialogNoField() {
+    AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        builder.create().show();
-    }
+    builder
+        .setTitle(R.string.feedback_dialog_title_error)
+        .setMessage(R.string.feedback_dialog_fields_error)
+        .setPositiveButton(R.string.action_ok, autoDismissDialogClickListener);
 
-    public void dialogNoField() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    builder.create().show();
+  }
 
-        builder.setTitle(R.string.feedback_dialog_title_error)
-                .setMessage(R.string.feedback_dialog_fields_error)
-                .setPositiveButton(R.string.action_ok, autoDismissDialogClickListener);
+  public void dialogNoEmailApp() {
+    AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        builder.create().show();
-    }
+    builder
+        .setTitle(R.string.feedback_dialog_title_error)
+        .setMessage(R.string.feedback_dialog_email_app_error)
+        .setPositiveButton(R.string.action_ok, autoDismissDialogClickListener);
 
-    public void dialogNoEmailApp() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    builder.create().show();
+  }
 
-        builder.setTitle(R.string.feedback_dialog_title_error)
-                .setMessage(R.string.feedback_dialog_email_app_error)
-                .setPositiveButton(R.string.action_ok, autoDismissDialogClickListener);
-
-        builder.create().show();
-    }
-
-    public boolean onNavigateUp() {
-        onBackPressed();
-        return super.onNavigateUp();
-    }
+  public boolean onNavigateUp() {
+    onBackPressed();
+    return super.onNavigateUp();
+  }
 }
