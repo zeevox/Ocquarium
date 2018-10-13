@@ -16,7 +16,7 @@
 
 # Output Colours
 
-RED=$'\e[0;35m'
+RED=$'\e[0;31m'
 GREEN=$'\e[1;32m'
 BLUE=$'\e[0;33m'
 YELLOW=$'\e[1;33m'

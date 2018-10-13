@@ -621,6 +621,7 @@ public class SettingsActivityV2 extends PreferenceActivity
         LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
       return inflater.inflate(R.layout.pref_octopus, container, false);
     }
+  }
 
   /**
    * This is the base class that enables the UI 'back' button in all child fragments. Prevents
