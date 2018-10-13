@@ -22,22 +22,35 @@ BLUE=$'\e[0;33m'
 YELLOW=$'\e[1;33m'
 WHITE=$'\e[0m'
 
-# Install Linters if not installed
+# Install Linters if not already installed
+# Hides error messages if not installed
 
 echo ''
 
-if beautysh > /dev/null; then
+if beautysh > /dev/null 2>&1; then
   echo $YELLOW BeautySh already installed $WHITE
 else
   echo $YELLOW Installing BeautySh $WHITE
-  pip3 install beautysh
+  if pip3 install beautysh; then
+    echo $GREEN BeautySh Successfully Installed $WHITE
+    echo ''
+  else
+    echo $RED Failed to install BeautySh $WHITE
+    echo ''
+  fi
 fi
 
-if align > /dev/null; then
+if align > /dev/null 2>&1; then
   echo $YELLOW Align-YAML already installed $WHITE
 else
   echo $YELLOW Installing Align-YAML $WHITE
-  npm i -g align-yaml
+  if npm i -g align-yaml; then
+    echo $GREEN Align-YAML Successfully Installed
+    echo ''
+  else
+    echo $RED Failed to install Align-YAML $WHITE
+    echo ''
+  fi
 fi
 
 echo ''
