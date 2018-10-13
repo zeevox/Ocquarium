@@ -42,7 +42,7 @@ fi
 
 echo ''
 
-# Used to display how many successful/unsuccesful lints there were
+# Used to count how many successful/unsuccesful lints there were
 
 SUCCESS=0
 UNSUCCESS=0
@@ -52,29 +52,29 @@ cd .. # Changes to main Ocquarium directory
 echo $BLUE Linting Java Files $WHITE
 if java -jar scripts/google-java-format-1.6-all-deps.jar -i $(find . -type f -name "*.java"); then
   echo $GREEN Java Files Linted $WHITE
-  let 'SUCCESS=SUCCESS+1'
+  (( SUCCESS=SUCCESS+1 ))
 else
   echo $RED Java FIles Could Not Be Linted $WHITE
-  let 'UNSUCCESS=UNSUCCESS+1'
+  (( UNSUCCESS=UNSUCCESS+1 ))
 fi
 
 echo $BLUE Linting YAML Files $WHITE
 if align $(find . -type f -name "*.yml") > /dev/null; then
   echo $GREEN YAML Files Linted $WHITE
-  let 'SUCCESS=SUCCESS+1'
+  (( SUCCESS=SUCCESS+1 ))
 else
   echo $RED YAML Files Could Not Be Linted $WHITE
-  let 'UNSUCCESS=UNSUCCESS+1'
+  (( UNSUCCESS=UNSUCCESS+1 ))
 fi
 
-cd scripts || exit # Shell files only in scripts folder linted
+cd scripts || exit # Shell files only in scripts folder are linted
 echo $BLUE Linting Shell Files $WHITE
-if beautysh -f *.sh > /dev/null; then
+if beautysh -f ./*.sh > /dev/null; then
   echo $GREEN Shell Files Linted $WHITE
-  let 'SUCCESS=SUCCESS+1'
+  (( SUCCESS=SUCCESS+1 ))
 else
   echo $RED Shell Files Could Not Be Linted $WHITE
-  let 'UNSUCCESS=UNSUCCESS+1'
+  (( UNSUCCESS=UNSUCCESS+1 ))
 fi
 
 # Outputs success of linting
