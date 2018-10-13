@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/bash
 
 # Copyright (C) 2018 Timothy "ZeevoX" Langer
 #
