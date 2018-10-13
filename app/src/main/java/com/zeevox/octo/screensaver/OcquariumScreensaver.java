@@ -20,41 +20,40 @@ package com.zeevox.octo.screensaver;
 import android.preference.PreferenceManager;
 import android.service.dreams.DreamService;
 import android.util.Log;
-
 import com.zeevox.octo.core.Ocquarium;
 
 public class OcquariumScreensaver extends DreamService {
 
+  @Override
+  public void onCreate() {
+    super.onCreate();
+  }
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-    }
+  @Override
+  public void onDreamingStarted() {
+    super.onDreamingStarted();
+  }
 
-    @Override
-    public void onDreamingStarted() {
-        super.onDreamingStarted();
-    }
+  @Override
+  public void onDreamingStopped() {
+    super.onDreamingStopped();
+  }
 
-    @Override
-    public void onDreamingStopped() {
-        super.onDreamingStopped();
+  @Override
+  public void onAttachedToWindow() {
+    super.onAttachedToWindow();
+    if (PreferenceManager.getDefaultSharedPreferences(this)
+        .getBoolean("screensaver_enable_touch", true)) {
+      setInteractive(true);
     }
+    setFullscreen(true);
+    Log.d(getClass().getSimpleName(), "Dreaming octopi...");
+    Ocquarium.start(this, getWindow(), getResources());
+  }
 
-    @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("screensaver_enable_touch", true)) {
-            setInteractive(true);
-        }
-        setFullscreen(true);
-        Log.d(getClass().getSimpleName(), "Dreaming octopi...");
-        Ocquarium.start(this, getWindow(), getResources());
-    }
-
-    @Override
-    public void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        finish();
-    }
+  @Override
+  public void onDetachedFromWindow() {
+    super.onDetachedFromWindow();
+    finish();
+  }
 }
