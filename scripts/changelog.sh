@@ -19,7 +19,7 @@ then
     TRAVIS_COMMIT_RANGE="$(git describe --abbrev=0 --tags ${TRAVIS_TAG}^)..$TRAVIS_TAG"
 fi
 
-GIT_COMMIT_LOG="$(git log --format='%s (by %cn)' ${TRAVIS_COMMIT_RANGE})"
+GIT_COMMIT_LOG="$(git log --format='%s (by %an)' ${TRAVIS_COMMIT_RANGE})"
 
 echo " <b>Changelog for test build #${TRAVIS_BUILD_NUMBER}</b>${NEWLINE}"
 
