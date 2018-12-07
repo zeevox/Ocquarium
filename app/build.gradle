@@ -94,5 +94,5 @@ dependencies {
     implementation 'androidx.dynamicanimation:dynamicanimation:1.0.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.palette:palette:1.0.0'
-    implementation 'com.rarepebble:colorpicker:2.4.1'
+    implementation 'com.rarepebble:colorpicker:2.4.2'
 }
