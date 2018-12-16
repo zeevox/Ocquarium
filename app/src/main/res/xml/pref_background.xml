@@ -30,6 +30,10 @@
         android:title="@string/prefs_gradient_end_color_title"
         app:colorpicker_showAlpha="false" />
     <Preference
+        android:key="swap_background_colors"
+        android:summary="Swap the start and end colors around."
+        android:title="Swap colors" />
+    <Preference
         android:key="reset_background_colors"
         android:summary="@string/prefs_reset_colors_summary"
         android:title="@string/prefs_reset_colors_title" />

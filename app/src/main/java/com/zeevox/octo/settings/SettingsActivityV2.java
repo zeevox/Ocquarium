@@ -51,7 +51,7 @@ import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.annotation.Nullable;
+
 import com.rarepebble.colorpicker.ColorPreference;
 import com.zeevox.octo.BuildConfig;
 import com.zeevox.octo.FeedbackActivity;
@@ -60,9 +60,12 @@ import com.zeevox.octo.core.Ocquarium;
 import com.zeevox.octo.core.OctopusDrawable;
 import com.zeevox.octo.util.ColorUtils;
 import com.zeevox.octo.wallpaper.OcquariumWallpaperService;
+
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
+
+import androidx.annotation.Nullable;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On handset devices,
@@ -313,6 +316,20 @@ public class SettingsActivityV2 extends PreferenceActivity
                   }
                   return true;
                 }
+              });
+
+      findPreference("swap_background_colors")
+              .setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                  @Override
+                  public boolean onPreferenceClick(Preference preference) {
+                      ColorPreference startColorPreference = (ColorPreference) findPreference("gradient_start_color");
+                      ColorPreference endColorPreference = (ColorPreference) findPreference("gradient_end_color");
+                      int startColor = startColorPreference.getColor();
+                      int endColor = endColorPreference.getColor();
+                      startColorPreference.setColor(endColor);
+                      endColorPreference.setColor(startColor);
+                      return true;
+                  }
               });
 
       findPreference("reset_background_colors")
