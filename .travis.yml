@@ -13,7 +13,7 @@ android:
 before_install:
 - openssl aes-256-cbc -k ${encryption_password} -in ocquarium_keystore.jks.enc -out ocquarium_keystore.jks -d
 - yes | sdkmanager "platforms;android-28"
-- chmod a+x ./scripts/deploy-*.sh
+- chmod a+x ./scripts/deploy.sh
 - chmod a+x ./scripts/changelog.sh
 - git fetch --tags
 before_script:
