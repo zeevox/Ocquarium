@@ -60,10 +60,17 @@ echo ''
 SUCCESS=0
 UNSUCCESS=0
 
+# Download google-java-format to lint Java files
+curl -s https://api.github.com/repos/google/google-java-format/releases/latest \
+| grep "browser_download_url.*-all-deps.jar" \
+| cut -d : -f 2,3 \
+| tr -d \" \
+| wget -qi -
+
 cd .. # Changes to main Ocquarium directory
 
 echo $BLUE Linting Java Files $WHITE
-if java -jar scripts/google-java-format-1.6-all-deps.jar -i $(find . -type f -name "*.java"); then
+if java -jar scripts/google-java-format-*-all-deps.jar -i $(find . -type f -name "*.java"); then
   echo $GREEN Java Files Linted $WHITE
   (( SUCCESS=SUCCESS+1 ))
 else
