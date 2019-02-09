@@ -27,10 +27,13 @@ import android.graphics.drawable.Icon;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import androidx.annotation.Nullable;
+
 import com.zeevox.octo.core.Ocquarium;
 import com.zeevox.octo.settings.SettingsActivityV2;
+
 import java.util.Collections;
+
+import androidx.annotation.Nullable;
 
 public class OcquariumActivity extends Activity {
 
@@ -87,7 +90,8 @@ public class OcquariumActivity extends Activity {
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("show_platlogo", false)) {
+
+    if (savedInstanceState == null && PreferenceManager.getDefaultSharedPreferences(this).getBoolean("show_platlogo", false)) {
       startActivity(new Intent(OcquariumActivity.this, PlatLogoActivity.class));
     }
 
