@@ -28,7 +28,7 @@ curl -F chat_id="-1001357118452" -F text="${CHANGELOG}" -F parse_mode="HTML" -F 
 
 ## Deploy to zeevox.net
 
-curl -F "dir=/files/CI/Ocquarium/" -F "file=${APK_NAME_OCTO}" -u "${WEBSERVER_LOGIN}" https://dl.zeevox.net/admin/upload_file.php
+curl -F "dir=/files/CI/Ocquarium/" -F "file=@${APK_NAME_OCTO}" -u "${WEBSERVER_LOGIN}" https://dl.zeevox.net/admin/upload_file.php
 
 ## Print changelog
 
