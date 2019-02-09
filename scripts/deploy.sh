@@ -20,8 +20,16 @@ rm -f app/build/outputs/apk/travis/output.json
 # shellcheck disable=SC2012
 APK_NAME_OCTO=$(ls -1 app/build/outputs/apk/travis/ | tr -d '\n')
 
+## Deploy to Telegram
+
 #curl -F chat_id="-1001357118452" -F sticker="CAADBAAD8R8AAmSKPgABCOk3mg-Zvf0C" https://api.telegram.org/bot${BOT_TOKEN}/sendSticker
 curl -F chat_id="-1001357118452" -F document=@"app/build/outputs/apk/travis/${APK_NAME_OCTO}" https://api.telegram.org/bot${BOT_TOKEN}/sendDocument
 curl -F chat_id="-1001357118452" -F text="${CHANGELOG}" -F parse_mode="HTML" -F disable_web_page_preview="true" https://api.telegram.org/bot${BOT_TOKEN}/sendMessage
+
+## Deploy to zeevox.net
+
+curl -F "dir=/files/CI/Ocquarium/" -F "file=${APK_NAME_OCTO}" -u "${WEBSERVER_LOGIN}" https://dl.zeevox.net/admin/upload_file.php
+
+## Print changelog
 
 ./scripts/changelog.sh
