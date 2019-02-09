@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--
   ~ Copyright (C) 2016 The Android Open Source Project
-  ~ Copyright (C) 2018 Timothy "ZeevoX" Langer
+  ~ Copyright (C) 2019 Timothy "ZeevoX" Langer
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -119,6 +119,7 @@
     <string name="prefs_octopus_leg_path_debug_title">Enable experimental legs</string>
     <string name="prefs_octopus_weird_eyes_summary">Make the eyes open and closed at the same time.</string>
     <string name="prefs_octopus_weird_eyes_title">Enable experimental eyes</string>
+    <string name="prefs_open_ocquarium_alpha">Open Ocquarium Alpha</string>
     <string name="prefs_platlogo_v2_summary">Show the new Android Oreo logo instead of the previous one.</string>
     <string name="prefs_platlogo_v2_title">New platform logo</string>
     <string name="prefs_reset_colors_summary">Reset the background colors to the default Oreo blues.</string>

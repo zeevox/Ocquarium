@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Timothy "ZeevoX" Langer
+ * Copyright (C) 2019 Timothy "ZeevoX" Langer
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -127,8 +127,6 @@ public class FeedbackActivity extends Activity {
             } else {
               if (!checkLatestVersion.isChecked() || !checkDeviceInfo.isChecked()) {
                 dialogInvalid();
-              } else if (!validateIssueTitle() || !validateDescription()) {
-                // dialogNoField();
               }
             }
           }
@@ -162,18 +160,7 @@ public class FeedbackActivity extends Activity {
     builder.create().show();
   }
 
-  public void dialogNoField() {
-    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-    builder
-        .setTitle(R.string.feedback_dialog_title_error)
-        .setMessage(R.string.feedback_dialog_fields_error)
-        .setPositiveButton(R.string.action_ok, autoDismissDialogClickListener);
-
-    builder.create().show();
-  }
-
-  public void dialogNoEmailApp() {
+    public void dialogNoEmailApp() {
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
     builder

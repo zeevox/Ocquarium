@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Timothy "ZeevoX" Langer
+ * Copyright (C) 2019 Timothy "ZeevoX" Langer
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -394,7 +394,6 @@ public class SettingsActivityV2 extends PreferenceActivity
                 }
 
                 private int getRandomInt(int max) {
-                  Random random = new Random();
                   return new Random().nextInt(max);
                 }
               });
@@ -525,7 +524,7 @@ public class SettingsActivityV2 extends PreferenceActivity
       //noinspection ConstantConditions
       if (!BuildConfig.BUILD_TYPE.equals("travis")
           && isPackageInstalled("com.zeevox.octo.alpha", getActivity().getPackageManager())) {
-        alphaBuilds.setText("Open Ocquarium Alpha");
+        alphaBuilds.setText(getString(R.string.prefs_open_ocquarium_alpha));
         alphaBuilds.setOnClickListener(
             new View.OnClickListener() {
               @Override
@@ -621,8 +620,8 @@ public class SettingsActivityV2 extends PreferenceActivity
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
               octo.stopDrift();
               octo.moveTo(
-                  getResources().getDisplayMetrics().widthPixels / 2,
-                  getResources().getDisplayMetrics().heightPixels / 2 - 100 * (int) dp);
+                      getResources().getDisplayMetrics().widthPixels >> 1,
+                      (getResources().getDisplayMetrics().heightPixels >> 1) - 100 * (int) dp);
               octo.setSizePx((i * OCTOPUS_RANGE / 100 + OCTOPUS_MIN_SIZE) * (int) dp);
               octo.startDrift();
               SharedPreferences.Editor editor = preferences.edit();

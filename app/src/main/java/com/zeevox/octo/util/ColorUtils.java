@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2015 Aidan "afollestad" Follestad
- * Copyright (C) 2018 Timothy "ZeevoX" Langer
+ * Copyright (C) 2019 Timothy "ZeevoX" Langer
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,18 +42,17 @@
 package com.zeevox.octo.util;
 
 import android.graphics.Color;
-import androidx.annotation.ColorInt;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.ColorInt;
 
 public class ColorUtils {
 
   /* From https://github.com/kabouzeid/app-theme-helper/blob/master/library/src/main/java/com/kabouzeid/appthemehelper/util/ColorUtil.java#L36 */
   public static boolean isColorLight(@ColorInt int color) {
-    final double darkness =
-        1
-            - (0.299 * Color.red(color) + 0.587 * Color.green(color) + 0.114 * Color.blue(color))
-                / 255;
+    final double darkness = 1 - (0.299 * Color.red(color) + 0.587 * Color.green(color) + 0.114 * Color.blue(color)) / 255;
     return darkness < 0.4;
   }
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--
-  ~ Copyright (C) 2018 Timothy "ZeevoX" Langer
+  ~ Copyright (C) 2019 Timothy "ZeevoX" Langer
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -29,8 +29,6 @@
     <string name="action_apply">Применить</string>
     <string name="action_send_feedback">Послать комментарии</string>
     <string name="action_settings">Настройки</string>
-
-    <string name="app_name">Ocquarium</string>
 
     <string name="feedback_check_device_info">Я согласен, что при нажатие кнопки \"Послать комментарии\", Ocquarium соберёт не определяемую информацию о моём устройстве, как название устройства и версию Android.</string>
     <string name="feedback_check_latest_version">Я уверен, что у меня установлена последняя версия приложения Ocquarium</string>
@@ -118,4 +116,8 @@
 
     <string name="shortcut_settings_disabled">Этот аппликационный ярлык не действует.</string>
     <string name="shortcut_settings_long">Настроить Ocquarium</string>
+    <string name="prefs_open_ocquarium_alpha">Открыть альфа-версию приложения</string>
+    <string name="dialog_pie_info_neutral">Может попозже</string>
+    <string name="dialog_pie_info_positive">Скачать</string>
+    <string name="dialog_pie_info_positive_long">Скачать с Play Маркет</string>
 </resources>

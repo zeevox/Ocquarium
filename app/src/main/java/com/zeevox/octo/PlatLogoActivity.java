@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2010 The Android Open Source Project
- * Copyright (C) 2018 Timothy "ZeevoX" Langer
+ * Copyright (C) 2019 Timothy "ZeevoX" Langer
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -104,12 +104,6 @@ public class PlatLogoActivity extends Activity {
                         new Runnable() {
                           @Override
                           public void run() {
-                            try {
-                              // startActivity(new Intent(PlatLogoActivity.this,
-                              // OcquariumActivity.class));
-                            } catch (ActivityNotFoundException ex) {
-                              Log.e("PlatLogoActivity", "No more eggs.");
-                            }
                             if (FINISH) finish();
                           }
                         });
