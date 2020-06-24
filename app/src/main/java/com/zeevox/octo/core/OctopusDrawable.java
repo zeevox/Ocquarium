@@ -47,24 +47,19 @@ public class OctopusDrawable extends Drawable {
   public static boolean PARTICLE_LEGS = false;
   public static boolean WEIRD_EYES = false;
   public static float BLINK_FREQUENCY = 0.001f;
-  private static float BASE_SCALE = 100f;
-  private static int BODY_COLOR = 0xFF101010;
-  private static int ARM_COLOR = 0xFF101010;
-  private static int ARM_COLOR_BACK = 0xFF000000;
-  private static int EYE_COLOR = 0xFF808080;
+  private static final float BASE_SCALE = 100f;
 
-  private static int[] BACK_ARMS = {1, 3, 4, 6};
-  private static int[] FRONT_ARMS = {0, 2, 5, 7};
+  private static final int[] BACK_ARMS = {1, 3, 4, 6};
+  private static final int[] FRONT_ARMS = {0, 2, 5, 7};
   final PointF point = new PointF();
   final Matrix M = new Matrix();
   final Matrix M_inv = new Matrix();
-  private Paint mPaint = new Paint();
-  private Arm[] mArms = new Arm[8];
-  private int mSizePx = 100;
+  private final Paint mPaint = new Paint();
+  private final Arm[] mArms = new Arm[8];
   private TimeAnimator mDriftAnimation;
   private boolean mBlinking;
-  private float[] ptmp = new float[2];
-  private float[] scaledBounds = new float[2];
+  private final float[] ptmp = new float[2];
+  private final float[] scaledBounds = new float[2];
 
   public OctopusDrawable(Context context) {
     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -122,12 +117,11 @@ public class OctopusDrawable extends Drawable {
   }
 
   public void setSizePx(int size) {
-    mSizePx = size;
-    M.setScale(mSizePx / BASE_SCALE, mSizePx / BASE_SCALE);
+    M.setScale(size / BASE_SCALE, size / BASE_SCALE);
     if (PARTICLE_LEGS) {
-      TaperedPathStroke.setMinStep(20f * BASE_SCALE / mSizePx); // nice little floaty circles
+      TaperedPathStroke.setMinStep(20f * BASE_SCALE / size); // nice little floaty circles
     } else {
-      TaperedPathStroke.setMinStep(8f * BASE_SCALE / mSizePx); // classic tentacles
+      TaperedPathStroke.setMinStep(8f * BASE_SCALE / size); // classic tentacles
     }
     M.invert(M_inv);
   }
@@ -137,12 +131,11 @@ public class OctopusDrawable extends Drawable {
       mDriftAnimation = new TimeAnimator();
       mDriftAnimation.setTimeListener(
           new TimeAnimator.TimeListener() {
-            float MAX_VY = 35f;
-            float JUMP_VY = -100f;
-            float MAX_VX = 15f;
+            final float MAX_VY = 35f;
+            final float JUMP_VY = -100f;
+            final float MAX_VX = 15f;
             long nextjump = 0;
             long unblink = 0;
-            private float ax = 0f, ay = 30f;
             private float vx, vy;
 
             @Override
@@ -161,9 +154,10 @@ public class OctopusDrawable extends Drawable {
                 unblink = t + 200;
               }
 
-              ax = (float) (MAX_VX * Math.sin(t_sec * .25f));
+              float ax = (float) (MAX_VX * Math.sin(t_sec * .25f));
 
               vx = clamp(vx + dt_sec * ax, -MAX_VX, MAX_VX);
+              float ay = 30f;
               vy = clamp(vy + dt_sec * ay, -100 * MAX_VY, MAX_VY);
 
               // oob check
@@ -244,14 +238,17 @@ public class OctopusDrawable extends Drawable {
       canvas.concat(M);
 
       // arms behind
+      int ARM_COLOR_BACK = 0xFF000000;
       mPaint.setColor(ARM_COLOR_BACK);
       for (int i : BACK_ARMS) {
         mArms[i].draw(canvas, mPaint);
       }
 
       // head/body/thing
+      int EYE_COLOR = 0xFF808080;
       mPaint.setColor(EYE_COLOR);
       canvas.drawCircle(point.x, point.y, 36f, mPaint);
+      int BODY_COLOR = 0xFF101010;
       mPaint.setColor(BODY_COLOR);
       canvas.save();
       {
@@ -290,6 +287,7 @@ public class OctopusDrawable extends Drawable {
       }
 
       // arms in front
+      int ARM_COLOR = 0xFF101010;
       mPaint.setColor(ARM_COLOR);
       for (int i : FRONT_ARMS) {
         mArms[i].draw(canvas, mPaint);
@@ -326,7 +324,8 @@ public class OctopusDrawable extends Drawable {
     final FloatValueHolder[] coords = new FloatValueHolder[2];
     final SpringAnimation[] anims = new SpringAnimation[coords.length];
     Link next;
-    private float dx, dy;
+    private final float dx;
+    private final float dy;
     private boolean locked = false;
 
     Link(int index, float x1, float y1, float dx, float dy) {
@@ -394,7 +393,8 @@ public class OctopusDrawable extends Drawable {
 
     final Link link1, link2, link3;
     private final Paint dpt = new Paint();
-    float max, min;
+    final float max;
+    final float min;
 
     public Arm(
         float x,

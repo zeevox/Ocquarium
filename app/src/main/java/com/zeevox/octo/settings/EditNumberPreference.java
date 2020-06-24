@@ -18,15 +18,9 @@ package com.zeevox.octo.settings;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.AttributeSet;
-import android.widget.EditText;
 
-import androidx.annotation.NonNull;
 import androidx.preference.EditTextPreference;
-import androidx.preference.EditTextPreferenceDialogFragmentCompat;
 import androidx.preference.Preference;
 
 import com.zeevox.octo.R;

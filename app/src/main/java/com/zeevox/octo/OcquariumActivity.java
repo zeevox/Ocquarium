@@ -17,14 +17,10 @@
 package com.zeevox.octo;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
 import android.graphics.drawable.Icon;
-import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 

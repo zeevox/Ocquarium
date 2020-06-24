@@ -34,7 +34,7 @@ import java.util.Objects;
 
 public class FeedbackActivity extends Activity {
 
-  private DialogInterface.OnClickListener autoDismissDialogClickListener =
+  private final DialogInterface.OnClickListener autoDismissDialogClickListener =
       new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {

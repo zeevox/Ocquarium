@@ -25,21 +25,6 @@ import com.zeevox.octo.core.Ocquarium;
 public class OcquariumScreensaver extends DreamService {
 
   @Override
-  public void onCreate() {
-    super.onCreate();
-  }
-
-  @Override
-  public void onDreamingStarted() {
-    super.onDreamingStarted();
-  }
-
-  @Override
-  public void onDreamingStopped() {
-    super.onDreamingStopped();
-  }
-
-  @Override
   public void onAttachedToWindow() {
     super.onAttachedToWindow();
     if (PreferenceManager.getDefaultSharedPreferences(this)

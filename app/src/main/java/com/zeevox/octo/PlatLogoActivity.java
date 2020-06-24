@@ -18,7 +18,6 @@
 package com.zeevox.octo;
 
 import android.app.Activity;
-import android.content.ActivityNotFoundException;
 import android.content.res.ColorStateList;
 import android.graphics.Outline;
 import android.graphics.drawable.RippleDrawable;
@@ -26,7 +25,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -41,7 +39,7 @@ public class PlatLogoActivity extends Activity {
   FrameLayout mLayout;
   int mTapCount;
   int mKeyCount;
-  PathInterpolator mInterpolator = new PathInterpolator(0f, 0f, 0.5f, 1f);
+  final PathInterpolator mInterpolator = new PathInterpolator(0f, 0f, 0.5f, 1f);
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {

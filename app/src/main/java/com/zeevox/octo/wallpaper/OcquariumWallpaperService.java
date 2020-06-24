@@ -35,14 +35,13 @@ import com.zeevox.octo.core.OctopusDrawable;
 
 public class OcquariumWallpaperService extends LiveWallpaperService {
   private final String TAG = this.getClass().getSimpleName();
-  private Context mContext;
   private ContextWrapper mContextWrapper;
   private SharedPreferences preferences;
   private float dp;
 
   @Override
   public Engine onCreateEngine() {
-    mContext = this;
+    Context mContext = this;
     mContextWrapper = this;
     // Initialize preferences here to prevent creating a new preferences for each frame
     preferences = PreferenceManager.getDefaultSharedPreferences(mContextWrapper);

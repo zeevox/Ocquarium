@@ -23,9 +23,9 @@ import android.view.SurfaceHolder;
 public abstract class LiveWallpaperService extends WallpaperService {
 
   protected abstract class LiveWallpaperEngine extends WallpaperService.Engine {
-    private Handler mHandler = new Handler();
+    private final Handler mHandler = new Handler();
     private boolean mVisible;
-    private Runnable mIteration =
+    private final Runnable mIteration =
         new Runnable() {
           public void run() {
             iteration();

@@ -57,7 +57,7 @@ public class ColorUtils {
   }
 
   /* Adapted from https://github.com/ghosh/uiGradients/blob/40947e428c405146ceb75c37ea113e4b539acb6c/gradients.json */
-  public static List<String[]> gradients =
+  public static final List<String[]> gradients =
       new ArrayList<String[]>() {
         {
           add(new String[] {"Blu", "#00416A", "#E4E5E6"});

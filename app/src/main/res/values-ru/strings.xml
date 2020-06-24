@@ -117,7 +117,4 @@
     <string name="shortcut_settings_disabled">Этот аппликационный ярлык не действует.</string>
     <string name="shortcut_settings_long">Настроить Ocquarium</string>
     <string name="prefs_open_ocquarium_alpha">Открыть альфа-версию приложения</string>
-    <string name="dialog_pie_info_neutral">Может попозже</string>
-    <string name="dialog_pie_info_positive">Скачать</string>
-    <string name="dialog_pie_info_positive_long">Скачать с Play Маркет</string>
 </resources>

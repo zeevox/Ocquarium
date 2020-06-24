@@ -25,9 +25,9 @@ import android.graphics.PathMeasure;
 public class TaperedPathStroke {
 
   static float sMinStepPx = 4f;
-  static PathMeasure pm = new PathMeasure();
-  static float[] pos = {0, 0};
-  static float[] tan = {0, 0};
+  static final PathMeasure pm = new PathMeasure();
+  static final float[] pos = {0, 0};
+  static final float[] tan = {0, 0};
 
   static float lerp(float t, float a, float b) {
     return a + t * (b - a);

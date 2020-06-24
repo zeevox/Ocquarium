@@ -75,7 +75,7 @@ public class Ocquarium {
     bg.animate()
         .setStartDelay(500)
         .setDuration(
-            Integer.valueOf(
+            Integer.parseInt(
                 preferences.getString(
                     "octo_fade_in_duration", resources.getString(R.string.anim_even_longer))))
         .alpha(1f)
