@@ -4,15 +4,11 @@ jdk:            oraclejdk8
 if:             tag IS blank
 android:
   components:
-  - tools
-  - tools
-  - platform-tools
-  - build-tools-29.0.3
+  - build-tools-29.0.2
   - android-29
-  - extra-google-m2repository
+  - extra
 before_install:
 - openssl aes-256-cbc -k ${encryption_password} -in ocquarium_keystore.jks.enc -out ocquarium_keystore.jks -d
-- yes | sdkmanager "platforms;android-29"
 - chmod a+x ./scripts/deploy.sh
 - chmod a+x ./scripts/changelog.sh
 - git fetch --tags
