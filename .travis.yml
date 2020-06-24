@@ -1,12 +1,12 @@
-language:       android
-dist:           trusty
-jdk:            oraclejdk8
-if:             tag IS blank
+language: android
+dist: trusty
+jdk: oraclejdk8
+if: tag IS blank
+os: linux
 android:
   components:
   - build-tools-29.0.2
   - android-29
-  - extra
 before_install:
 - openssl aes-256-cbc -k ${encryption_password} -in ocquarium_keystore.jks.enc -out ocquarium_keystore.jks -d
 - chmod a+x ./scripts/deploy.sh
@@ -27,8 +27,8 @@ cache:
 before_deploy:
   - cp app/build/outputs/apk/travis/*.apk ./
 deploy:
-- provider:     script
-  skip_cleanup: true
-  script:       scripts/deploy.sh
+- provider: script
+  cleanup: false
+  script: scripts/deploy.sh
   on:
-    branch:     master
+    branch: master
