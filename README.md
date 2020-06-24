@@ -1,4 +1,5 @@
 # Ocquarium
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6a7ade8b6d4a4c209bd4456bf187723e)](https://app.codacy.com/manual/ZeevoX/Ocquarium?utm_source=github.com&utm_medium=referral&utm_content=ZeevoX/Ocquarium&utm_campaign=Badge_Grade_Dashboard)
 [![License: Apache 2.0](https://img.shields.io/github/license/ZeevoX/Ocquarium.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Latest release version](https://img.shields.io/github/release/ZeevoX/Ocquarium.svg)](https://github.com/ZeevoX/Ocquarium/releases)
 [![Travis build status](https://api.travis-ci.org/ZeevoX/Ocquarium.svg?branch=master)](https://travis-ci.org/ZeevoX/Ocquarium)
