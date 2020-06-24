@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (C) 2019 Timothy "ZeevoX" Langer
+  ~ Copyright (C) 2020 Timothy "ZeevoX" Langer
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -18,22 +18,22 @@
     android:key="category_general"
     android:title="@string/prefs_category_general">
 
-    <SwitchPreference
+    <SwitchPreferenceCompat
         android:defaultValue="false"
         android:key="transparent_settings_icon"
         android:summary="@string/prefs_hide_settings_summary"
         android:title="@string/prefs_hide_settings_title" />
-    <SwitchPreference
+    <SwitchPreferenceCompat
         android:defaultValue="false"
         android:key="show_platlogo"
         android:summary="@string/prefs_show_platlogo_summary"
         android:title="@string/prefs_show_platlogo_title" />
-    <SwitchPreference
+    <SwitchPreferenceCompat
         android:defaultValue="true"
         android:key="platlogo_v2"
         android:summary="@string/prefs_platlogo_v2_summary"
         android:title="@string/prefs_platlogo_v2_title" />
-    <SwitchPreference
+    <SwitchPreferenceCompat
         android:defaultValue="true"
         android:key="show_navigation_bar"
         android:summary="@string/prefs_show_navigation_bar_summary"

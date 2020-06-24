@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--
   ~ Copyright (C) 2016 The Android Open Source Project
-  ~ Copyright (C) 2019 Timothy "ZeevoX" Langer
+  ~ Copyright (C) 2020 Timothy "ZeevoX" Langer
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -40,13 +40,6 @@
     <string name="anim_short" translatable="false">500</string>
 
     <string name="app_name" translatable="false">Ocquarium</string>
-
-    <string name="dialog_pie_info_message">Android Pie is now available! You can get the Android P easter egg on your device too!</string>
-    <string name="dialog_pie_info_neutral">Maybe later</string>
-    <string name="dialog_pie_info_positive">Download</string>
-    <string name="dialog_pie_info_positive_long">Download on Google Play</string>
-    <string name="dialog_pie_info_title">Android Pie 9 released!</string>
-    <string name="dialog_pie_info_url" translatable="false">https://play.google.com/store/apps/details?id=com.zeevox.pie</string>
 
     <string name="feedback_check_device_info">I agree that by pressing the \"Send feedback\" button, Ocquarium will collect some non-identifiable device information such as device name and Android version</string>
     <string name="feedback_check_latest_version">I have verified that I am using the latest version of Ocquarium</string>

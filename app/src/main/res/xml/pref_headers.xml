@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (C) 2019 Timothy "ZeevoX" Langer
+  ~ Copyright (C) 2020 Timothy "ZeevoX" Langer
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -14,38 +14,38 @@
   ~ limitations under the License.
   -->
 
-<preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- These settings headers are only used on tablets. -->
 
-    <header
+    <Preference
         android:fragment="com.zeevox.octo.settings.SettingsActivityV2$OctopusFragment"
         android:icon="@drawable/ic_videogame"
         android:summary="@string/prefs_category_octopus_desc"
         android:title="@string/prefs_category_octopus" />
 
-    <header
+    <Preference
         android:fragment="com.zeevox.octo.settings.SettingsActivityV2$GeneralPreferenceFragment"
         android:icon="@drawable/ic_category"
         android:summary="@string/pref_header_general_desc"
         android:title="@string/pref_header_general" />
 
-    <header
+    <Preference
         android:fragment="com.zeevox.octo.settings.SettingsActivityV2$BackgroundPreferenceFragment"
         android:icon="@drawable/ic_format_color_fill"
         android:summary="@string/pref_header_background_desc"
         android:title="@string/pref_header_background" />
 
-    <header
+    <Preference
         android:fragment="com.zeevox.octo.settings.SettingsActivityV2$WallpaperFragment"
         android:icon="@drawable/ic_settings"
         android:summary="@string/prefs_category_ss_and_wallpaper_desc"
         android:title="@string/prefs_category_ss_and_wallpaper" />
 
-    <header
+    <Preference
         android:fragment="com.zeevox.octo.settings.SettingsActivityV2$AboutFragment"
         android:icon="@drawable/ic_info"
         android:summary="@string/prefs_category_about_desc"
         android:title="@string/prefs_category_about" />
 
-</preference-headers>
+</PreferenceScreen>

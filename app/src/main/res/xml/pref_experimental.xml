@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright (C) 2019 Timothy "ZeevoX" Langer
+  ~ Copyright (C) 2020 Timothy "ZeevoX" Langer
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -18,17 +18,17 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     android:title="@string/prefs_category_experimental">
     <PreferenceCategory android:title="@string/prefs_category_experimental">
-        <SwitchPreference
+        <SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="octopus_weird_eyes"
             android:summary="@string/prefs_octopus_weird_eyes_summary"
             android:title="@string/prefs_octopus_weird_eyes_title" />
-        <SwitchPreference
+        <SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="octopus_leg_particles"
             android:summary="@string/prefs_octopus_leg_particles_summary"
             android:title="@string/prefs_octopus_leg_particles_title" />
-        <SwitchPreference
+        <SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="octopus_leg_path_debug"
             android:summary="@string/prefs_octopus_leg_path_debug_summary"

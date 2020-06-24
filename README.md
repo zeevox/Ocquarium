@@ -26,7 +26,7 @@ Please fork this repository and contribute back using [pull requests](https://gi
 ## License
 
 ```
-   Copyright (C) 2019 Timothy "ZeevoX" Langer
+   Copyright (C) 2020 Timothy "ZeevoX" Langer
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.

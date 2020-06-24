@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Timothy "ZeevoX" Langer
+ * Copyright (C) 2020 Timothy "ZeevoX" Langer
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,8 +18,17 @@ package com.zeevox.octo.settings;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.preference.EditTextPreference;
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.widget.EditText;
+
+import androidx.annotation.NonNull;
+import androidx.preference.EditTextPreference;
+import androidx.preference.EditTextPreferenceDialogFragmentCompat;
+import androidx.preference.Preference;
+
 import com.zeevox.octo.R;
 
 @SuppressWarnings("unused")
@@ -47,20 +56,21 @@ public class EditNumberPreference extends EditTextPreference {
       maximum = 100;
       minimum = 0;
     }
+
+    this.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+      @Override
+      public boolean onPreferenceChange(Preference preference, Object newValue) {
+        String preferenceValue = (String) newValue;
+        return preferenceValue.length() > 0 // check that it is not a blank value
+                        && Integer.parseInt(preferenceValue)
+                        <= maximum // check maximum value
+                        && Integer.parseInt(preferenceValue)
+                        >= minimum;
+      }
+    });
   }
 
   public EditNumberPreference(Context context) {
     super(context);
-  }
-
-  @Override
-  protected void onDialogClosed(boolean positiveResult) {
-    boolean valid =
-        this.getEditText().getText().toString().length() > 0 // check that it is not a blank value
-            && Integer.parseInt(this.getEditText().getText().toString())
-                <= maximum // check maximum value
-            && Integer.parseInt(this.getEditText().getText().toString())
-                >= minimum; // check minimum value
-    super.onDialogClosed(valid);
   }
 }

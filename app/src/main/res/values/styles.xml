@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright (C) 2019 Timothy "ZeevoX" Langer
+  ~ Copyright (C) 2020 Timothy "ZeevoX" Langer
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -22,9 +22,9 @@
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 
-    <style name="OcquariumTheme.Settings" parent="@android:style/Theme.Material.Light.DarkActionBar">
-        <item name="android:colorPrimary">#5c6bc0</item>
-        <item name="android:colorPrimaryDark">#3f4ea3</item>
-        <item name="android:colorAccent">#3f51b5</item>
+    <style name="OcquariumTheme.Settings" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">#5c6bc0</item>
+        <item name="colorPrimaryDark">#3f4ea3</item>
+        <item name="colorAccent">#3f51b5</item>
     </style>
 </resources>
