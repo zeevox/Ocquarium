@@ -16,41 +16,40 @@
 
 package com.zeevox.octo.settings;
 
-import android.app.ActionBar;
 import android.app.AlertDialog;
-import android.app.Fragment;
 import android.app.WallpaperInfo;
 import android.app.WallpaperManager;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.ListPreference;
-import android.preference.Preference;
 import android.preference.PreferenceActivity;
-import android.preference.PreferenceFragment;
-import android.preference.PreferenceManager;
-import android.preference.PreferenceScreen;
-import android.preference.SwitchPreference;
 import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.preference.ListPreference;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.PreferenceManager;
+import androidx.preference.PreferenceScreen;
+import androidx.preference.SwitchPreferenceCompat;
 
 import com.rarepebble.colorpicker.ColorPreference;
 import com.zeevox.octo.BuildConfig;
@@ -61,11 +60,8 @@ import com.zeevox.octo.core.OctopusDrawable;
 import com.zeevox.octo.util.ColorUtils;
 import com.zeevox.octo.wallpaper.OcquariumWallpaperService;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.Random;
-
-import androidx.annotation.Nullable;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On handset devices,
@@ -77,8 +73,9 @@ import androidx.annotation.Nullable;
  * href="http://developer.android.com/guide/topics/ui/settings.html">Settings API Guide</a> for more
  * information on developing a Settings UI.
  */
-public class SettingsActivityV2 extends PreferenceActivity
-    implements PreferenceFragment.OnPreferenceStartFragmentCallback {
+@SuppressWarnings("ConstantConditions")
+public class SettingsActivityV2 extends AppCompatActivity
+        implements PreferenceFragmentCompat.OnPreferenceStartScreenCallback, PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
 
   /**
    * A preference value change listener that updates the preference's summary to reflect its new
@@ -109,16 +106,6 @@ public class SettingsActivityV2 extends PreferenceActivity
       };
 
   /**
-   * Helper method to determine if the device has an extra-large screen. For example, 10" tablets
-   * are extra-large.
-   */
-  private static boolean isXLargeTablet(Context context) {
-    return (context.getResources().getConfiguration().screenLayout
-            & Configuration.SCREENLAYOUT_SIZE_MASK)
-        >= Configuration.SCREENLAYOUT_SIZE_XLARGE;
-  }
-
-  /**
    * Binds a preference's summary to its value. More specifically, when the preference's value is
    * changed, its summary (line of text below the preference title) is updated to reflect the value.
    * The summary is also immediately updated upon calling this method. The exact display format is
@@ -141,28 +128,31 @@ public class SettingsActivityV2 extends PreferenceActivity
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setupActionBar();
+    if (getSupportActionBar() != null)
+      getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    if (savedInstanceState == null)
+      getSupportFragmentManager().beginTransaction().replace(android.R.id.content, new TopLevelPreferenceFragment()).commit();
   }
 
-  /** Set up the {@link android.app.ActionBar}, if the API is available. */
-  private void setupActionBar() {
-    ActionBar actionBar = getActionBar();
-    if (actionBar != null) {
-      // Show the Up button in the action bar.
-      actionBar.setDisplayHomeAsUpEnabled(true);
-    }
-  }
-
-  /** {@inheritDoc} */
   @Override
-  public boolean onIsMultiPane() {
-    return isXLargeTablet(this);
+  public boolean onPreferenceStartScreen(PreferenceFragmentCompat caller, PreferenceScreen pref) {
+    Bundle args = new Bundle();
+    args.putString(PreferenceFragmentCompat.ARG_PREFERENCE_ROOT, pref.getKey());
+
+    TopLevelPreferenceFragment fragment = new TopLevelPreferenceFragment();
+    fragment.setArguments(args);
+
+    getSupportFragmentManager().beginTransaction().add(android.R.id.content, fragment, pref.getKey()).addToBackStack(pref.getKey()).commit();
+    return true;
   }
 
-  /** {@inheritDoc} */
   @Override
-  public void onBuildHeaders(List<Header> target) {
-    loadHeadersFromResource(R.xml.pref_headers, target);
+  public boolean onPreferenceStartFragment(PreferenceFragmentCompat caller, Preference pref) {
+    if (!isValidFragment(pref.getFragment())) return false;
+    Fragment fragment = Fragment.instantiate(this, pref.getFragment(), pref.getExtras());
+    fragment.setTargetFragment(caller, 0);
+    getSupportFragmentManager().beginTransaction().replace(android.R.id.content, fragment).addToBackStack(null).commit();
+    return true;
   }
 
   /**
@@ -170,13 +160,12 @@ public class SettingsActivityV2 extends PreferenceActivity
    * fragments here.
    */
   protected boolean isValidFragment(String fragmentName) {
-    return PreferenceFragment.class.getName().equals(fragmentName)
+    return PreferenceFragmentCompat.class.getName().equals(fragmentName)
         || GeneralPreferenceFragment.class.getName().equals(fragmentName)
         || BackgroundPreferenceFragment.class.getName().equals(fragmentName)
         || WallpaperFragment.class.getName().equals(fragmentName)
         || OctopusFragment.class.getName().equals(fragmentName)
-        || AboutFragment.class.getName().equals(fragmentName)
-        || OctopusFragmentV2.class.getName().equals(fragmentName);
+        || AboutFragment.class.getName().equals(fragmentName);
   }
 
   public void share(View view) {
@@ -236,6 +225,14 @@ public class SettingsActivityV2 extends PreferenceActivity
     startActivity(new Intent(this, FeedbackActivity.class));
   }
 
+  public static class TopLevelPreferenceFragment extends BasePreferenceFragment {
+    @Override
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+      super.onCreatePreferences(savedInstanceState, rootKey);
+      setPreferencesFromResource(R.xml.pref_headers, rootKey);
+    }
+  }
+
   public static class GeneralPreferenceFragment extends BasePreferenceFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -249,13 +246,13 @@ public class SettingsActivityV2 extends PreferenceActivity
       bindPreferenceSummaryToValue(findPreference("octo_fade_in_duration"));
 
       if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-        ((SwitchPreference) findPreference("platlogo_v2")).setChecked(false);
+        ((SwitchPreferenceCompat) findPreference("platlogo_v2")).setChecked(false);
         findPreference("platlogo_v2").setEnabled(false);
         ((PreferenceScreen) findPreference("category_general"))
             .removePreference(findPreference("platlogo_v2"));
       } else {
         findPreference("platlogo_v2")
-            .setEnabled(((SwitchPreference) findPreference("show_platlogo")).isChecked());
+            .setEnabled(((SwitchPreferenceCompat) findPreference("show_platlogo")).isChecked());
         findPreference("show_platlogo")
             .setOnPreferenceChangeListener(
                 new Preference.OnPreferenceChangeListener() {
@@ -279,7 +276,7 @@ public class SettingsActivityV2 extends PreferenceActivity
       super.onCreate(savedInstanceState);
       addPreferencesFromResource(R.xml.pref_background);
 
-      ActionBar actionBar = getActivity().getActionBar();
+      ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
       if (actionBar != null) {
         actionBar.setDisplayHomeAsUpEnabled(true);
       }
@@ -322,8 +319,8 @@ public class SettingsActivityV2 extends PreferenceActivity
               .setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                   @Override
                   public boolean onPreferenceClick(Preference preference) {
-                      ColorPreference startColorPreference = (ColorPreference) findPreference("gradient_start_color");
-                      ColorPreference endColorPreference = (ColorPreference) findPreference("gradient_end_color");
+                      ColorPreference startColorPreference = findPreference("gradient_start_color");
+                      ColorPreference endColorPreference = findPreference("gradient_end_color");
                       int startColor = startColorPreference.getColor();
                       int endColor = endColorPreference.getColor();
                       startColorPreference.setColor(endColor);
@@ -337,10 +334,9 @@ public class SettingsActivityV2 extends PreferenceActivity
               new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                  ColorPreference startColor =
-                      (ColorPreference) findPreference("gradient_start_color");
+                  ColorPreference startColor = findPreference("gradient_start_color");
                   startColor.setColor(getResources().getColor(R.color.octo_bg_default_start_color));
-                  ColorPreference endColor = (ColorPreference) findPreference("gradient_end_color");
+                  ColorPreference endColor = findPreference("gradient_end_color");
                   endColor.setColor(getResources().getColor(R.color.octo_bg_default_end_color));
                   preference.setEnabled(false);
                   return true;
@@ -398,9 +394,16 @@ public class SettingsActivityV2 extends PreferenceActivity
                 }
               });
     }
+
+    @Override
+    public void onDisplayPreferenceDialog(Preference preference) {
+      if (preference instanceof ColorPreference) {
+        ((ColorPreference) preference).showDialog(this, 0);
+      } else super.onDisplayPreferenceDialog(preference);
+    }
   }
 
-  public static class OctopusFragment extends BasePreferenceFragment {
+  public static class OctopusFragment extends BasePreferenceFragment implements PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
@@ -419,6 +422,17 @@ public class SettingsActivityV2 extends PreferenceActivity
                   return true;
                 }
               });
+    }
+
+    @Override
+    public boolean onPreferenceStartFragment(PreferenceFragmentCompat caller, Preference pref) {
+      if (pref.getFragment().equals(OctopusFragmentV2.class.getName())) {
+        Fragment fragment = Fragment.instantiate(caller.getActivity(), pref.getFragment(), pref.getExtras());
+        fragment.setTargetFragment(caller, 0);
+        caller.getActivity().getSupportFragmentManager().beginTransaction().replace(android.R.id.content, fragment).addToBackStack(null).commit();
+        return true;
+      }
+      return false;
     }
   }
 
@@ -514,10 +528,12 @@ public class SettingsActivityV2 extends PreferenceActivity
 
   public static class AboutFragment extends Fragment {
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
       super.onViewCreated(view, savedInstanceState);
 
-      TextView textView = Objects.requireNonNull(getView()).findViewById(R.id.about_app_version);
+      setHasOptionsMenu(true);
+
+      TextView textView = requireView().findViewById(R.id.about_app_version);
       textView.setText(BuildConfig.VERSION_NAME);
 
       TextView alphaBuilds = getView().findViewById(R.id.about_action_alpha);
@@ -566,12 +582,21 @@ public class SettingsActivityV2 extends PreferenceActivity
         return false;
       }
     }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+      if (item.getItemId() == android.R.id.home)
+        getActivity().onBackPressed();
+      return super.onOptionsItemSelected(item);
+    }
   }
 
   public static class OctopusFragmentV2 extends Fragment {
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
       super.onViewCreated(view, savedInstanceState);
+
+      setHasOptionsMenu(true);
 
       final int OCTOPUS_MIN_SIZE = 20;
       final int OCTOPUS_MAX_SIZE = 500;
@@ -591,26 +616,26 @@ public class SettingsActivityV2 extends PreferenceActivity
 
       // Set the background to be the gradient with user defined colors
       // See bgGradient(ContextWrapper, Resources) for more info about this
-      Objects.requireNonNull(getView())
+      requireView()
           .findViewById(R.id.prefs_octopus_bg)
           .setBackground(Ocquarium.bgGradient(getActivity(), getResources()));
 
       if (!ColorUtils.isColorLight(
           preferences.getInt(
               "gradient_end_color", getResources().getColor(R.color.octo_bg_default_end_color)))) {
-        Objects.requireNonNull(getView())
+        requireView()
             .findViewById(R.id.prefs_octopus_v2_bottom_gradient)
             .setBackground(null);
       }
 
       final OctopusDrawable octo = new OctopusDrawable(getActivity());
       octo.setSizePx(averageOctopusSize * (int) dp);
-      ((ImageView) Objects.requireNonNull(getView()).findViewById(R.id.pref_octopus_image_view))
+      ((ImageView) requireView().findViewById(R.id.pref_octopus_image_view))
           .setImageDrawable(octo);
       octo.startDrift();
 
       SeekBar octopusSizeSeekBar =
-          Objects.requireNonNull(getView()).findViewById(R.id.prefs_octopus_average_size_seekbar);
+          requireView().findViewById(R.id.prefs_octopus_average_size_seekbar);
       int progress =
           (int) Math.round((double) averageOctopusSize / (double) OCTOPUS_RANGE * (double) 100);
       octopusSizeSeekBar.setProgress(progress);
@@ -644,35 +669,35 @@ public class SettingsActivityV2 extends PreferenceActivity
         LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
       return inflater.inflate(R.layout.pref_octopus, container, false);
     }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+      if (item.getItemId() == android.R.id.home)
+        getActivity().onBackPressed();
+      return super.onOptionsItemSelected(item);
+    }
   }
 
   /**
    * This is the base class that enables the UI 'back' button in all child fragments. Prevents
    * unnecessary code duplication.
    */
-  public static class BasePreferenceFragment extends PreferenceFragment {
+  public static class BasePreferenceFragment extends PreferenceFragmentCompat {
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-      super.onCreate(savedInstanceState);
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
       setHasOptionsMenu(true);
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-      super.onViewCreated(view, savedInstanceState);
-      // Hide divider lines between preferences
-      ListView listView = view.findViewById(android.R.id.list);
-      listView.setDivider(new ColorDrawable(Color.TRANSPARENT));
-      listView.setDividerHeight(0);
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+      super.onActivityCreated(savedInstanceState);
+      setDivider(null);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-      int id = item.getItemId();
-      if (id == android.R.id.home) {
-        startActivity(new Intent(getActivity(), SettingsActivityV2.class));
-        return true;
-      }
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+      if (item.getItemId() == android.R.id.home)
+        getActivity().onBackPressed();
       return super.onOptionsItemSelected(item);
     }
   }

@@ -22,9 +22,9 @@
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 
-    <style name="OcquariumTheme.Settings" parent="@android:style/Theme.Material.Light.DarkActionBar">
-        <item name="android:colorPrimary">#5c6bc0</item>
-        <item name="android:colorPrimaryDark">#3f4ea3</item>
-        <item name="android:colorAccent">#3f51b5</item>
+    <style name="OcquariumTheme.Settings" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">#5c6bc0</item>
+        <item name="colorPrimaryDark">#3f4ea3</item>
+        <item name="colorAccent">#3f51b5</item>
     </style>
 </resources>
