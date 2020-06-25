@@ -3,6 +3,8 @@
 [![Latest release version](https://img.shields.io/github/release/ZeevoX/Ocquarium.svg)](https://github.com/ZeevoX/Ocquarium/releases)
 [![Travis build status](https://api.travis-ci.org/ZeevoX/Ocquarium.svg?branch=master)](https://travis-ci.org/ZeevoX/Ocquarium)
 [![Last commit date](https://img.shields.io/github/last-commit/ZeevoX/Ocquarium.svg)](https://github.com/ZeevoX/Ocquarium/commits/master)
+[![Maintainability](https://api.codeclimate.com/v1/badges/b7e33d6016c1380acf98/maintainability)](https://codeclimate.com/github/ZeevoX/Ocquarium/maintainability)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/804ff7f8c72f4429b354e448019aeb9a)](https://www.codacy.com/manual/ZeevoX/Ocquarium?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ZeevoX/Ocquarium&amp;utm_campaign=Badge_Grade)
 
 **Android Oreo 8.0 Easter Egg - Backported to Lollipop**
 
