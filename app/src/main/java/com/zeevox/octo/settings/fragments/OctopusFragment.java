@@ -19,16 +19,13 @@ public class OctopusFragment extends BasePreferenceFragment implements Preferenc
 
         findPreference("experimental_options_expand")
                 .setOnPreferenceClickListener(
-                        new Preference.OnPreferenceClickListener() {
-                            @Override
-                            public boolean onPreferenceClick(Preference preference) {
-                                PreferenceScreen prefOctopus = (PreferenceScreen) findPreference("pref_octopus");
-                                // Hide the option to expand experimental options
-                                prefOctopus.removePreference(preference);
-                                // Add the experimental options
-                                addPreferencesFromResource(R.xml.pref_experimental);
-                                return true;
-                            }
+                        preference -> {
+                            PreferenceScreen prefOctopus = findPreference("pref_octopus");
+                            // Hide the option to expand experimental options
+                            prefOctopus.removePreference(preference);
+                            // Add the experimental options
+                            addPreferencesFromResource(R.xml.pref_experimental);
+                            return true;
                         });
     }
 

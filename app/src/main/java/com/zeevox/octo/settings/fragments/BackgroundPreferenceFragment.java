@@ -34,116 +34,91 @@ public class BackgroundPreferenceFragment extends BasePreferenceFragment {
 
         findPreference("gradient_start_color")
                 .setOnPreferenceChangeListener(
-                        new Preference.OnPreferenceChangeListener() {
-                            @Override
-                            public boolean onPreferenceChange(Preference preference, Object newValue) {
-                                wasGradientStartDefault =
-                                        Objects.equals(
-                                                newValue, getResources().getColor(R.color.octo_bg_default_start_color));
-                                if (wasGradientStartDefault && wasGradientEndDefault) {
-                                    findPreference("reset_background_colors").setEnabled(false);
-                                } else {
-                                    findPreference("reset_background_colors").setEnabled(true);
-                                }
-                                return true;
+                        (preference, newValue) -> {
+                            wasGradientStartDefault =
+                                    Objects.equals(
+                                            newValue, getResources().getColor(R.color.octo_bg_default_start_color));
+                            if (wasGradientStartDefault && wasGradientEndDefault) {
+                                findPreference("reset_background_colors").setEnabled(false);
+                            } else {
+                                findPreference("reset_background_colors").setEnabled(true);
                             }
+                            return true;
                         });
 
         findPreference("gradient_end_color")
                 .setOnPreferenceChangeListener(
-                        new Preference.OnPreferenceChangeListener() {
-                            @Override
-                            public boolean onPreferenceChange(Preference preference, Object newValue) {
-                                wasGradientEndDefault =
-                                        Objects.equals(
-                                                newValue, getResources().getColor(R.color.octo_bg_default_end_color));
-                                if (wasGradientStartDefault && wasGradientEndDefault) {
-                                    findPreference("reset_background_colors").setEnabled(false);
-                                } else {
-                                    findPreference("reset_background_colors").setEnabled(true);
-                                }
-                                return true;
+                        (preference, newValue) -> {
+                            wasGradientEndDefault =
+                                    Objects.equals(
+                                            newValue, getResources().getColor(R.color.octo_bg_default_end_color));
+                            if (wasGradientStartDefault && wasGradientEndDefault) {
+                                findPreference("reset_background_colors").setEnabled(false);
+                            } else {
+                                findPreference("reset_background_colors").setEnabled(true);
                             }
+                            return true;
                         });
 
         findPreference("swap_background_colors")
-                .setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                    @Override
-                    public boolean onPreferenceClick(Preference preference) {
-                        ColorPreference startColorPreference = findPreference("gradient_start_color");
-                        ColorPreference endColorPreference = findPreference("gradient_end_color");
-                        int startColor = startColorPreference.getColor();
-                        int endColor = endColorPreference.getColor();
-                        startColorPreference.setColor(endColor);
-                        endColorPreference.setColor(startColor);
-                        return true;
-                    }
+                .setOnPreferenceClickListener(preference -> {
+                    ColorPreference startColorPreference = findPreference("gradient_start_color");
+                    ColorPreference endColorPreference = findPreference("gradient_end_color");
+                    int startColor = startColorPreference.getColor();
+                    int endColor = endColorPreference.getColor();
+                    startColorPreference.setColor(endColor);
+                    endColorPreference.setColor(startColor);
+                    return true;
                 });
 
         findPreference("reset_background_colors")
                 .setOnPreferenceClickListener(
-                        new Preference.OnPreferenceClickListener() {
-                            @Override
-                            public boolean onPreferenceClick(Preference preference) {
-                                ColorPreference startColor = findPreference("gradient_start_color");
-                                startColor.setColor(getResources().getColor(R.color.octo_bg_default_start_color));
-                                ColorPreference endColor = findPreference("gradient_end_color");
-                                endColor.setColor(getResources().getColor(R.color.octo_bg_default_end_color));
-                                preference.setEnabled(false);
-                                return true;
-                            }
+                        preference -> {
+                            ColorPreference startColor = findPreference("gradient_start_color");
+                            startColor.setColor(getResources().getColor(R.color.octo_bg_default_start_color));
+                            ColorPreference endColor = findPreference("gradient_end_color");
+                            endColor.setColor(getResources().getColor(R.color.octo_bg_default_end_color));
+                            preference.setEnabled(false);
+                            return true;
                         });
 
-        findPreference("random_ui_gradients")
-                .setOnPreferenceClickListener(
-                        new Preference.OnPreferenceClickListener() {
-                            @Override
-                            public boolean onPreferenceClick(Preference preference) {
-                                final String[][] randomGradientDetails = {
-                                        ColorUtils.getGradientDetails(getRandomInt(ColorUtils.gradients.size()))
-                                };
+        findPreference("random_ui_gradients").setOnPreferenceClickListener(preference -> {
+            final String[][] randomGradientDetails = {
+                    ColorUtils.getGradientDetails(getRandomInt(ColorUtils.gradients.size()))
+            };
 
-                                final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-                                builder
-                                        .setTitle(R.string.prefs_uigradients_dialog_title)
-                                        .setMessage(
-                                                String.format(
-                                                        getResources()
-                                                                .getString(R.string.prefs_uigradients_dialog_description),
-                                                        ColorUtils.getGradientName(randomGradientDetails[0])))
-                                        .setNegativeButton(
-                                                android.R.string.cancel,
-                                                new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                                        dialogInterface.dismiss();
-                                                    }
-                                                })
-                                        .setPositiveButton(
-                                                R.string.action_apply,
-                                                new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                                        ColorPreference startColor =
-                                                                (ColorPreference) findPreference("gradient_start_color");
-                                                        startColor.setColor(
-                                                                ColorUtils.getGradientStartColor(randomGradientDetails[0]));
-                                                        ColorPreference endColor =
-                                                                (ColorPreference) findPreference("gradient_end_color");
-                                                        endColor.setColor(
-                                                                ColorUtils.getGradientEndColor(randomGradientDetails[0]));
-                                                    }
-                                                });
+            builder
+                    .setTitle(R.string.prefs_uigradients_dialog_title)
+                    .setMessage(
+                            String.format(
+                                    getResources()
+                                            .getString(R.string.prefs_uigradients_dialog_description),
+                                    ColorUtils.getGradientName(randomGradientDetails[0])))
+                    .setNegativeButton(
+                            android.R.string.cancel,
+                            (dialogInterface, i) -> dialogInterface.dismiss())
+                    .setPositiveButton(
+                            R.string.action_apply,
+                            (dialogInterface, i) -> {
+                                ColorPreference startColor =
+                                        findPreference("gradient_start_color");
+                                startColor.setColor(
+                                        ColorUtils.getGradientStartColor(randomGradientDetails[0]));
+                                ColorPreference endColor =
+                                        findPreference("gradient_end_color");
+                                endColor.setColor(
+                                        ColorUtils.getGradientEndColor(randomGradientDetails[0]));
+                            });
 
-                                builder.create().show();
-                                return true;
-                            }
+            builder.create().show();
+            return true;
+        });
+    }
 
-                            private int getRandomInt(int max) {
-                                return new Random().nextInt(max);
-                            }
-                        });
+    private int getRandomInt(int max) {
+        return new Random().nextInt(max);
     }
 
     @Override

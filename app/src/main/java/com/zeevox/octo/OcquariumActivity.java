@@ -24,12 +24,12 @@ import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 
+import androidx.annotation.Nullable;
+
 import com.zeevox.octo.core.Ocquarium;
 import com.zeevox.octo.settings.SettingsActivityV2;
 
 import java.util.Collections;
-
-import androidx.annotation.Nullable;
 
 public class OcquariumActivity extends Activity {
 

@@ -31,15 +31,10 @@ public class AboutFragment extends Fragment {
                 && isAlphaVersionInstalled(getActivity().getPackageManager())) {
             alphaBuilds.setText(getString(R.string.prefs_open_ocquarium_alpha));
             alphaBuilds.setOnClickListener(
-                    new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            startActivity(
-                                    getActivity()
-                                            .getPackageManager()
-                                            .getLaunchIntentForPackage("com.zeevox.octo.alpha"));
-                        }
-                    });
+                    view1 -> startActivity(
+                            getActivity()
+                                    .getPackageManager()
+                                    .getLaunchIntentForPackage("com.zeevox.octo.alpha")));
         }
     }
 

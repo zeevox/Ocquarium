@@ -21,50 +21,46 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 
 import androidx.preference.EditTextPreference;
-import androidx.preference.Preference;
 
 import com.zeevox.octo.R;
 
 @SuppressWarnings("unused")
 public class EditNumberPreference extends EditTextPreference {
-  private Integer maximum;
-  private Integer minimum;
+    private Integer maximum;
+    private Integer minimum;
 
-  public EditNumberPreference(
-      Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-    super(context, attrs, defStyleAttr, defStyleRes);
-  }
-
-  public EditNumberPreference(Context context, AttributeSet attrs, int defStyleAttr) {
-    super(context, attrs, defStyleAttr);
-  }
-
-  public EditNumberPreference(Context context, AttributeSet attrs) {
-    super(context, attrs);
-    if (attrs != null) {
-      TypedArray a =
-          context.getTheme().obtainStyledAttributes(attrs, R.styleable.EditNumberPreference, 0, 0);
-      maximum = a.getInteger(R.styleable.EditNumberPreference_maximum, 100);
-      minimum = a.getInteger(R.styleable.EditNumberPreference_minimum, 0);
-    } else {
-      maximum = 100;
-      minimum = 0;
+    public EditNumberPreference(
+            Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
     }
 
-    this.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
-      @Override
-      public boolean onPreferenceChange(Preference preference, Object newValue) {
-        String preferenceValue = (String) newValue;
-        return preferenceValue.length() > 0 // check that it is not a blank value
-                        && Integer.parseInt(preferenceValue)
-                        <= maximum // check maximum value
-                        && Integer.parseInt(preferenceValue)
-                        >= minimum;
-      }
-    });
-  }
+    public EditNumberPreference(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
 
-  public EditNumberPreference(Context context) {
-    super(context);
-  }
+    public EditNumberPreference(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        if (attrs != null) {
+            TypedArray a =
+                    context.getTheme().obtainStyledAttributes(attrs, R.styleable.EditNumberPreference, 0, 0);
+            maximum = a.getInteger(R.styleable.EditNumberPreference_maximum, 100);
+            minimum = a.getInteger(R.styleable.EditNumberPreference_minimum, 0);
+        } else {
+            maximum = 100;
+            minimum = 0;
+        }
+
+        this.setOnPreferenceChangeListener((preference, newValue) -> {
+            String preferenceValue = (String) newValue;
+            return preferenceValue.length() > 0 // check that it is not a blank value
+                    && Integer.parseInt(preferenceValue)
+                    <= maximum // check maximum value
+                    && Integer.parseInt(preferenceValue)
+                    >= minimum;
+        });
+    }
+
+    public EditNumberPreference(Context context) {
+        super(context);
+    }
 }

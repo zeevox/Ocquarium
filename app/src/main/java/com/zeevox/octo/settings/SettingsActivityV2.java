@@ -16,58 +16,26 @@
 
 package com.zeevox.octo.settings;
 
-import android.app.AlertDialog;
-import android.app.WallpaperInfo;
-import android.app.WallpaperManager;
 import android.content.ActivityNotFoundException;
-import android.content.ComponentName;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
-import android.provider.Settings;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.SeekBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
-import androidx.preference.PreferenceManager;
 import androidx.preference.PreferenceScreen;
-import androidx.preference.SwitchPreferenceCompat;
 
-import com.rarepebble.colorpicker.ColorPreference;
-import com.zeevox.octo.BuildConfig;
 import com.zeevox.octo.FeedbackActivity;
 import com.zeevox.octo.R;
-import com.zeevox.octo.core.Ocquarium;
-import com.zeevox.octo.core.OctopusDrawable;
 import com.zeevox.octo.settings.fragments.AboutFragment;
 import com.zeevox.octo.settings.fragments.BackgroundPreferenceFragment;
 import com.zeevox.octo.settings.fragments.GeneralPreferenceFragment;
 import com.zeevox.octo.settings.fragments.OctopusFragment;
-import com.zeevox.octo.settings.fragments.OctopusFragmentV2;
 import com.zeevox.octo.settings.fragments.WallpaperFragment;
-import com.zeevox.octo.util.ColorUtils;
-import com.zeevox.octo.wallpaper.OcquariumWallpaperService;
-
-import java.util.Objects;
-import java.util.Random;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On handset devices,

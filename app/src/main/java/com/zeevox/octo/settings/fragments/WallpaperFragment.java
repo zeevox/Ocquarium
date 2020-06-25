@@ -33,46 +33,37 @@ public class WallpaperFragment extends BasePreferenceFragment {
         } else {
             findPreference("set_live_wallpaper")
                     .setOnPreferenceClickListener(
-                            new Preference.OnPreferenceClickListener() {
-                                @Override
-                                public boolean onPreferenceClick(Preference preference) {
-                                    Intent intent = new Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER);
-                                    intent.putExtra(
-                                            WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,
-                                            new ComponentName(getActivity(), OcquariumWallpaperService.class));
-                                    startActivity(intent);
-                                    return false;
-                                }
+                            preference -> {
+                                Intent intent = new Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER);
+                                intent.putExtra(
+                                        WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,
+                                        new ComponentName(getActivity(), OcquariumWallpaperService.class));
+                                startActivity(intent);
+                                return false;
                             });
 
             findPreference("restart_live_wallpaper")
                     .setOnPreferenceClickListener(
-                            new Preference.OnPreferenceClickListener() {
-                                @Override
-                                public boolean onPreferenceClick(Preference preference) {
-                                    Toast.makeText(
-                                            getActivity(), R.string.prefs_restarting_wallpaper, Toast.LENGTH_SHORT)
-                                            .show();
-                                    restartLiveWallpaper();
-                                    return false;
-                                }
+                            preference -> {
+                                Toast.makeText(
+                                        getActivity(), R.string.prefs_restarting_wallpaper, Toast.LENGTH_SHORT)
+                                        .show();
+                                restartLiveWallpaper();
+                                return false;
                             });
         }
 
         findPreference("set_screensaver")
                 .setOnPreferenceClickListener(
-                        new Preference.OnPreferenceClickListener() {
-                            @Override
-                            public boolean onPreferenceClick(Preference preference) {
-                                try {
-                                    startActivity(new Intent(Settings.ACTION_DREAM_SETTINGS));
-                                } catch (ActivityNotFoundException e) {
-                                    Toast.makeText(
-                                            getActivity(), R.string.prefs_screensaver_error, Toast.LENGTH_SHORT)
-                                            .show();
-                                }
-                                return false;
+                        preference -> {
+                            try {
+                                startActivity(new Intent(Settings.ACTION_DREAM_SETTINGS));
+                            } catch (ActivityNotFoundException e) {
+                                Toast.makeText(
+                                        getActivity(), R.string.prefs_screensaver_error, Toast.LENGTH_SHORT)
+                                        .show();
                             }
+                            return false;
                         });
     }
 
