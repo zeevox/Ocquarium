@@ -15,7 +15,7 @@
   ~ limitations under the License.
   -->
 <resources>
-    <string name="about_action_alpha">Тестировать альфа-версию</string>
+    <string name="about_action_alpha">Установить альфа-версию</string>
     <string name="about_action_email">Послать имейл</string>
     <string name="about_action_email_error">На этом устрйстве не установлен клиент электронной почты</string>
     <string name="about_action_email_text">Здравствуйте, я хотел бы спросить…</string>
@@ -37,7 +37,7 @@
     <string name="feedback_dialog_fields_error">Пожалуйста проверьте, что вы заполнили все поля.</string>
     <string name="feedback_dialog_invalid_checkboxes">Пожалуйста проверьте, что вы отметили все флажки.</string>
     <string name="feedback_dialog_title_error">Ошибка</string>
-    <string name="feedback_error_empty">Проверьте, что выне забыли это поле</string>
+    <string name="feedback_error_empty">Проверьте, что вы не забыли это поле</string>
     <string name="feedback_hint_issue_title">Заглавие</string>
 
     <string name="live_wall_description">Наблюдайте, как игривый осминог плавает позади вашего рабочего стола</string>
@@ -117,7 +117,4 @@
     <string name="shortcut_settings_disabled">Этот аппликационный ярлык не действует.</string>
     <string name="shortcut_settings_long">Настроить Ocquarium</string>
     <string name="prefs_open_ocquarium_alpha">Открыть альфа-версию приложения</string>
-    <string name="dialog_pie_info_neutral">Может попозже</string>
-    <string name="dialog_pie_info_positive">Скачать</string>
-    <string name="dialog_pie_info_positive_long">Скачать с Play Маркет</string>
 </resources>
