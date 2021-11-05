@@ -39,7 +39,8 @@
         <activity
             android:name=".OcquariumActivity"
             android:label="@string/app_name"
-            android:theme="@style/OcquariumTheme">
+            android:theme="@style/OcquariumTheme"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -95,7 +96,8 @@
             android:enabled="true"
             android:hardwareAccelerated="true"
             android:label="@string/live_wall_name"
-            android:permission="android.permission.BIND_WALLPAPER">
+            android:permission="android.permission.BIND_WALLPAPER"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.service.wallpaper.WallpaperService" />
             </intent-filter>

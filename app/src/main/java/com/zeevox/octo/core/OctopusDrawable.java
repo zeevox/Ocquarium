@@ -34,6 +34,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.preference.PreferenceManager;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.dynamicanimation.animation.DynamicAnimation;
@@ -47,24 +48,23 @@ public class OctopusDrawable extends Drawable {
   public static boolean PARTICLE_LEGS = false;
   public static boolean WEIRD_EYES = false;
   public static float BLINK_FREQUENCY = 0.001f;
-  private static float BASE_SCALE = 100f;
-  private static int BODY_COLOR = 0xFF101010;
-  private static int ARM_COLOR = 0xFF101010;
-  private static int ARM_COLOR_BACK = 0xFF000000;
-  private static int EYE_COLOR = 0xFF808080;
+  private static final float BASE_SCALE = 100f;
+  private static final int BODY_COLOR = 0xFF101010;
+  private static final int ARM_COLOR = 0xFF101010;
+  private static final int ARM_COLOR_BACK = 0xFF000000;
+  private static final int EYE_COLOR = 0xFF808080;
 
-  private static int[] BACK_ARMS = {1, 3, 4, 6};
-  private static int[] FRONT_ARMS = {0, 2, 5, 7};
+  private static final int[] BACK_ARMS = {1, 3, 4, 6};
+  private static final int[] FRONT_ARMS = {0, 2, 5, 7};
   final PointF point = new PointF();
   final Matrix M = new Matrix();
   final Matrix M_inv = new Matrix();
-  private Paint mPaint = new Paint();
-  private Arm[] mArms = new Arm[8];
-  private int mSizePx = 100;
+  private final Paint mPaint = new Paint();
+  private final Arm[] mArms = new Arm[8];
   private TimeAnimator mDriftAnimation;
   private boolean mBlinking;
-  private float[] ptmp = new float[2];
-  private float[] scaledBounds = new float[2];
+  private final float[] ptmp = new float[2];
+  private final float[] scaledBounds = new float[2];
 
   public OctopusDrawable(Context context) {
     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -99,7 +99,7 @@ public class OctopusDrawable extends Drawable {
   }
 
   public static float clamp(float v, float a, float b) {
-    return v < a ? a : v > b ? b : v;
+    return v < a ? a : Math.min(v, b);
   }
 
   static Path pathMoveTo(Path p, PointF pt) {
@@ -122,12 +122,11 @@ public class OctopusDrawable extends Drawable {
   }
 
   public void setSizePx(int size) {
-    mSizePx = size;
-    M.setScale(mSizePx / BASE_SCALE, mSizePx / BASE_SCALE);
+    M.setScale(size / BASE_SCALE, size / BASE_SCALE);
     if (PARTICLE_LEGS) {
-      TaperedPathStroke.setMinStep(20f * BASE_SCALE / mSizePx); // nice little floaty circles
+      TaperedPathStroke.setMinStep(20f * BASE_SCALE / size); // nice little floaty circles
     } else {
-      TaperedPathStroke.setMinStep(8f * BASE_SCALE / mSizePx); // classic tentacles
+      TaperedPathStroke.setMinStep(8f * BASE_SCALE / size); // classic tentacles
     }
     M.invert(M_inv);
   }
@@ -137,12 +136,11 @@ public class OctopusDrawable extends Drawable {
       mDriftAnimation = new TimeAnimator();
       mDriftAnimation.setTimeListener(
           new TimeAnimator.TimeListener() {
-            float MAX_VY = 35f;
-            float JUMP_VY = -100f;
-            float MAX_VX = 15f;
+            final float MAX_VY = 35f;
+            final float JUMP_VY = -100f;
+            final float MAX_VX = 15f;
             long nextjump = 0;
             long unblink = 0;
-            private float ax = 0f, ay = 30f;
             private float vx, vy;
 
             @Override
@@ -161,9 +159,10 @@ public class OctopusDrawable extends Drawable {
                 unblink = t + 200;
               }
 
-              ax = (float) (MAX_VX * Math.sin(t_sec * .25f));
+              float ax = (float) (MAX_VX * Math.sin(t_sec * .25f));
 
               vx = clamp(vx + dt_sec * ax, -MAX_VX, MAX_VX);
+              float ay = 30f;
               vy = clamp(vy + dt_sec * ay, -100 * MAX_VY, MAX_VY);
 
               // oob check
@@ -232,9 +231,7 @@ public class OctopusDrawable extends Drawable {
 
   private void drawPupil(Canvas canvas, float x, float y, float size, boolean open, Paint pt) {
     final float r = open ? size * .33f : size * .1f;
-    if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
-      canvas.drawRoundRect(x - size, y - r, x + size, y + r, r, r, pt);
-    }
+    canvas.drawRoundRect(x - size, y - r, x + size, y + r, r, r, pt);
   }
 
   @Override
@@ -266,9 +263,7 @@ public class OctopusDrawable extends Drawable {
           canvas.clipRect(
               point.x - 61f, point.y + 8f, point.x + 61f, point.y + 12f, Region.Op.DIFFERENCE);
         }
-        if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
-          canvas.drawOval(point.x - 40f, point.y - 60f, point.x + 40f, point.y + 40f, mPaint);
-        }
+        canvas.drawOval(point.x - 40f, point.y - 60f, point.x + 40f, point.y + 40f, mPaint);
       }
       canvas.restore();
 
@@ -310,10 +305,12 @@ public class OctopusDrawable extends Drawable {
   }
 
   @Override
-  public void setAlpha(int i) {}
+  public void setAlpha(int i) {
+  }
 
   @Override
-  public void setColorFilter(@Nullable ColorFilter colorFilter) {}
+  public void setColorFilter(@Nullable ColorFilter colorFilter) {
+  }
 
   @Override
   public int getOpacity() {
@@ -321,12 +318,13 @@ public class OctopusDrawable extends Drawable {
   }
 
   private class Link // he come to town
-  implements DynamicAnimation.OnAnimationUpdateListener {
+      implements DynamicAnimation.OnAnimationUpdateListener {
 
     final FloatValueHolder[] coords = new FloatValueHolder[2];
     final SpringAnimation[] anims = new SpringAnimation[coords.length];
     Link next;
-    private float dx, dy;
+    private final float dx;
+    private final float dy;
     private boolean locked = false;
 
     Link(int index, float x1, float y1, float dx, float dy) {
@@ -343,8 +341,8 @@ public class OctopusDrawable extends Drawable {
                     index == 0
                         ? SpringForce.STIFFNESS_LOW
                         : index == 1
-                            ? SpringForce.STIFFNESS_VERY_LOW
-                            : SpringForce.STIFFNESS_VERY_LOW / 2)
+                        ? SpringForce.STIFFNESS_VERY_LOW
+                        : SpringForce.STIFFNESS_VERY_LOW / 2)
                 .setFinalPosition(0f));
         anims[i].addUpdateListener(this);
       }
@@ -394,7 +392,8 @@ public class OctopusDrawable extends Drawable {
 
     final Link link1, link2, link3;
     private final Paint dpt = new Paint();
-    float max, min;
+    final float max;
+    final float min;
 
     public Arm(
         float x,
@@ -457,14 +456,14 @@ public class OctopusDrawable extends Drawable {
 
       dpt.setColor(0xFFFFFF00);
 
-      dpt.setPathEffect(new DashPathEffect(new float[] {2f, 2f}, 0f));
+      dpt.setPathEffect(new DashPathEffect(new float[]{2f, 2f}, 0f));
 
       canvas.drawLines(
-          new float[] {
-            link1.end().x, link1.end().y,
-            link2.start().x, link2.start().y,
-            link2.end().x, link2.end().y,
-            link3.start().x, link3.start().y,
+          new float[]{
+              link1.end().x, link1.end().y,
+              link2.start().x, link2.start().y,
+              link2.end().x, link2.end().y,
+              link3.start().x, link3.start().y,
           },
           dpt);
       dpt.setPathEffect(null);
@@ -472,13 +471,13 @@ public class OctopusDrawable extends Drawable {
       dpt.setColor(0xFF00CCFF);
 
       canvas.drawLines(
-          new float[] {
-            link1.start().x, link1.start().y,
-            link1.end().x, link1.end().y,
-            link2.start().x, link2.start().y,
-            link2.end().x, link2.end().y,
-            link3.start().x, link3.start().y,
-            link3.end().x, link3.end().y,
+          new float[]{
+              link1.start().x, link1.start().y,
+              link1.end().x, link1.end().y,
+              link2.start().x, link2.start().y,
+              link2.end().x, link2.end().y,
+              link3.start().x, link3.start().y,
+              link3.end().x, link3.end().y,
           },
           dpt);
 

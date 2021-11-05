@@ -75,7 +75,7 @@ public class Ocquarium {
     bg.animate()
         .setStartDelay(500)
         .setDuration(
-            Integer.valueOf(
+            Integer.parseInt(
                 preferences.getString(
                     "octo_fade_in_duration", resources.getString(R.string.anim_even_longer))))
         .alpha(1f)
@@ -103,12 +103,7 @@ public class Ocquarium {
         mImageButton.setImageDrawable(resources.getDrawable(R.drawable.ic_settings_dark));
       }
       mImageButton.setOnClickListener(
-          new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-              context.startActivity(new Intent(context, SettingsActivityV2.class));
-            }
-          });
+          view -> context.startActivity(new Intent(context, SettingsActivityV2.class)));
       bg.addView(
           mImageButton,
           new FrameLayout.LayoutParams(
@@ -116,10 +111,7 @@ public class Ocquarium {
     }
     /* END Settings button */
 
-    // float octoMinSize = Float.parseFloat(preferences.getString("octopus_min_size", "40"));
-    // float octoMaxSize = Float.parseFloat(preferences.getString("octopus_max_size", "180"));
     final OctopusDrawable octo = new OctopusDrawable(context);
-    // octo.setSizePx((int) (OctopusDrawable.randfrange(octoMinSize, octoMaxSize) * dp));
     int averageOctopusSize = Integer.parseInt(preferences.getString("octopus_average_size", "110"));
     octo.setSizePx(
         (int) OctopusDrawable.randfrange(averageOctopusSize - 70, averageOctopusSize + 70)

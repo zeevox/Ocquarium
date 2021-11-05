@@ -18,7 +18,6 @@
 package com.zeevox.octo;
 
 import android.app.Activity;
-import android.content.ActivityNotFoundException;
 import android.content.res.ColorStateList;
 import android.graphics.Outline;
 import android.graphics.drawable.RippleDrawable;
@@ -26,7 +25,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -41,7 +39,7 @@ public class PlatLogoActivity extends Activity {
   FrameLayout mLayout;
   int mTapCount;
   int mKeyCount;
-  PathInterpolator mInterpolator = new PathInterpolator(0f, 0f, 0.5f, 1f);
+  final PathInterpolator mInterpolator = new PathInterpolator(0f, 0f, 0.5f, 1f);
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -67,10 +65,10 @@ public class PlatLogoActivity extends Activity {
     im.setAlpha(0f);
 
     if (PreferenceManager.getDefaultSharedPreferences(this)
-            .getBoolean(
-                "platlogo_v2",
-                // New OMR1 platlogo only supported on SDK 24+
-                Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+        .getBoolean(
+            "platlogo_v2",
+            // New OMR1 platlogo only supported on SDK 24+
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
         && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
       im.setBackground(
           new RippleDrawable(
@@ -92,48 +90,36 @@ public class PlatLogoActivity extends Activity {
     }
     im.setClickable(true);
     im.setOnClickListener(
-        new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-            im.setOnLongClickListener(
-                new View.OnLongClickListener() {
-                  @Override
-                  public boolean onLongClick(View v) {
-                    if (mTapCount < 5) return false;
-                    im.post(
-                        new Runnable() {
-                          @Override
-                          public void run() {
-                            if (FINISH) finish();
-                          }
-                        });
-                    return true;
-                  }
-                });
-            mTapCount++;
-          }
+        v -> {
+          im.setOnLongClickListener(
+              v1 -> {
+                if (mTapCount < 5) return false;
+                im.post(
+                    () -> {
+                      if (FINISH) finish();
+                    });
+                return true;
+              });
+          mTapCount++;
         });
 
     // Enable hardware keyboard input for TV compatibility.
     im.setFocusable(true);
     im.requestFocus();
     im.setOnKeyListener(
-        new View.OnKeyListener() {
-          @Override
-          public boolean onKey(View v, int keyCode, KeyEvent event) {
-            if (keyCode != KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
-              ++mKeyCount;
-              if (mKeyCount > 2) {
-                if (mTapCount > 5) {
-                  im.performLongClick();
-                } else {
-                  im.performClick();
-                }
+        (v, keyCode, event) -> {
+          if (keyCode != KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+            ++mKeyCount;
+            if (mKeyCount > 2) {
+              if (mTapCount > 5) {
+                im.performLongClick();
+              } else {
+                im.performClick();
               }
-              return true;
-            } else {
-              return false;
             }
+            return true;
+          } else {
+            return false;
           }
         });
 

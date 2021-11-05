@@ -26,21 +26,16 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+
 import java.util.Objects;
 
 public class FeedbackActivity extends Activity {
 
-  private DialogInterface.OnClickListener autoDismissDialogClickListener =
-      new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-          dialog.dismiss();
-        }
-      };
+  private final DialogInterface.OnClickListener autoDismissDialogClickListener =
+      (dialog, which) -> dialog.dismiss();
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +50,12 @@ public class FeedbackActivity extends Activity {
     issueTitleInput.addTextChangedListener(
         new TextWatcher() {
           @Override
-          public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+          public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+          }
 
           @Override
-          public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+          public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+          }
 
           @Override
           public void afterTextChanged(Editable editable) {
@@ -69,10 +66,12 @@ public class FeedbackActivity extends Activity {
     issueDescriptionInput.addTextChangedListener(
         new TextWatcher() {
           @Override
-          public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+          public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+          }
 
           @Override
-          public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+          public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+          }
 
           @Override
           public void afterTextChanged(Editable editable) {
@@ -82,52 +81,48 @@ public class FeedbackActivity extends Activity {
 
     // FEEDBACK BUTTON
     final Button feedbackButton = findViewById(R.id.feedback_send_button);
-    feedbackButton.setOnClickListener(
-        new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-            // Set who to send email to
-            Uri uri = Uri.parse("mailto:zeevox.dev@gmail.com");
-            // Set up email intent
-            Intent emailIntent = new Intent(Intent.ACTION_SENDTO, uri);
+    feedbackButton.setOnClickListener(v -> {
+          // Set who to send email to
+          Uri uri = Uri.parse("mailto:zeevox.dev@gmail.com");
+          // Set up email intent
+          Intent emailIntent = new Intent(Intent.ACTION_SENDTO, uri);
 
-            // Init feedback message
-            String feedbackMessage = getString(R.string.feedback_prefill_content);
+          // Init feedback message
+          String feedbackMessage = getString(R.string.feedback_prefill_content);
 
-            // Set email title
-            emailIntent.putExtra(Intent.EXTRA_SUBJECT, issueTitleInput.getText().toString());
+          // Set email title
+          emailIntent.putExtra(Intent.EXTRA_SUBJECT, issueTitleInput.getText().toString());
 
-            // Replace placeholder with data
-            feedbackMessage =
-                feedbackMessage.replace(
-                    "ISSUE_DESCRIPTION", issueDescriptionInput.getText().toString());
+          // Replace placeholder with data
+          feedbackMessage =
+              feedbackMessage.replace(
+                  "ISSUE_DESCRIPTION", issueDescriptionInput.getText().toString());
 
-            // Replace device info placeholders with data
-            feedbackMessage =
-                feedbackMessage.replace("ocquarium_version_name", BuildConfig.VERSION_NAME);
-            feedbackMessage = feedbackMessage.replace("device_fingerprint", Build.FINGERPRINT);
+          // Replace device info placeholders with data
+          feedbackMessage =
+              feedbackMessage.replace("ocquarium_version_name", BuildConfig.VERSION_NAME);
+          feedbackMessage = feedbackMessage.replace("device_fingerprint", Build.FINGERPRINT);
 
-            // Set email intent
-            emailIntent.putExtra(Intent.EXTRA_TEXT, feedbackMessage);
+          // Set email intent
+          emailIntent.putExtra(Intent.EXTRA_TEXT, feedbackMessage);
 
-            CheckBox checkLatestVersion = findViewById(R.id.check_latest_version);
-            CheckBox checkDeviceInfo = findViewById(R.id.check_device_info);
+          CheckBox checkLatestVersion = findViewById(R.id.check_latest_version);
+          CheckBox checkDeviceInfo = findViewById(R.id.check_device_info);
 
-            if (checkLatestVersion.isChecked()
-                && checkDeviceInfo.isChecked()
-                && validateIssueTitle()
-                && validateDescription()) {
-              try {
-                // Start default email client
-                startActivity(emailIntent);
-                finish();
-              } catch (ActivityNotFoundException activityNotFoundException) {
-                dialogNoEmailApp();
-              }
-            } else {
-              if (!checkLatestVersion.isChecked() || !checkDeviceInfo.isChecked()) {
-                dialogInvalid();
-              }
+          if (checkLatestVersion.isChecked()
+              && checkDeviceInfo.isChecked()
+              && validateIssueTitle()
+              && validateDescription()) {
+            try {
+              // Start default email client
+              startActivity(emailIntent);
+              finish();
+            } catch (ActivityNotFoundException activityNotFoundException) {
+              dialogNoEmailApp();
+            }
+          } else {
+            if (!checkLatestVersion.isChecked() || !checkDeviceInfo.isChecked()) {
+              dialogInvalid();
             }
           }
         });
@@ -160,7 +155,7 @@ public class FeedbackActivity extends Activity {
     builder.create().show();
   }
 
-    public void dialogNoEmailApp() {
+  public void dialogNoEmailApp() {
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
     builder

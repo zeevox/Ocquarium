@@ -18,15 +18,9 @@ package com.zeevox.octo.settings;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.AttributeSet;
-import android.widget.EditText;
 
-import androidx.annotation.NonNull;
 import androidx.preference.EditTextPreference;
-import androidx.preference.EditTextPreferenceDialogFragmentCompat;
 import androidx.preference.Preference;
 
 import com.zeevox.octo.R;
@@ -57,16 +51,13 @@ public class EditNumberPreference extends EditTextPreference {
       minimum = 0;
     }
 
-    this.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
-      @Override
-      public boolean onPreferenceChange(Preference preference, Object newValue) {
-        String preferenceValue = (String) newValue;
-        return preferenceValue.length() > 0 // check that it is not a blank value
-                        && Integer.parseInt(preferenceValue)
-                        <= maximum // check maximum value
-                        && Integer.parseInt(preferenceValue)
-                        >= minimum;
-      }
+    this.setOnPreferenceChangeListener((preference, newValue) -> {
+      String preferenceValue = (String) newValue;
+      return preferenceValue.length() > 0 // check that it is not a blank value
+                      && Integer.parseInt(preferenceValue)
+                      <= maximum // check maximum value
+                      && Integer.parseInt(preferenceValue)
+                      >= minimum;
     });
   }
 

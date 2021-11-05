@@ -25,9 +25,9 @@ import android.graphics.PathMeasure;
 public class TaperedPathStroke {
 
   static float sMinStepPx = 4f;
-  static PathMeasure pm = new PathMeasure();
-  static float[] pos = {0, 0};
-  static float[] tan = {0, 0};
+  static final PathMeasure pm = new PathMeasure();
+  static final float[] pos = {0, 0};
+  static final float[] tan = {0, 0};
 
   static float lerp(float t, float a, float b) {
     return a + t * (b - a);
@@ -43,7 +43,7 @@ public class TaperedPathStroke {
     final float len = pm.getLength();
     float t = 0;
     boolean last = false;
-    while (true) {
+    do {
       if (t >= len) {
         t = len;
         last = true;
@@ -52,9 +52,6 @@ public class TaperedPathStroke {
       float r = len > 0 ? lerp(t / len, r1, r2) : r1;
       c.drawCircle(pos[0], pos[1], r, pt);
       t += Math.max(r * 0.25f, sMinStepPx); // walk forward 1/4 radius, not too small though
-      if (last) {
-        break;
-      }
-    }
+    } while (!last);
   }
 }
