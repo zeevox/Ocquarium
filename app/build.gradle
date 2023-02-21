@@ -86,6 +86,7 @@ android {
             }
         }
     }
+    namespace 'com.zeevox.octo'
 }
 
 dependencies {
