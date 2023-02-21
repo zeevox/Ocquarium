@@ -70,7 +70,7 @@
 
         <!-- Preferences activity -->
         <activity
-            android:name=".settings.SettingsActivityV2"
+            android:name=".settings.SettingsActivity"
             android:label="@string/action_settings"
             android:theme="@style/OcquariumTheme.Settings" />
 
@@ -88,7 +88,7 @@
             android:theme="@style/OcquariumTheme.Settings">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.zeevox.octo.settings.SettingsActivityV2" />
+                android:value="com.zeevox.octo.settings.SettingsActivity" />
         </activity>
 
         <!-- Live wallpaper service -->

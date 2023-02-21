@@ -25,7 +25,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 
 import com.zeevox.octo.core.Ocquarium;
-import com.zeevox.octo.settings.SettingsActivityV2;
+import com.zeevox.octo.settings.SettingsActivity;
 
 import java.util.Collections;
 
@@ -51,7 +51,7 @@ public class OcquariumActivity extends Activity {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N_MR1) {
             ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);
 
-            Intent settingsShortcut = new Intent(this, SettingsActivityV2.class);
+            Intent settingsShortcut = new Intent(this, SettingsActivity.class);
             settingsShortcut.setAction(Intent.ACTION_VIEW);
 
             ShortcutInfo shortcut =

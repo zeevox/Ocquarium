@@ -22,7 +22,7 @@
     <Preference
         android:summary="@string/prefs_octopus_average_size_summary"
         android:title="@string/prefs_octopus_average_size_title"
-        android:fragment="com.zeevox.octo.settings.SettingsActivityV2$OctopusFragmentV2" />
+        android:fragment="com.zeevox.octo.settings.SettingsActivity$OctopusFragmentV2" />
 
     <com.zeevox.octo.settings.EditNumberPreference
         android:defaultValue="10"

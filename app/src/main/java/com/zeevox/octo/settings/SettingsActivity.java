@@ -73,7 +73,7 @@ import java.util.Random;
  * information on developing a Settings UI.
  */
 @SuppressWarnings("ConstantConditions")
-public class SettingsActivityV2 extends AppCompatActivity
+public class SettingsActivity extends AppCompatActivity
     implements PreferenceFragmentCompat.OnPreferenceStartScreenCallback, PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
 
   /**

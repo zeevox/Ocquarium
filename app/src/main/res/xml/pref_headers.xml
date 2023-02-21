@@ -19,31 +19,31 @@
     <!-- These settings headers are only used on tablets. -->
 
     <Preference
-        android:fragment="com.zeevox.octo.settings.SettingsActivityV2$OctopusFragment"
+        android:fragment="com.zeevox.octo.settings.SettingsActivity$OctopusFragment"
         android:icon="@drawable/ic_videogame"
         android:summary="@string/prefs_category_octopus_desc"
         android:title="@string/prefs_category_octopus" />
 
     <Preference
-        android:fragment="com.zeevox.octo.settings.SettingsActivityV2$GeneralPreferenceFragment"
+        android:fragment="com.zeevox.octo.settings.SettingsActivity$GeneralPreferenceFragment"
         android:icon="@drawable/ic_category"
         android:summary="@string/pref_header_general_desc"
         android:title="@string/pref_header_general" />
 
     <Preference
-        android:fragment="com.zeevox.octo.settings.SettingsActivityV2$BackgroundPreferenceFragment"
+        android:fragment="com.zeevox.octo.settings.SettingsActivity$BackgroundPreferenceFragment"
         android:icon="@drawable/ic_format_color_fill"
         android:summary="@string/pref_header_background_desc"
         android:title="@string/pref_header_background" />
 
     <Preference
-        android:fragment="com.zeevox.octo.settings.SettingsActivityV2$WallpaperFragment"
+        android:fragment="com.zeevox.octo.settings.SettingsActivity$WallpaperFragment"
         android:icon="@drawable/ic_settings"
         android:summary="@string/prefs_category_ss_and_wallpaper_desc"
         android:title="@string/prefs_category_ss_and_wallpaper" />
 
     <Preference
-        android:fragment="com.zeevox.octo.settings.SettingsActivityV2$AboutFragment"
+        android:fragment="com.zeevox.octo.settings.SettingsActivity$AboutFragment"
         android:icon="@drawable/ic_info"
         android:summary="@string/prefs_category_about_desc"
         android:title="@string/prefs_category_about" />
