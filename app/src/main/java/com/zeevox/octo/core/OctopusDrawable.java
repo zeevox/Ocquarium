@@ -317,7 +317,7 @@ public class OctopusDrawable extends Drawable {
     return PixelFormat.TRANSLUCENT;
   }
 
-  private class Link // he come to town
+  private class Link // he comes to town
       implements DynamicAnimation.OnAnimationUpdateListener {
 
     final FloatValueHolder[] coords = new FloatValueHolder[2];

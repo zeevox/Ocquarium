@@ -39,7 +39,7 @@
         android:paddingEnd="16dp"
         android:paddingBottom="48dp"
         android:orientation="vertical">
-        <!-- Higher bottom padding so user doesn't tap navbar instead of seekbar accidentally -->
+        <!-- Higher bottom padding so that the user does not tap navbar instead of seekbar accidentally -->
 
         <TextView
             android:layout_width="match_parent"

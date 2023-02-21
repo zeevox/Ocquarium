@@ -55,7 +55,7 @@ public class Ocquarium {
     final float dp = resources.getDisplayMetrics().density;
 
     // Set the background to be the gradient with user defined colors
-    // See bgGradient(ContextWrapper, Resources) for more info about this
+    // See bgGradient(ContextWrapper, Resources) for more information about this
     window.setBackgroundDrawable(bgGradient(context, resources));
 
     // Hide the navigation bar if set by the user
@@ -89,8 +89,8 @@ public class Ocquarium {
 
     /* START Settings button */
     if (showSettingsButton) {
-      ImageButton mImageButton = new ImageButton(context);
-      mImageButton =
+      new ImageButton(context);
+      ImageButton mImageButton =
           (ImageButton)
               LayoutInflater.from(context).inflate(R.layout.ocquarium_settings_button, bg, false);
       // Set a transparent icon if user set in preferences
@@ -155,7 +155,7 @@ public class Ocquarium {
     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
     // Recreate octo_bg.xml programmatically
     GradientDrawable backgroundGradient = new GradientDrawable();
-    // Set the background colors / fetch them from the preferences menu
+    // Set the background colors / fetch them from the user's preferences
     backgroundGradient.setColors(
         new int[] {
           preferences.getInt(

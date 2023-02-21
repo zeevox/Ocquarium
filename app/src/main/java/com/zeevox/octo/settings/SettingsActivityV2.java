@@ -65,7 +65,7 @@ import java.util.Random;
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On handset devices,
  * settings are presented as a single list. On tablets, settings are split by category, with
- * category headers shown to the left of the list of settings.
+ * category headers shown in a panel on the left.
  *
  * <p>See <a href="http://developer.android.com/design/patterns/settings.html">Android Design:
  * Settings</a> for design guidelines and the <a
@@ -131,7 +131,7 @@ public class SettingsActivityV2 extends AppCompatActivity
   }
 
   @Override
-  public boolean onPreferenceStartScreen(PreferenceFragmentCompat caller, PreferenceScreen pref) {
+  public boolean onPreferenceStartScreen(@NonNull PreferenceFragmentCompat caller, PreferenceScreen pref) {
     Bundle args = new Bundle();
     args.putString(PreferenceFragmentCompat.ARG_PREFERENCE_ROOT, pref.getKey());
 
@@ -143,7 +143,7 @@ public class SettingsActivityV2 extends AppCompatActivity
   }
 
   @Override
-  public boolean onPreferenceStartFragment(PreferenceFragmentCompat caller, Preference pref) {
+  public boolean onPreferenceStartFragment(@NonNull PreferenceFragmentCompat caller, Preference pref) {
     if (!isValidFragment(pref.getFragment())) return false;
     Fragment fragment = Fragment.instantiate(this, pref.getFragment(), pref.getExtras());
     fragment.setTargetFragment(caller, 0);
@@ -315,7 +315,7 @@ public class SettingsActivityV2 extends AppCompatActivity
           .setOnPreferenceClickListener(
               new Preference.OnPreferenceClickListener() {
                 @Override
-                public boolean onPreferenceClick(Preference preference) {
+                public boolean onPreferenceClick(@NonNull Preference preference) {
                   final String[][] randomGradientDetails = {
                       ColorUtils.getGradientDetails(getRandomInt(ColorUtils.gradients.size()))
                   };
@@ -356,7 +356,7 @@ public class SettingsActivityV2 extends AppCompatActivity
     }
 
     @Override
-    public void onDisplayPreferenceDialog(Preference preference) {
+    public void onDisplayPreferenceDialog(@NonNull Preference preference) {
       if (preference instanceof ColorPreference) {
         ((ColorPreference) preference).showDialog(this, 0);
       } else super.onDisplayPreferenceDialog(preference);
@@ -382,7 +382,7 @@ public class SettingsActivityV2 extends AppCompatActivity
     }
 
     @Override
-    public boolean onPreferenceStartFragment(PreferenceFragmentCompat caller, Preference pref) {
+    public boolean onPreferenceStartFragment(@NonNull PreferenceFragmentCompat caller, Preference pref) {
       if (pref.getFragment().equals(OctopusFragmentV2.class.getName())) {
         Fragment fragment = Fragment.instantiate(caller.getActivity(), pref.getFragment(), pref.getExtras());
         fragment.setTargetFragment(caller, 0);
@@ -544,7 +544,7 @@ public class SettingsActivityV2 extends AppCompatActivity
           Integer.parseInt(preferences.getString("octopus_average_size", "110"));
 
       // Set the background to be the gradient with user defined colors
-      // See bgGradient(ContextWrapper, Resources) for more info about this
+      // See bgGradient(ContextWrapper, Resources) for more information about this
       requireView()
           .findViewById(R.id.prefs_octopus_bg)
           .setBackground(Ocquarium.bgGradient(getActivity(), getResources()));

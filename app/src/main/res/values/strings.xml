@@ -19,7 +19,7 @@
     <string name="about_action_alpha">Test alpha builds</string>
     <string name="about_action_email">Send an email</string>
     <string name="about_action_email_error">There are no email clients installed.</string>
-    <string name="about_action_email_text">Hello there,    I\'d like to…</string>
+    <string name="about_action_email_text">To the Ocquarium developers,\n\n</string>
     <string name="about_action_email_title">Ocquarium question</string>
     <string name="about_action_g_play">Write a review</string>
     <string name="about_action_github">View source code</string>
@@ -122,7 +122,7 @@
     <string name="prefs_restarting_wallpaper">Restarting live wallpaper…</string>
     <string name="prefs_screensaver_enable_touch_summary">Allow moving the octopus by touch during screensaver mode</string>
     <string name="prefs_screensaver_enable_touch_title">Enable touch</string>
-    <string name="prefs_screensaver_error">Your device doesn\'t support setting a screensaver, sorry.</string>
+    <string name="prefs_screensaver_error">Unfortunately, our device does not support setting a screensaver.</string>
     <string name="prefs_set_live_wall_summary">Click me to set Ocquarium as your live wallpaper.</string>
     <string name="prefs_set_live_wall_title">Set live wallpaper</string>
     <string name="prefs_set_screensaver_summary">Click me to set Ocquarium as your device\'s screensaver.</string>
@@ -131,7 +131,7 @@
     <string name="prefs_show_navigation_bar_title">Show system navbar</string>
     <string name="prefs_show_platlogo_summary">Display the Android Oreo logo before the octopus.</string>
     <string name="prefs_show_platlogo_title">Show platform logo</string>
-    <string name="prefs_uigradients_dialog_description">Apply gradient called %s?\n\nIf you would like to try a different gradient, press cancel and select \"Random gradient\" again.</string>
+    <string name="prefs_uigradients_dialog_description">Apply gradient called %s?\n\nIf you would like to try a different gradient, press \"cancel\" and select \"Random gradient\" again.</string>
     <string name="prefs_uigradients_dialog_title">Random gradient</string>
     <string name="prefs_uigradients_summary">Random gradient</string>
     <string name="prefs_uigradients_title">Pick a random set of colors from uigradients.com</string>

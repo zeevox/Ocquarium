@@ -100,7 +100,7 @@ public abstract class LiveWallpaperService extends WallpaperService {
     protected abstract void drawFrame();
 
     protected void iteration() {
-      // Reschedule the next redraw in 40ms
+      // Reschedule the next redrawing in 40ms
       mHandler.removeCallbacks(mIteration);
       if (mVisible) {
         mHandler.postDelayed(mIteration, 1000 / 25);
