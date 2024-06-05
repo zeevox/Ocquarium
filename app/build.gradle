@@ -27,7 +27,7 @@ static def buildDate() {
 def appVersionCode = Integer.valueOf(System.getenv("TRAVIS_BUILD_NUMBER") ?: 0)
 
 android {
-    compileSdkVersion 33
+    compileSdkVersion 34
 
     signingConfigs {
         travis {
@@ -41,21 +41,21 @@ android {
     defaultConfig {
         applicationId "com.zeevox.octo"
         minSdkVersion 21
-        targetSdkVersion 33
+        targetSdkVersion 34
 
         if (System.getenv("TRAVIS") == "true") {
             versionCode appVersionCode
             versionName = "Alpha build #" + appVersionCode
-            android.applicationVariants.all { variant ->
-                variant.outputs.all {
+            android.applicationVariants.configureEach { variant ->
+                variant.outputs.configureEach {
                     outputFileName = "Ocquarium-" + appVersionCode + "-alpha.apk"
                 }
             }
         } else {
             versionCode 22
             versionName "3.5.0"
-            android.applicationVariants.all { variant ->
-                variant.outputs.all {
+            android.applicationVariants.configureEach { variant ->
+                variant.outputs.configureEach {
                     outputFileName = "Ocquarium-${versionName}-${buildDate()}-release.apk"
                 }
             }
@@ -76,8 +76,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.txt'
         }
         travis {
-            minifyEnabled true
-            shrinkResources true
             debuggable true
             applicationIdSuffix '.alpha'
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.txt'
@@ -90,10 +88,10 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.annotation:annotation:1.5.0'
+    implementation 'androidx.annotation:annotation:1.8.0'
     implementation 'androidx.dynamicanimation:dynamicanimation:1.0.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.palette:palette:1.0.0'
-    implementation 'com.github.martin-stone:hsv-alpha-color-picker-android:3.0.1'
-    implementation 'androidx.preference:preference:1.2.0'
+    implementation 'com.github.martin-stone:hsv-alpha-color-picker-android:3.1.0'
+    implementation 'androidx.preference:preference:1.2.1'
 }
