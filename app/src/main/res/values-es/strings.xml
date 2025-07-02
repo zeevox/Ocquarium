@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--
+  ~ Copyright (C) 2016 The Android Open Source Project
+  ~ Copyright (C) 2020 Timothy "ZeevoX" Langer
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<resources>
+    <string name="about_action_alpha">Prueba versiones alfa</string>
+    <string name="about_action_email">Envia un email</string>
+    <string name="about_action_email_error">No tienes ningun cliente de email instalado.</string>
+    <string name="about_action_email_text">Hola, me gustaría preguntar sobre…</string>
+    <string name="about_action_email_title">Consulta sobre Ocquarium</string>
+    <string name="about_action_g_play">Escribe una reseña</string>
+    <string name="about_action_github">Mira el codigo fuente</string>
+    <string name="about_action_share">Compartir</string>
+    <string name="about_author_name" translatable="false">ZeevoX</string>
+    <string name="about_desc_app_icon">Ocquarium application icon</string>
+    <string name="about_text_author">Autor</string>
+
+    <string name="action_apply">Aplicar</string>
+    <string name="action_ok" translatable="false">@android:string/ok</string>
+    <string name="action_send_feedback">Envía tu opinión</string>
+    <string name="action_settings">Ajustes</string>
+
+    <string name="anim_even_longer" translatable="false">5000</string>
+    <string name="anim_long" translatable="false">2000</string>
+    <string name="anim_medium" translatable="false">1000</string>
+    <string name="anim_no_duration" translatable="false">0</string>
+    <string name="anim_short" translatable="false">500</string>
+
+    <string name="app_name" translatable="false">Ocquarium</string>
+
+    <string name="feedback_check_device_info">Acepto que al presionar el botón \"Envía tu opinión\", Ocquarium recopilará información no identificable del dispositivo, como el nombre del dispositivo y la versión de Android.</string>
+    <string name="feedback_check_latest_version">He verificado que estoy usando la última versión de Ocquarium.</string>
+    <string name="feedback_describe_issue">Describe el problema</string>
+    <string name="feedback_dialog_email_app_error">No se encontró ninguna aplicación de correo electrónico en tu dispositivo. Instala una aplicación de correo electrónico compatible y vuelve a intentarlo.</string>
+    <string name="feedback_dialog_fields_error">Asegúrese de haber completado todos los campos.</string>
+    <string name="feedback_dialog_invalid_checkboxes">Asegúrese de haber completado todos los campos.</string>
+    <string name="feedback_dialog_title_error">Error</string>
+    <string name="feedback_error_empty">Asegúrese de no olvidar este campo.</string>
+    <string name="feedback_hint_issue_title">Titulo del problema</string>
+    <string name="feedback_prefill_content" translatable="false">
+        ISSUE_DESCRIPTION\n\n
+        #### Device info\n\n
+         - Ocquarium build version: `ocquarium_version_name`\n
+         - Device fingerprint: `device_fingerprint`\n\n\n\n
+    </string>
+
+    <string name="live_wall_author" translatable="false">Timothy Langer &amp; the AOSP</string>
+    <string name="live_wall_description">Observa cómo un pulpo juguetón flota detrás de tu pantalla de inicio.</string>
+    <string name="live_wall_name">Ocquarium live wallpaper</string>
+
+    <string name="pref_header_background">Fondo</string>
+    <string name="pref_header_background_desc">Cambia el color del fondo</string>
+    <string name="pref_header_general">General</string>
+    <string name="pref_header_general_desc">Cambia opciones varias</string>
+
+    <string name="prefs_category_about">Acerca de</string>
+    <string name="prefs_category_about_desc">Obtenga más información o envíe comentarios.</string>
+    <string name="prefs_category_animations">Animaciones</string>
+    <string name="prefs_category_experimental">Experimental</string>
+    <string name="prefs_category_general">General</string>
+    <string name="prefs_category_live_wallpaper">Live wallpaper</string>
+    <string name="prefs_category_octopus">Pulpo</string>
+    <string name="prefs_category_octopus_desc">Cambia como se ve el pulpo.</string>
+    <string name="prefs_category_screensaver">Salvapantallas</string>
+    <string name="prefs_category_ss_and_wallpaper">Salvapantallas y fondo de pantalla</string>
+    <string name="prefs_category_ss_and_wallpaper_desc">Deja que el pulpo pase tranquilamente por tu pantalla de inicio.</string>
+    <string-array name="prefs_fade_duration_entries">
+        <item>Corto</item>
+        <item>Medio</item>
+        <item>Largo</item>
+        <item>Mas largo</item>
+        <item>Sin animación</item>
+    </string-array>
+    <string-array name="prefs_fade_duration_values">
+        <item>@string/anim_short</item>
+        <item>@string/anim_medium</item>
+        <item>@string/anim_long</item>
+        <item>@string/anim_even_longer</item>
+        <item>@string/anim_no_duration</item>
+    </string-array>
+    <string name="prefs_gradient_end_color_summary">Establece el color degradado de fondo final.</string>
+    <string name="prefs_gradient_end_color_title">Color degradado final</string>
+    <string name="prefs_gradient_start_color_summary">Establece el primer color degradado de fondo.</string>
+    <string name="prefs_gradient_start_color_title">Color degradado primero</string>
+    <string name="prefs_hide_settings_summary">No muestra un ícono, pero aún permite tocar en la esquina superior izquierda para acceder a los ajustes.</string>
+    <string name="prefs_hide_settings_title">Icono de ajustes transparente</string>
+    <string name="prefs_mixin_animation_lag_info">Eliminar la animación evita el retraso al abrir la aplicación.</string>
+    <string name="prefs_octo_fade_in_duration_title">Duración del efecto de fundido</string>
+    <string name="prefs_octopus_advanced_summary">Configurar opciones experimentales</string>
+    <string name="prefs_octopus_advanced_title">Avanzado</string>
+    <string name="prefs_octopus_average_size_notice">Mover el pulpo tocándolo y arrastrándolo no está disponible actualmente en esta pantalla.</string>
+    <string name="prefs_octopus_average_size_summary">Cambiar el tamaño del pulpo</string>
+    <string name="prefs_octopus_average_size_title">Tamaño promedio del pulpo</string>
+    <string name="prefs_octopus_blink_frequency_summary">Cambia la frecuencia con la que parpadea el pulpo. El valor predeterminado es 10, el máximo es 500.</string>
+    <string name="prefs_octopus_blink_frequency_title">Frecuencia de parpadeo</string>
+    <string name="prefs_octopus_leg_particles_summary">Haz que los tentáculos sean pequeñas partículas flotantes..</string>
+    <string name="prefs_octopus_leg_particles_title">Habilitar tentáculos de partículas</string>
+    <string name="prefs_octopus_leg_path_debug_summary">Dale a los tentáculos un maquillaje geométrico.</string>
+    <string name="prefs_octopus_leg_path_debug_title">Habilitar tentáculos experimentales</string>
+    <string name="prefs_octopus_weird_eyes_summary">Haz que los ojos se abran y se cierren al mismo tiempo.</string>
+    <string name="prefs_octopus_weird_eyes_title">Habilitar ojos experimentales</string>
+    <string name="prefs_open_ocquarium_alpha">Open Ocquarium Alpha</string>
+    <string name="prefs_platlogo_v2_summary">Mostrar el nuevo logotipo de Android Oreo en lugar del anterior.</string>
+    <string name="prefs_platlogo_v2_title">Nuevo logotipo de la plataforma</string>
+    <string name="prefs_reset_colors_summary">Restablece los colores de fondo a los azules Oreo predeterminados.</string>
+    <string name="prefs_reset_colors_title">Restablecer colores</string>
+    <string name="prefs_reset_live_wallpaper_summary">Utilice esta opción para forzar el reinicio del live wallpaper.</string>
+    <string name="prefs_reset_live_wallpaper_title">Reiniciar fondo de pantalla</string>
+    <string name="prefs_restarting_wallpaper">Reiniciando live wallpaper…</string>
+    <string name="prefs_screensaver_enable_touch_summary">Permite mover el pulpo tocandolo durante el modo salvapantallas</string>
+    <string name="prefs_screensaver_enable_touch_title">Habilitar tocar</string>
+    <string name="prefs_screensaver_error">Lamentablemente, su dispositivo no admite la configuración de un salvapantallas.</string>
+    <string name="prefs_set_live_wall_summary">Pulsa aqui para establecer Ocquarium como tu live wallpaper.</string>
+    <string name="prefs_set_live_wall_title">Establecer live wallpaper</string>
+    <string name="prefs_set_screensaver_summary">Pulsa aca para establecer Ocquarium como el salvapantallas de tu dispositivo.</string>
+    <string name="prefs_set_screensaver_title">Establecer salvapantallas</string>
+    <string name="prefs_show_navigation_bar_summary">Mostrar la barra de navegación mientras se juega a Ocquarium</string>
+    <string name="prefs_show_navigation_bar_title">Mostrar barra de navegación</string>
+    <string name="prefs_show_platlogo_summary">Muestra el logo de Android Oreo antes del pulpo.</string>
+    <string name="prefs_show_platlogo_title">Mostrar el logo de la plataforma</string>
+    <string name="prefs_uigradients_dialog_description">¿Aplicar degradado llamado %s?\n\nSi desea probar un degradado diferente, presione \"Cancelar\" y seleccione \"Degradado aleatorio\" nuevamente.</string>
+    <string name="prefs_uigradients_dialog_title">Degradado aleatorio</string>
+    <string name="prefs_uigradients_summary">Degradado aleatorio</string>
+    <string name="prefs_uigradients_title">Elige un conjunto aleatorio de colores de uigradients.com</string>
+    <string name="prefs_wallpaper_disabled_desc">Live wallpaper de Ocquarium ya configurado.</string>
+
+    <string name="share_text">Echa un vistazo a %s https://play.google.com/store/apps/details?id=com.zeevox.octo</string>
+    <string name="share_with">Comparte \"%s\" with</string>
+
+    <string name="shortcut_settings_disabled">Esta aplicación ha sido deshabilitada.</string>
+    <string name="shortcut_settings_long">Cambiar las preferencias de Ocquarium</string>
+</resources>
